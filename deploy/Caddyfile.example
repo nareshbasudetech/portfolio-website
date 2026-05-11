@@ -1,10 +1,20 @@
-# Caddyfile for nareshbasude.in (portfolio) + whatsapp.nareshbasude.in (existing bot)
+# Caddyfile for nareshbasude.in (portfolio)
 #
 # Install location: /etc/caddy/Caddyfile
 # After editing: sudo systemctl reload caddy
 #
 # Caddy auto-provisions Let's Encrypt SSL — no certbot needed.
 # Make sure ports 80 + 443 are open in your VPS firewall (ufw allow 80,443/tcp).
+#
+# ⚠ IMPORTANT — preserve shruti.nareshbasude.in
+# If shruti.nareshbasude.in is currently served by another web server config
+# (nginx site, separate Caddyfile import, Docker container, etc.) — LEAVE IT
+# ALONE. This file only configures nareshbasude.in (apex + www).
+#
+# If you're migrating away from nginx to Caddy, you must also bring shruti's
+# config into this Caddyfile or as an `import` directive. There's a stub block
+# at the bottom of this file for that — fill it in with whatever currently
+# serves shruti, then delete the bot-related config in nginx/Apache/wherever.
 
 # ─── PORTFOLIO (apex + www) ──────────────────────────────────────────
 nareshbasude.in, www.nareshbasude.in {
@@ -77,32 +87,36 @@ nareshbasude.in, www.nareshbasude.in {
     }
 }
 
-# ─── WHATSAPP BOT (moved from apex) ──────────────────────────────────
-# This block assumes the existing bot site is served from /var/www/whatsapp-bot
-# (or wherever it currently lives — update the root path to match).
+# ─── SHRUTI SUBDOMAIN (preserve existing) ────────────────────────────
+# Only fill this in if Caddy will be the web server for shruti.nareshbasude.in
+# too. If shruti is already running on nginx/Apache/Docker and you're keeping
+# that — leave this block commented out, and make sure your migration steps
+# don't disable whatever is serving shruti today.
 #
-# If the bot is a Node app on localhost:3000 instead of static files, replace
-# the `file_server` block below with: reverse_proxy localhost:3000
-whatsapp.nareshbasude.in {
-    root * /var/www/whatsapp-bot
-    encode zstd gzip
-
-    header {
-        Strict-Transport-Security      "max-age=31536000; includeSubDomains"
-        X-Content-Type-Options         nosniff
-        Referrer-Policy                strict-origin-when-cross-origin
-        -Server
-    }
-
-    file_server
-
-    # If it's a Node/Python app instead, use:
-    # reverse_proxy localhost:3000
-
-    log {
-        output file /var/log/caddy/whatsapp.access.log {
-            roll_size 50mb
-            roll_keep 4
-        }
-    }
-}
+# Find out what currently serves shruti:
+#   grep -rl "shruti" /etc/nginx /etc/caddy /etc/apache2 2>/dev/null
+#   curl -I https://shruti.nareshbasude.in
+#
+# Common patterns — uncomment + adapt whichever applies:
+#
+# # Static files:
+# shruti.nareshbasude.in {
+#     root * /var/www/shruti
+#     encode zstd gzip
+#     file_server
+#     header Strict-Transport-Security "max-age=31536000; includeSubDomains"
+# }
+#
+# # Reverse-proxy to a Node/Python app on localhost:
+# shruti.nareshbasude.in {
+#     reverse_proxy localhost:3000
+#     encode zstd gzip
+#     header Strict-Transport-Security "max-age=31536000; includeSubDomains"
+# }
+#
+# # WordPress / PHP-FPM:
+# shruti.nareshbasude.in {
+#     root * /var/www/shruti
+#     php_fastcgi unix//run/php/php8.2-fpm.sock
+#     file_server
+# }

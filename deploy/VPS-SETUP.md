@@ -2,22 +2,21 @@
 
 End state: push to `main` → GitHub Actions builds → rsyncs `dist/` to VPS → Caddy/nginx serves it.
 
-The existing WhatsApp Bot site at `nareshbasude.in` moves to `whatsapp.nareshbasude.in`. Portfolio takes the apex.
+The existing site at `nareshbasude.in` (apex) gets **removed**. Portfolio takes the apex.
+**`shruti.nareshbasude.in` stays untouched** — do not modify its config or files.
 
 ---
 
 ## Step 1 — DNS
 
-In Hostinger DNS panel (or wherever DNS is managed), add:
+No DNS changes needed. The apex `nareshbasude.in` A record already points at the VPS. `shruti.nareshbasude.in` is also already wired and stays as-is.
 
+Verify the apex is correctly pointed before deploying:
+
+```bash
+dig +short nareshbasude.in        # → should return your VPS IP
+dig +short shruti.nareshbasude.in # → should also return your VPS IP (or wherever shruti lives)
 ```
-Type   Host        Value          TTL
-A      whatsapp    <VPS IP>       14400
-```
-
-The apex `nareshbasude.in` A record already points at the VPS — no change needed.
-
-Verify after ~5 min: `dig +short whatsapp.nareshbasude.in` should return the VPS IP.
 
 ---
 
@@ -116,21 +115,115 @@ Caddy auto-fetches Let's Encrypt SSL certs on first request. Give it 30 seconds 
 
 ---
 
-## Step 6 — Migrate the bot site
+## Step 6 — Remove the apex site, preserve shruti subdomain
 
-You need to move the existing WhatsApp Bot site's nginx/Caddy config from `nareshbasude.in` → `whatsapp.nareshbasude.in`.
+The existing site at `nareshbasude.in` (apex) gets deleted entirely. `shruti.nareshbasude.in` stays running.
 
-**If currently on nginx and you're switching to Caddy:**
-1. Find the bot's files: `grep -rl nareshbasude /etc/nginx/sites-enabled/` (note the `root` path)
-2. Add a `whatsapp.nareshbasude.in` block to the Caddyfile pointing at that root (see [Caddyfile.example](Caddyfile.example))
-3. Disable nginx: `sudo systemctl disable --now nginx`
-4. Reload Caddy: `sudo systemctl reload caddy`
+### 6a — Discover what's currently serving what
+
+Before touching anything, find both configs and confirm which files are which.
+
+```bash
+# Find all configs that mention nareshbasude
+grep -rln "nareshbasude" /etc/nginx /etc/caddy /etc/apache2 2>/dev/null
+
+# Inspect each one — note the `root` path (where the site files live) and the
+# `server_name` directive (which hostname it serves)
+sudo cat /etc/nginx/sites-enabled/nareshbasude*   # if nginx
+sudo cat /etc/caddy/Caddyfile                     # if caddy
+
+# What's responding right now
+curl -I https://nareshbasude.in
+curl -I https://shruti.nareshbasude.in
+```
+
+Write down two things:
+
+- **APEX_ROOT** = the document root for `nareshbasude.in` (the site you're removing)
+- **SHRUTI_ROOT** = the document root for `shruti.nareshbasude.in` (preserve this)
+
+### 6b — Remove the apex site
+
+**If on nginx:**
+
+```bash
+# Disable the apex site server block (don't delete yet — easier to recover)
+sudo rm /etc/nginx/sites-enabled/nareshbasude.in
+# Keep /etc/nginx/sites-available/ copy in case you need to recover.
+
+# Verify nothing breaks
+sudo nginx -t
+
+# Test that shruti still serves
+curl -I https://shruti.nareshbasude.in
+```
+
+**If on Caddy:**
+
+```bash
+# Edit /etc/caddy/Caddyfile and DELETE only the block(s) starting with
+#   nareshbasude.in {
+#   www.nareshbasude.in {
+# Leave any  shruti.nareshbasude.in {  block intact.
+sudo nano /etc/caddy/Caddyfile
+
+# Validate + reload
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+
+# Test that shruti still serves
+curl -I https://shruti.nareshbasude.in
+```
+
+### 6c — Remove the old apex files (after the portfolio is deployed and verified)
+
+Don't delete files until after step 7 succeeds. Then:
+
+```bash
+# Move first, delete later — safer
+sudo mv $APEX_ROOT /var/www/_old_apex_$(date +%Y%m%d)
+# Wait a week, confirm nothing breaks, then:
+# sudo rm -rf /var/www/_old_apex_*
+```
+
+### 6d — Install the new portfolio config
+
+**If on Caddy:**
+
+Copy [Caddyfile.example](Caddyfile.example) into `/etc/caddy/Caddyfile`. **Important**: if shruti is also being served by Caddy, copy its existing `shruti.nareshbasude.in { ... }` block into the new Caddyfile too — otherwise it'll stop serving when you reload.
+
+```bash
+# Back up the current Caddyfile
+sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak.$(date +%Y%m%d)
+
+# Edit /etc/caddy/Caddyfile:
+#   - Replace the old nareshbasude.in apex block with the one from deploy/Caddyfile.example
+#   - KEEP the shruti.nareshbasude.in block intact (copy from the .bak file if needed)
+sudo nano /etc/caddy/Caddyfile
+
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
 
 **If keeping nginx:**
-1. Edit the bot's existing server block: change `server_name nareshbasude.in` → `server_name whatsapp.nareshbasude.in`
-2. Add the portfolio config from [nginx-portfolio.conf.example](nginx-portfolio.conf.example) for the apex
-3. Run certbot for the new subdomain: `sudo certbot --nginx -d whatsapp.nareshbasude.in`
-4. Reload: `sudo nginx -t && sudo systemctl reload nginx`
+
+```bash
+# Install the new apex config
+sudo cp deploy/nginx-portfolio.conf.example /etc/nginx/sites-available/nareshbasude.in
+sudo nano /etc/nginx/sites-available/nareshbasude.in   # uncomment SSL lines
+sudo ln -s /etc/nginx/sites-available/nareshbasude.in /etc/nginx/sites-enabled/
+
+# Provision SSL
+sudo certbot --nginx -d nareshbasude.in -d www.nareshbasude.in
+
+# Reload
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+After this step:
+- `nareshbasude.in` → 502/empty (until step 7 deploys portfolio files)
+- `shruti.nareshbasude.in` → still serving normally
+- `whatsapp.nareshbasude.in` → no longer exists (was never set up; we changed the plan)
 
 ---
 
@@ -169,8 +262,8 @@ curl -sf https://nareshbasude.in/sitemap-index.xml | head -3
 curl -sf https://nareshbasude.in/llms.txt | head -3
 # Expect: # Naresh Basude — Website & App Developer ...
 
-curl -I https://whatsapp.nareshbasude.in/
-# Expect: HTTP/2 200 (bot site still serving)
+curl -I https://shruti.nareshbasude.in/
+# Expect: HTTP/2 200 (untouched — must still serve normally)
 
 curl -I https://www.nareshbasude.in/
 # Expect: HTTP/2 301, Location: https://nareshbasude.in/
