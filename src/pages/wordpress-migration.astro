@@ -1,0 +1,114 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const scenarios = [
+  { h: 'Custom-PHP → WordPress', p: 'Legacy sites that work but no one wants to touch. Same identity, modern stack, real velocity for the team afterward. Migration done with redirects, not breakage.' },
+  { h: 'Wix / Squarespace → WordPress', p: 'When you\'ve outgrown the page-builder ceiling — SEO requirements, custom content models, payment flows, plugin integrations. Migrated cleanly, indexed URLs preserved.' },
+  { h: 'WordPress → Astro / Next.js', p: 'When WP is the bottleneck (performance, security, scale) but the team still needs a CMS. Headless WP keeps the editor familiar, frontend goes static. Best of both.' },
+  { h: 'WordPress version + plugin overhaul', p: 'Site running on PHP 7.x, outdated themes, plugin sprawl. Full audit, security hardening, image/database optimization — without rebuilding from scratch.' },
+];
+
+const principles = [
+  { b: 'SEO equity preserved', s: 'Every old URL either still works or 301s to its new equivalent. Indexed pages, inbound links, search rankings — all carried across. This is non-negotiable.' },
+  { b: 'Image migration done right', s: 'Old sites have photos at non-standard paths, often hardcoded as absolute URLs. Auto-importer catches most. The remaining 10–15% gets hand-mapped — broken images on a faculty page is a trust problem, not a UX problem.' },
+  { b: 'Staged on subdomain', s: 'New build runs on staging.yourdomain.com for two weeks parallel to the old site. Redirect tests come up green before DNS flips. Calm launch, not panicked.' },
+  { b: 'Analytics rollover BEFORE launch', s: 'Search Console + GA4 set up two weeks ahead of go-live so we get a clean before-after read on traffic, indexation, and rankings. Migration without measurement is faith-based.' },
+  { b: 'Maintainable for non-devs', s: 'Custom blocks, simple admin layers, no Gutenberg-soup. The team should be able to publish pages, update faculty, edit fee structures without raising a ticket.' },
+  { b: 'Speed + security baseline', s: 'Page caching, image optimization, CDN, security headers, login hardening, automated backups. Standard from day one.' },
+];
+
+const faqs = [
+  { q: 'How long does a WordPress migration take?', a: '2–4 weeks for a typical college/business site (50–200 pages). Larger sites with custom content models, multilingual setups, or extensive media take longer. Discovery on day one tells us which bucket.' },
+  { q: 'Will my Google rankings drop?', a: 'Not if it\'s done right. Every old URL either resolves or 301-redirects to its new equivalent. Rankings come back to baseline within 2–4 weeks. The risk is from amateur migrations that break URLs without redirects — that\'s where rankings die.' },
+  { q: 'Can the team still edit content easily?', a: 'Yes — that\'s the whole point. WordPress with custom Gutenberg blocks (or ACF where it makes sense) gives the team a clean editor. No "ask the developer to add a faculty member."' },
+  { q: 'Do you migrate plugins + custom functionality?', a: 'Yes — but I audit first. Some legacy plugins are unmaintained or replaceable with modern equivalents. Custom functionality (forms, calculators, member areas) gets rebuilt cleanly.' },
+  { q: 'Hostinger / Bluehost / Cloudways — which hosting?', a: 'Depends on traffic and budget. For most SMB-to-mid-market sites in India, Hostinger\'s WP-optimized plan or Cloudways with DigitalOcean is the right call. I set up hosting, SSL, CDN as part of the project.' },
+  { q: 'GST invoice + Indian payment methods?', a: 'GST invoice yes. UPI, NEFT, Razorpay, cheque — all supported.' },
+];
+---
+
+<BaseLayout
+  title="WordPress Migration Expert · Naresh Basude"
+  description="WordPress migration expert. Custom-PHP, Wix, Squarespace, legacy WP migrated cleanly with SEO equity preserved via 301 redirects + analytics rollover."
+  schemaType="service"
+  service={{
+    name: 'WordPress Migration',
+    description: 'Custom-PHP, Wix, Squarespace, and legacy WordPress sites migrated to clean, fast, maintainable WordPress — with SEO equity preserved through full URL mapping, 301 redirects, image migration, and pre-launch analytics rollover.',
+    slug: '/wordpress-migration',
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'WordPress Migration', item: '/wordpress-migration' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ WORDPRESS MIGRATION ]</span>
+      <span>SEO EQUITY PRESERVED</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      WordPress migrations<br /><em>without losing rankings.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>. I migrate legacy sites —
+      custom-PHP, Wix, Squarespace, outdated WordPress — to clean, fast,
+      maintainable stacks. <strong>Every old URL preserved or
+      301-redirected.</strong> Indexed pages, inbound links, search
+      rankings carried across. Analytics set up two weeks before launch
+      so we get a clean before-after read.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href="/projects/nipcollege-rebuild" class="btn btn--ghost">See the case study</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'WordPress Migration · <b>301 Preserved</b>',
+    'Custom-PHP → WP · <b>Maintainable</b>',
+    '<i>Image Migration</i> · Hand-mapped',
+    'Analytics · <b>Before Launch</b>',
+    'Speed + Security · <b>Baseline</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I migrate</span><span class="sec-head__lab">Legacy → maintainable</span></header>
+    <ul class="city-services" role="list">{scenarios.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; How I migrate</span><span class="sec-head__lab">Process &amp; principles</span></header>
+    <div class="city-industries">{principles.map((p) => (<div class="city-industry"><b>{p.b}</b><span>{p.s}</span></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Case study</span><span class="sec-head__lab">NIP College — Thane</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Custom-PHP college site rebuilt as a maintainable WordPress site — same identity, modern stack, real velocity for the team. Ten years of indexed URLs, thousands of pages, hundreds of inbound links — all preserved through hand-mapped 301s and a two-week staging parallel-run.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href="/projects/nipcollege-rebuild" class="btn">Read the case study <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; FAQs</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Got a migration in mind? Send the current site URL plus a quick brief on what's not working — I'll reply within 24 hours with a migration scope, redirect strategy, and rough timeline.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+  </section>
+</BaseLayout>

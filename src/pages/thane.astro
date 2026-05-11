@@ -1,0 +1,246 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Thane', p: 'Marketing sites, brand sites, landing pages, e-commerce — for Thane SMBs, coaching institutes, real-estate developers, and clinics. Next.js, Astro, or WordPress depending on who maintains it after.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Thane', p: 'Mobile apps, web apps, dashboards, CRMs. Multi-role workflows, offline-aware where it matters, instrumented from day one. Examples: NursingPathshala (study app), Naresh-CRM (lead management).', href: '/projects/nursingpathshala-app', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Thane', p: 'Automated lead qualification on WhatsApp — replies in seconds, routes the conversation to your team, logs the lead in your CRM. Hindi + English code-switching supported.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · SEO in Thane', p: '20+ brands across education, real estate, e-commerce. Meta ads, Google ads, technical SEO, lifecycle messaging — tied to one number that matters, measured server-side.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Coaching & education', s: 'Admissions sites, study apps, lead-to-counsellor pipelines. Ref: NIP College (Thane), ABS, NGI.' },
+  { b: 'Real estate', s: 'Project pages, site-visit lead capture, retargeting against listing views.' },
+  { b: 'Clinics & healthcare', s: 'Appointment flows, doctor profiles, WhatsApp follow-up.' },
+  { b: 'Retail & SMBs', s: 'Marketing sites + WhatsApp catalog + lifecycle SMS/email.' },
+  { b: 'IT & consultancies', s: 'Corporate sites, careers pages, content systems for Wagle Estate / TCS-area firms.' },
+  { b: 'Restaurants & hospitality', s: 'Menu sites, online ordering, Google Business Profile + local SEO.' },
+];
+
+const neighborhoods = ['Thane West', 'Thane East', 'Wagle Estate', 'Naupada', 'Vartak Nagar', 'Majiwada', 'Ghodbunder Road', 'Pokhran Road', 'Hiranandani Estate', 'Manpada', 'Kalher', 'Owale'];
+
+const faqs = [
+  { q: 'Do you meet clients in Thane in person?', a: 'Yes — for kickoff and milestone reviews I can come to your office anywhere in Thane (Wagle Estate, Naupada, Majiwada, Hiranandani Estate, Ghodbunder Road). Day-to-day work runs on WhatsApp + video for speed.' },
+  { q: 'What\'s the typical project budget for Thane SMBs?', a: 'Project-based — no public rate card. Most Thane SMBs land between project-scope brackets that I discuss in the brief. UPI, bank transfer, GST invoice — all supported.' },
+  { q: 'Hindi or Marathi support?', a: 'Yes. Site copy can be written or reviewed in English, Hindi, or Marathi. WhatsApp bots handle Hindi-English code-switch (the way Thane users actually type).' },
+  { q: 'How fast can you start?', a: 'Discovery within a day of the brief. First deployable shipped inside 7 days for landing pages, brand sites, and small apps. Larger products iterate from there.' },
+  { q: 'Will you maintain the site after launch?', a: 'Yes — either as a monthly retainer for ongoing growth + bug-fix, or as a per-incident handover. I build on stacks your team can run themselves so handover is real, not theoretical.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Thane — Naresh Basude"
+  description="Website & app developer in Thane. Naresh Basude ships sites, apps, WhatsApp bots & Meta/Google ads for SMBs, coaching, real estate, clinics."
+  schemaType="city"
+  city={{
+    name: 'Thane',
+    slug: '/thane',
+    description: 'Website and app developer in Thane — Naresh Basude builds websites, web apps, mobile apps, WhatsApp automations, and runs growth marketing for Thane SMBs.',
+    areaServed: ['Thane', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Thane', item: '/thane' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ THANE ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      Website &amp; app developer<br /><em>in Thane.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, a website and app developer based
+      in <strong>Thane, Maharashtra</strong>. I build websites, web apps,
+      mobile apps, WhatsApp automations, and run Meta + Google ads for
+      Thane SMBs, coaching institutes, real-estate developers, clinics, and
+      e-commerce brands. One person, one timeline, projects delivered
+      within 7 days.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">
+        WhatsApp me <span aria-hidden="true">↗</span>
+      </a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Thane</b>',
+    'App Developer · <b>Thane</b>',
+    'WhatsApp Bot · <b>Wagle Estate</b>',
+    '<i>Meta + Google Ads</i> · Thane',
+    'SEO &amp; GEO · <b>Maharashtra</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Thane</span>
+      <span class="sec-head__lab">Services</span>
+    </header>
+
+    <ul class="city-services" role="list">
+      {services.map((s) => (
+        <li class="city-service">
+          <h2 class="city-service__h">{s.h}</h2>
+          <p class="city-service__p">{s.p}</p>
+          <a href={s.href} class="city-service__cta">{s.cta}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries I ship for in Thane</span>
+      <span class="sec-head__lab">Real cases nearby</span>
+    </header>
+
+    <div class="city-industries">
+      {industries.map((i) => (
+        <div class="city-industry">
+          <b>{i.b}</b>
+          <span>{i.s}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Live work for Thane &amp; MMR clients</span>
+      <span class="sec-head__lab">Real URLs — go look</span>
+    </header>
+
+    <ul class="city-proof" role="list">
+      <li class="city-proof__item">
+        <a href="https://nipcollege.com" target="_blank" rel="noopener" class="city-proof__url">nipcollege.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">NIP College · Thane — custom-PHP rebuilt as maintainable WordPress, SEO equity preserved. <a href="/projects/nipcollege-rebuild">Read case →</a></span>
+      </li>
+      <li class="city-proof__item">
+        <a href="https://bookwithteachers.com" target="_blank" rel="noopener" class="city-proof__url">bookwithteachers.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">BookWithTeachers — e-learning + bookstore for the Thane/Mumbai education belt. <a href="/projects/bookwithteachers">Read case →</a></span>
+      </li>
+      <li class="city-proof__item">
+        <a href="https://abseducationalsolution.com/" target="_blank" rel="noopener" class="city-proof__url">abseducationalsolution.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">ABS Educational Solutions — counsellor-led admissions site + admin layer the team runs. <a href="/projects/education-platforms">Read case →</a></span>
+      </li>
+      <li class="city-proof__item">
+        <a href="https://ngiadmissionmilega.com/" target="_blank" rel="noopener" class="city-proof__url">ngiadmissionmilega.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">NGI Admission Milega — admissions funnel matching students to colleges, lead routing built-in. <a href="/projects/education-platforms">Read case →</a></span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Areas covered in Thane</span>
+      <span class="sec-head__lab">Mumbai Metropolitan Region</span>
+    </header>
+
+    <ul class="city-areas" role="list" aria-label="Neighborhoods served in Thane">
+      {neighborhoods.map((n) => <li class="city-area">{n}</li>)}
+    </ul>
+
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">
+      In-person for kickoff and milestone reviews anywhere in Thane.
+      Day-to-day work runs over WhatsApp + video. Clients across the wider
+      MMR — Mumbai, Navi Mumbai, Bhiwandi, Kalyan — also covered the same way.
+    </p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Why local matters</span>
+      <span class="sec-head__lab">Thane-based</span>
+    </header>
+
+    <div class="city-why">
+      <article class="city-why__item">
+        <h3 class="t-h3">Same timezone, same language</h3>
+        <p>Hindi, Marathi, English — whichever your team speaks. No 10-hour gap, no "let me check with someone abroad."</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">One brain, not a chain</h3>
+        <p>I market, design, and build the thing myself. No agency middleman, no five-person handoff.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">7-day delivery</h3>
+        <p>Brief on Monday, live URL by next Sunday. Iteration continues from there — but the project leaves the runway fast.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Real cases nearby</h3>
+        <p>NIP College (Thane), ABS Educational Solutions, NGI Admissions, BookWithTeachers, and 20+ growth-marketing engagements. <a href="/projects">See the work →</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; FAQs from Thane clients</span>
+      <span class="sec-head__lab">The usual asks</span>
+    </header>
+
+    <ul class="city-faqs" role="list">
+      {faqs.map((f, i) => (
+        <li>
+          <details>
+            <summary>
+              <span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span>
+              <span>{f.q}</span>
+              <span class="city-faqs__plus" aria-hidden="true">+</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>07</b> &nbsp;/&nbsp; Start now</span>
+      <span class="sec-head__lab">Replies inside 24h</span>
+    </header>
+
+    <p class="t-lede" style="max-width: 60ch;">
+      Got a website, app, or marketing brief in Thane? Send a quick
+      message — I'll come back within 24 hours with whether it's a fit,
+      a rough estimate, and next steps.
+    </p>
+
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span>
+      <span class="city-nap__val">Thane, Maharashtra 400601, India</span>
+      <span class="city-nap__lbl">Phone</span>
+      <span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span>
+      <span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span>
+      <span class="city-nap__val">Thane · Bhiwandi · Kalyan · Mumbai · Navi Mumbai · Mira-Bhayandar · India · Remote</span>
+    </address>
+
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/mumbai">Mumbai</a>
+      <a href="/navi-mumbai">Navi Mumbai</a>
+      <a href="/kalyan-bhiwandi">Kalyan-Bhiwandi</a>
+    </nav>
+  </section>
+</BaseLayout>

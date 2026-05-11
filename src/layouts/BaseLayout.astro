@@ -1,0 +1,132 @@
+---
+import '~/styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import SEO from '@components/SEO.astro';
+import JsonLd from '@components/JsonLd.astro';
+import Nav from '@components/Nav.astro';
+import StatusBar from '@components/StatusBar.astro';
+import Footer from '@components/Footer.astro';
+import MobileCTA from '@components/MobileCTA.astro';
+import { SITE } from '~/consts';
+
+const GA_ID = import.meta.env.PUBLIC_GA_ID;
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  schemaType?: 'home' | 'about' | 'project' | 'projects' | 'post' | 'city' | 'cities' | 'writing' | 'service';
+  noindex?: boolean;
+  publishedAt?: Date;
+  updatedAt?: Date;
+  hideStatus?: boolean;
+  project?: {
+    name: string;
+    description: string;
+    url?: string;
+    canonicalUrl?: string;
+    year?: string | number;
+    image?: string;
+  };
+  post?: {
+    title: string;
+    summary: string;
+    slug: string;
+    publishedAt: Date;
+    updatedAt?: Date;
+    tags?: string[];
+    image?: string;
+  };
+  city?: {
+    name: string;
+    slug: string;
+    description: string;
+    areaServed?: string[];
+  };
+  service?: {
+    name: string;
+    description: string;
+    slug: string;
+  };
+  breadcrumbs?: { name: string; item: string }[];
+  faqs?: { q: string; a: string }[];
+  itemList?: { name: string; items: { name: string; url: string }[] };
+}
+
+const {
+  title,
+  description,
+  image,
+  type = 'website',
+  schemaType = 'home',
+  noindex = false,
+  publishedAt,
+  updatedAt,
+  hideStatus = false,
+  project,
+  post,
+  city,
+  service,
+  breadcrumbs,
+  faqs,
+  itemList,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      publishedAt={publishedAt}
+      updatedAt={updatedAt}
+    />
+    <JsonLd
+      type={schemaType}
+      project={project}
+      post={post}
+      city={city}
+      service={service}
+      breadcrumbs={breadcrumbs}
+      faqs={faqs}
+      itemList={itemList}
+    />
+    <ClientRouter />
+
+    {GA_ID && (
+      <Fragment>
+        <script
+          is:inline
+          type="text/partytown"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          async
+        />
+        <script is:inline define:vars={{ GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', GA_ID, { anonymize_ip: true });
+        </script>
+      </Fragment>
+    )}
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    {!hideStatus && <StatusBar />}
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <MobileCTA />
+  </body>
+</html>

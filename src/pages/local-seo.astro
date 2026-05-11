@@ -1,0 +1,117 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const deliverables = [
+  { h: 'Google Business Profile setup + optimization', p: 'Right primary category, complete service-area definition, posts schedule, photos brief, Q&A seeding, review-response template. The profile shows up in the local pack within weeks, not months.' },
+  { h: 'On-page local signals', p: 'NAP consistency (name, address, phone matched everywhere), schema markup with geo-coordinates, opening hours, area-served lists, breadcrumb structures, hreflang where needed.' },
+  { h: 'Citation building + cleanup', p: 'Listing on the directories Google still trusts in India — Justdial, IndiaMart, Sulekha, industry-specific ones. Duplicate cleanup. Bad-NAP fixes. Real, not spammy.' },
+  { h: 'Hyperlocal content + city pages', p: 'Landing pages for each service area with locally-relevant industry context, neighborhood lists, FAQs, real client cases. The kind that ranks for "[service] in [neighborhood]", not just generic city queries.' },
+  { h: 'Review acquisition system', p: 'Email + WhatsApp follow-ups to recent clients. Templates that match Google\'s review guidelines (no incentives). Response framework for every review — positive, negative, complaint.' },
+  { h: 'Local-pack rank tracking', p: 'Geo-grid rank tracking for primary keywords across pin codes. Monthly report with rank movement, competitor positions, and action priorities.' },
+];
+
+const principles = [
+  { b: 'East vs West matters', s: 'For multi-zone cities (Mira Road East vs West, Thane East vs West, Bhayandar East vs West) — separate GBP categories, separate landing pages, separate citations. Google ranks differently per pin code.' },
+  { b: 'Service-area vs storefront', s: 'Two different GBP setups. A clinic with a physical address shows up differently than a service-area business that visits clients. Wrong setup = wrong rankings.' },
+  { b: 'Industry-specific signals', s: 'Restaurants need photos + menu attributes. Clinics need doctor profiles + appointment booking. Manufacturers need GST + catalog. Real estate needs RERA disclosures. One-size-fits-all GBPs underperform.' },
+  { b: 'Indian directories that matter', s: 'Most US-centric citation lists are useless in India. The directories that move the needle are different — and many of them charge for inclusion. I prioritize the ones with real signal.' },
+  { b: 'Schema with geo-coordinates', s: 'ProfessionalService schema with GeoCoordinates, address, openingHoursSpecification, areaServed, currenciesAccepted. Knowledge graph signals matter for AI Overviews + local pack both.' },
+  { b: 'Reviews are the moat', s: 'Above 30 reviews + 4.5+ rating beats most optimization. I build the review acquisition system early, not as a "phase 3" item.' },
+];
+
+const faqs = [
+  { q: 'How long until I see local-pack movement?', a: 'GBP setup + on-page signals + citation cleanup: visible movement in 4–8 weeks. Hitting position 1 in the local pack: 3–6 months depending on competition. Maintained, not one-and-done.' },
+  { q: 'Do you guarantee #1 ranking?', a: 'No — anyone who does is lying. I commit to: correct setup, real signals, monthly tracking, and clear reporting. Rankings come from compounding work, not promises.' },
+  { q: 'What does local SEO cost in India?', a: 'Setup-only project (GBP + on-page + citations): one-time fee. Ongoing management (content, reviews, tracking, rank reports): monthly retainer. Pricing depends on number of locations and industry competitiveness.' },
+  { q: 'I have multiple locations — does this scale?', a: 'Yes — multi-location is a different playbook. Separate GBPs per location, store-locator with schema, structured location pages, NAP consistency at scale. I\'ve done it for clients with up to 5 locations.' },
+  { q: 'Local SEO vs Google Ads — which first?', a: 'Both. Local SEO compounds (cheap leads forever, but slow to build). Google Ads is fast but expensive. For most SMBs, I recommend running both — ads to capture demand today, SEO to compound for the next 3 years.' },
+  { q: 'GST invoice + Indian payment methods?', a: 'GST invoice yes. UPI, NEFT, Razorpay, cheque — all supported.' },
+];
+---
+
+<BaseLayout
+  title="Local SEO Expert in Thane & Mumbai · Naresh Basude"
+  description="Local SEO expert for Indian SMBs — Google Business Profile setup, citations, schema, reviews, geo-grid rank tracking across Thane, Mumbai, MMR."
+  schemaType="service"
+  service={{
+    name: 'Local SEO',
+    description: 'Local SEO setup and management for Indian SMBs — Google Business Profile, on-page signals with schema markup, citation building, review acquisition system, hyperlocal content, and geo-grid rank tracking across pin codes.',
+    slug: '/local-seo',
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Local SEO', item: '/local-seo' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ LOCAL SEO ]</span>
+      <span>GBP · CITATIONS · SCHEMA · REVIEWS</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      Local SEO<br /><em>that compounds.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>. I set up Google Business
+      Profiles, build citation profiles, optimize on-page local signals
+      with schema, run review acquisition systems, and track local-pack
+      rankings for SMBs across <strong>Thane, Mumbai, and the wider
+      MMR</strong>. Setup or ongoing — both shaped to your industry.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href="/writing/local-seo-thane-starter-playbook" class="btn btn--ghost">Read the playbook</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Local SEO · <b>GBP Setup</b>',
+    'Citations · <b>India Directories</b>',
+    '<i>Schema</i> · Geo-Coordinates',
+    'Reviews · <b>Acquisition System</b>',
+    'Geo-Grid · <b>Rank Tracking</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I deliver</span><span class="sec-head__lab">Setup &amp; ongoing</span></header>
+    <ul class="city-services" role="list">{deliverables.map((d) => (<li class="city-service"><h2 class="city-service__h">{d.h}</h2><p class="city-service__p">{d.p}</p></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; How I do it</span><span class="sec-head__lab">India-specific principles</span></header>
+    <div class="city-industries">{principles.map((p) => (<div class="city-industry"><b>{p.b}</b><span>{p.s}</span></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; City landing pages</span><span class="sec-head__lab">10 cities across MMR</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Each city service area has its own landing page — with the industries, neighborhoods, FAQs, and real client cases relevant to that market. Local SEO done right means tuning every signal for every pin code.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href="/cities" class="btn">See all city pages <span aria-hidden="true">→</span></a>
+      <a href="/thane" class="btn btn--ghost">Thane</a>
+      <a href="/mumbai" class="btn btn--ghost">Mumbai</a>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; FAQs</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Got a business that should be showing up in the local pack but isn't? Send the current GBP URL plus a quick brief — I'll come back within 24 hours with what's missing, what's broken, and what the setup or retainer scope looks like.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+  </section>
+</BaseLayout>

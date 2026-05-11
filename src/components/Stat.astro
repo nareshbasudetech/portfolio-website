@@ -1,0 +1,52 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  note?: string;
+  accent?: 'orange' | 'violet' | 'ivory';
+}
+
+const { value, label, note, accent = 'ivory' } = Astro.props;
+const ac = accent === 'orange' ? 'var(--color-orange)' : accent === 'violet' ? 'var(--color-violet)' : 'var(--color-ivory)';
+---
+
+<div class="stat" style={`--ac:${ac}`}>
+  <span class="stat__lab t-mono-sm">{label}</span>
+  <strong class="stat__val" set:html={value} />
+  {note && <span class="stat__note">{note}</span>}
+</div>
+
+<style>
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.75rem 1.5rem;
+    border-right: 1px solid var(--grid-line);
+    position: relative;
+  }
+  .stat:last-child { border-right: 0; }
+  .stat__lab { display: block; }
+  .stat__val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ac);
+  }
+  .stat__val :global(sup) { font-size: 0.35em; opacity: 0.5; vertical-align: top; margin-left: 0.1em; }
+  .stat__val :global(small) { font-size: 0.45em; font-weight: 500; opacity: 0.65; }
+  .stat__note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: var(--color-ivory-dim);
+    opacity: 0.85;
+    max-width: 22ch;
+  }
+  @media (max-width: 720px) {
+    .stat { border-right: 0; border-bottom: 1px solid var(--grid-line); padding-block: 1.25rem; }
+    .stat:last-child { border-bottom: 0; }
+  }
+</style>

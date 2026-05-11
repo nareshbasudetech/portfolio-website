@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+
+const lastUpdated = new Date('2026-05-10');
+const fmt = lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Privacy policy for nareshbasude.in — what data this site collects, why, and how to opt out."
+  noindex={false}
+>
+  <section class="shell page">
+    <div class="page__brackets">
+      <span>[ PRIVACY ]</span>
+      <span>NARESHBASUDE.IN</span>
+      <span>UPDATED · {fmt.toUpperCase()}</span>
+    </div>
+    <h1 class="t-display">Privacy.</h1>
+    <p class="t-lede page__lede">
+      Short version: this is a personal portfolio. It collects the minimum
+      required to keep the lights on and tell me whether anyone's reading.
+      No personalized ads, no third-party retargeting.
+    </p>
+
+    <article class="prose">
+      <h2>What this site collects</h2>
+      <p>
+        When you visit <a href={SITE.url}>{SITE.domain}</a>, the host (Hostinger) records standard server logs — IP address, user agent, requested URL, response status, and timestamp. These rotate out per the host's retention policy and are used only for security, debugging, and abuse prevention.
+      </p>
+
+      <h2>Analytics</h2>
+      <p>
+        If analytics are enabled at the time of your visit, this site uses Google Analytics 4 with IP anonymization on. GA4 sets cookies to count visits and approximate pages-per-session. It does <em>not</em> use this data to personalize ads or build a profile across the wider web.
+      </p>
+      <p>
+        You can opt out by enabling Do-Not-Track in your browser, blocking <code>googletagmanager.com</code> at the network level, or disabling JavaScript. The site works fine without analytics — there's no functional dependency.
+      </p>
+
+      <h2>Forms and email</h2>
+      <p>
+        If you email me at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or message me on WhatsApp at <a href={`https://wa.me/${CONTACT.whatsapp}`} rel="noopener" target="_blank">{CONTACT.phoneDisplay}</a>, that conversation lives in my inbox / phone — I keep it for as long as the engagement runs and a reasonable period afterward (typically 24 months) for follow-up. I don't add your address to a marketing list.
+      </p>
+
+      <h2>Third-party content</h2>
+      <p>
+        This site loads two external font services — <code>fonts.googleapis.com</code> (Google Fonts) and <code>api.fontshare.com</code> (Fontshare). Both receive your IP address as part of the font request. If that's a concern, the same fonts can be self-hosted on request.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        The site itself does not set cookies. Google Analytics (when enabled) sets <code>_ga</code> and <code>_ga_*</code> cookies for visit measurement. Clear them in your browser settings any time.
+      </p>
+
+      <h2>Your rights (GDPR / India DPDP Act 2023)</h2>
+      <p>
+        You have the right to ask what data I hold about you, correct it, or have it deleted. Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the subject "Privacy request" and I'll respond within 30 days.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+
+      <hr />
+      <p class="meta">
+        <small>Last updated: {fmt}.</small>
+      </p>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .page { padding-block: clamp(3rem, 8vh, 6rem) clamp(4rem, 8vh, 6rem); max-width: 920px; }
+  .page__brackets {
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; opacity: 0.55; margin-bottom: 2rem;
+  }
+  .t-display { margin-bottom: 1.5rem; }
+  .page__lede { margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid var(--grid-line); }
+  .prose { max-width: 64ch; }
+  .prose h2 {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+    margin: 3rem 0 1rem; letter-spacing: -0.015em;
+  }
+  .prose h2::before {
+    content: '§ '; color: var(--color-orange); font-family: var(--font-mono);
+    font-size: 0.7em; letter-spacing: 0.05em;
+  }
+  .prose p { line-height: 1.7; color: var(--color-ivory-dim); margin: 1rem 0; }
+  .prose a { color: var(--color-orange); text-decoration: underline; text-underline-offset: 3px; }
+  .prose code {
+    font-family: var(--font-mono);
+    background: color-mix(in oklab, var(--color-ivory) 8%, transparent);
+    padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-size: 0.9em;
+  }
+  .prose hr { margin: 3rem 0 1rem; border: 0; height: 1px; background: var(--grid-line); }
+  .prose .meta { color: var(--color-mute); font-family: var(--font-mono); font-size: 0.85rem; }
+</style>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Mira-Bhayandar', p: 'Marketing sites, brand sites, e-commerce for Mira-Bhayandar retail businesses, jewelers, real-estate developers, and SMBs. Built for the Gujarati and Marwari communities that dominate local commerce.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Mira-Bhayandar', p: 'Mobile-first PWAs, web apps, internal tools. Retail catalog apps, inventory dashboards, customer loyalty flows — built for Mira Road and Bhayandar SMBs.', href: '/projects/naresh-crm-lead-management', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Mira-Bhayandar', p: 'High-volume WhatsApp enquiries handled automatically — qualify, route, log. Multi-language (Hindi/English/Gujarati) for the local commerce-heavy audience.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Mira-Bhayandar', p: 'Hyperlocal ad campaigns for Mira Road East/West and Bhayandar pin codes. GBP setup, citations, on-page signals — targets the local-pack for "near me" searches.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Jewelry &amp; gold retail', s: 'Brand sites, catalog apps, WhatsApp enquiry flows for Mira-Bhayandar\'s jewelry-heavy retail belt.' },
+  { b: 'Real estate', s: 'Tower launches, site-visit campaigns, retargeting against listing views — Mira Road and Bhayandar redevelopment is constant.' },
+  { b: 'Retail &amp; B2B trading', s: 'Wholesale and retail businesses serving the Gujarati and Marwari communities — multi-language sites + WhatsApp catalogs.' },
+  { b: 'Restaurants &amp; F&B', s: 'Restaurant sites, online ordering, GBP setup, local Meta ads for Mira-Bhayandar foodies.' },
+  { b: 'Education &amp; coaching', s: 'Admissions sites and lead pipelines for tuition and coaching institutes — high density in this belt.' },
+  { b: 'Healthcare', s: 'Clinic sites, doctor profiles, appointment booking flows, WhatsApp follow-up.' },
+];
+
+const neighborhoods = ['Mira Road East', 'Mira Road West', 'Bhayandar East', 'Bhayandar West', 'Kashimira', 'Naya Nagar', 'Sheetal Nagar', 'Shanti Nagar', 'Pleasant Park', 'Beverly Park', 'Silver Park', 'Penkar Pada'];
+
+const faqs = [
+  { q: 'Multi-language sites — Gujarati / Marwari script support?', a: 'Yes. Mira-Bhayandar commerce often serves Gujarati and Marwari audiences. Sites can launch with Gujarati script, Hindi, Marathi, and English — same admin layer.' },
+  { q: 'Do you visit Mira-Bhayandar in person?', a: 'Yes — Mira Road and Bhayandar are about 90 min from Thane. I do kickoff and milestone reviews in person, day-to-day on WhatsApp + video.' },
+  { q: 'Jewelry / gold retail catalog sites?', a: 'Routine. Catalog sites with filters by metal, weight, design type. WhatsApp enquiry flows that route to the right showroom. GST-compliant pricing toggles.' },
+  { q: 'Local SEO for Mira Road East vs West?', a: 'Different audiences, different rankings. I set up the Google Business Profile correctly with the right primary category and service-area definition. Targeting Mira Road East and Bhayandar East separately gets better local-pack visibility.' },
+  { q: 'GST + payment methods?', a: 'GST invoice yes. UPI, NEFT, Razorpay, cheque — all standard.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Mira-Bhayandar"
+  description="Multilingual (Gujarati/Hindi/Marathi) website & app developer in Mira-Bhayandar. Sites, apps, WhatsApp bots & ads for jewelers, real estate, retail."
+  schemaType="city"
+  city={{
+    name: 'Mira-Bhayandar',
+    slug: '/mira-bhayandar',
+    description: 'Website and app developer in Mira-Bhayandar — Naresh Basude builds multilingual (Gujarati/Hindi/Marathi/English) websites, web apps, WhatsApp bots, and runs Meta + Google ads for jewelers, real estate, retail, and SMBs.',
+    areaServed: ['Mira-Bhayandar', 'Mira Road', 'Bhayandar', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Mira-Bhayandar', item: '/mira-bhayandar' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ MIRA-BHAYANDAR ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+    <h1 class="t-display">Website &amp; app developer<br /><em>in Mira-Bhayandar.</em></h1>
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, serving <strong>Mira Road East/West,
+      Bhayandar East/West, Kashimira</strong>, and the wider MMR. Multilingual
+      websites, web apps, WhatsApp automations, and Meta + Google ads for
+      jewelers, real-estate developers, retail businesses, restaurants, and
+      SMBs. Gujarati / Hindi / Marathi / English supported. Projects delivered
+      in 7 days.
+    </p>
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Mira Road</b>',
+    'App Developer · <b>Bhayandar</b>',
+    'WhatsApp Catalog · <b>Jewelry</b>',
+    '<i>Local SEO</i> · Mira-Bhayandar',
+    'Real Estate · <b>Tower Launches</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Mira-Bhayandar</span><span class="sec-head__lab">Services</span></header>
+    <ul class="city-services" role="list">{services.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p><a href={s.href} class="city-service__cta">{s.cta}</a></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries in Mira-Bhayandar</span><span class="sec-head__lab">Jewelry · Real estate · Retail · F&B</span></header>
+    <div class="city-industries">{industries.map((i) => (<div class="city-industry"><b set:html={i.b} /><span set:html={i.s} /></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Areas covered</span><span class="sec-head__lab">Mira Road · Bhayandar · Kashimira</span></header>
+    <ul class="city-areas" role="list">{neighborhoods.map((n) => <li class="city-area">{n}</li>)}</ul>
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">Mira Road East and West, Bhayandar East and West, Kashimira — all covered. Easy reach from Thane via Western Express Highway or local train.</p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Why local matters</span><span class="sec-head__lab">Multilingual commerce belt</span></header>
+    <div class="city-why">
+      <article class="city-why__item"><h3 class="t-h3">Gujarati + Marwari audiences</h3><p>Most Mira-Bhayandar commerce serves Gujarati and Marwari communities. Sites and ads launch in the right script + language without translation overhead.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Jewelry &amp; gold specialty</h3><p>Catalog-heavy sites with filters, GST toggles, and WhatsApp enquiry routing — common pattern for Mira-Bhayandar jewelers.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Local-pack focus</h3><p>Different pin codes, different rankings. I set up GBP and on-page signals for Mira Road East and Bhayandar East separately.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Real cases nearby</h3><p>20+ ad accounts across retail, real-estate, education, e-commerce. <a href="/projects">See the work →</a></p></article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; FAQs from Mira-Bhayandar clients</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Got a website, catalog, app, or campaign in Mira-Bhayandar? Send a quick message — I'll come back within 24 hours.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span><span class="city-nap__val">Thane (covering Mira-Bhayandar &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span><span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span><span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span><span class="city-nap__val">Mira-Bhayandar · Mumbai · Thane · Vasai-Virar · India · Remote</span>
+    </address>
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/thane">Thane</a><a href="/mumbai">Mumbai</a><a href="/vasai-virar">Vasai-Virar</a><a href="/cities">All cities</a>
+    </nav>
+  </section>
+</BaseLayout>

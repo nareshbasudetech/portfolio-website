@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthPlus - Modern Healthcare Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+            <div class="pulse"></div>
+            <i class="fas fa-plus"></i>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <span>Health<span class="gradient-text">Plus</span></span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#specialists" class="nav-link">Specialists</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="tel:+15551234567" class="header-phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Emergency</span>
+                </a>
+                <a href="#appointment" class="btn btn-gradient">Get Started</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - Split Design -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    #1 Healthcare Provider in the Region
+                </div>
+                <h1>
+                    <span class="hero-small">We Care About</span>
+                    Your <span class="gradient-text">Health</span> &
+                    <span class="gradient-text">Wellness</span>
+                </h1>
+                <p>Experience world-class healthcare with our team of dedicated specialists. We combine advanced technology with compassionate care to deliver the best outcomes for you and your family.</p>
+                <div class="hero-cta">
+                    <a href="#appointment" class="btn btn-gradient btn-lg">
+                        <span>Book Appointment</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#services" class="btn btn-outline btn-lg">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Watch Video</span>
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-avatars">
+                        <img src="https://i.pravatar.cc/60?img=1" alt="Patient">
+                        <img src="https://i.pravatar.cc/60?img=2" alt="Patient">
+                        <img src="https://i.pravatar.cc/60?img=3" alt="Patient">
+                        <img src="https://i.pravatar.cc/60?img=4" alt="Patient">
+                        <div class="avatar-more">+2K</div>
+                    </div>
+                    <div class="trust-text">
+                        <div class="trust-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <p>Trusted by 20,000+ patients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+                    <div class="hero-blob"></div>
+                    <div class="hero-image">
+                        <i class="fas fa-user-doctor"></i>
+                    </div>
+                    <div class="floating-card fc-1">
+                        <div class="fc-icon green">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="fc-text">
+                            <span>Appointments</span>
+                            <strong>1,200+ Monthly</strong>
+                        </div>
+                    </div>
+                    <div class="floating-card fc-2">
+                        <div class="fc-icon purple">
+                            <i class="fas fa-heart-pulse"></i>
+                        </div>
+                        <div class="fc-text">
+                            <span>Success Rate</span>
+                            <strong>98.5%</strong>
+                        </div>
+                    </div>
+                    <div class="floating-card fc-3">
+                        <div class="fc-icon orange">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="fc-text">
+                            <span>Experience</span>
+                            <strong>25+ Years</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-doctor"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 data-count="150">0</h3>
+                        <p>Expert Doctors</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 data-count="25">0</h3>
+                        <p>Clinic Branches</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-face-smile"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 data-count="50000">0</h3>
+                        <p>Happy Patients</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 data-count="35">0</h3>
+                        <p>Awards Won</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Asymmetric Layout -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <div class="about-img-1">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="about-img-2">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="experience-box">
+                        <span class="exp-number">25+</span>
+                        <span class="exp-text">Years of Excellence</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="section-tag">About HealthPlus</span>
+                    <h2 class="section-title">
+                        Redefining Healthcare with <span class="gradient-text">Compassion</span> & Innovation
+                    </h2>
+                    <p class="section-desc">
+                        At HealthPlus, we believe that exceptional healthcare goes beyond treating symptoms.
+                        We focus on understanding each patient's unique needs and providing personalized care
+                        that addresses the whole person - body, mind, and spirit.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Quality Assurance</h4>
+                                <p>Internationally accredited healthcare standards</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Advanced Technology</h4>
+                                <p>State-of-the-art diagnostic equipment</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-hand-holding-medical"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Patient-Centered Care</h4>
+                                <p>Your comfort and wellbeing is our priority</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-gradient">
+                        Learn More About Us
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - Card Grid -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">Comprehensive <span class="gradient-text">Medical Services</span></h2>
+                <p>We offer a wide range of healthcare services to meet all your medical needs under one roof</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon gradient-bg">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Cardiology</h3>
+                    <p>Complete heart care including diagnostics, interventional procedures, and cardiac rehabilitation.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> ECG & Echocardiography</li>
+                        <li><i class="fas fa-check"></i> Angioplasty</li>
+                        <li><i class="fas fa-check"></i> Pacemaker Implantation</li>
+                    </ul>
+                    <a href="#appointment" class="service-link">
+                        Book Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="service-icon gradient-bg">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurology</h3>
+                    <p>Expert care for brain and nervous system disorders with advanced diagnostic capabilities.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> EEG & EMG Testing</li>
+                        <li><i class="fas fa-check"></i> Stroke Management</li>
+                        <li><i class="fas fa-check"></i> Epilepsy Treatment</li>
+                    </ul>
+                    <a href="#appointment" class="service-link">
+                        Book Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon gradient-bg">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Orthopedics</h3>
+                    <p>Specialized treatment for bones, joints, ligaments, and muscles for all age groups.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Joint Replacement</li>
+                        <li><i class="fas fa-check"></i> Sports Medicine</li>
+                        <li><i class="fas fa-check"></i> Spine Surgery</li>
+                    </ul>
+                    <a href="#appointment" class="service-link">
+                        Book Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon gradient-bg">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Pediatrics</h3>
+                    <p>Comprehensive healthcare for infants, children, and adolescents with child-friendly approach.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Vaccinations</li>
+                        <li><i class="fas fa-check"></i> Growth Monitoring</li>
+                        <li><i class="fas fa-check"></i> Developmental Care</li>
+                    </ul>
+                    <a href="#appointment" class="service-link">
+                        Book Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon gradient-bg">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Ophthalmology</h3>
+                    <p>Complete eye care services from routine checkups to complex surgical procedures.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> LASIK Surgery</li>
+                        <li><i class="fas fa-check"></i> Cataract Treatment</li>
+                        <li><i class="fas fa-check"></i> Retina Care</li>
+                    </ul>
+                    <a href="#appointment" class="service-link">
+                        Book Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon gradient-bg">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Dental Care</h3>
+                    <p>Full spectrum dental services for a healthy and beautiful smile.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Dental Implants</li>
+                        <li><i class="fas fa-check"></i> Orthodontics</li>
+                        <li><i class="fas fa-check"></i> Cosmetic Dentistry</li>
+                    </ul>
+                    <a href="#appointment" class="service-link">
+                        Book Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="services-cta">
+                <p>Can't find what you're looking for?</p>
+                <a href="#contact" class="btn btn-outline">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialists Section - Horizontal Cards -->
+    <section id="specialists" class="specialists">
+        <div class="specialists-bg"></div>
+        <div class="container">
+            <div class="section-header centered light">
+                <span class="section-tag">Our Team</span>
+                <h2 class="section-title">Meet Our <span class="gradient-text">Expert Specialists</span></h2>
+                <p>Our doctors are leaders in their respective fields, committed to providing the highest quality care</p>
+            </div>
+            <div class="specialists-slider">
+                <div class="specialist-card">
+                    <div class="specialist-image">
+                        <i class="fas fa-user-doctor"></i>
+                        <div class="specialist-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="specialist-info">
+                        <h4>Dr. Alexander Mitchell</h4>
+                        <span class="specialist-role">Chief Cardiologist</span>
+                        <p>MD, FACC - 20+ years experience in interventional cardiology</p>
+                        <div class="specialist-stats">
+                            <div class="sp-stat">
+                                <i class="fas fa-star"></i>
+                                <span>4.9 Rating</span>
+                            </div>
+                            <div class="sp-stat">
+                                <i class="fas fa-users"></i>
+                                <span>5000+ Patients</span>
+                            </div>
+                        </div>
+                        <a href="#appointment" class="btn btn-sm btn-gradient">Book Appointment</a>
+                    </div>
+                </div>
+                <div class="specialist-card">
+                    <div class="specialist-image">
+                        <i class="fas fa-user-doctor"></i>
+                        <div class="specialist-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="specialist-info">
+                        <h4>Dr. Sarah Williams</h4>
+                        <span class="specialist-role">Head of Neurology</span>
+                        <p>MD, PhD - Specialized in neurological disorders and brain surgery</p>
+                        <div class="specialist-stats">
+                            <div class="sp-stat">
+                                <i class="fas fa-star"></i>
+                                <span>4.8 Rating</span>
+                            </div>
+                            <div class="sp-stat">
+                                <i class="fas fa-users"></i>
+                                <span>4200+ Patients</span>
+                            </div>
+                        </div>
+                        <a href="#appointment" class="btn btn-sm btn-gradient">Book Appointment</a>
+                    </div>
+                </div>
+                <div class="specialist-card">
+                    <div class="specialist-image">
+                        <i class="fas fa-user-doctor"></i>
+                        <div class="specialist-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="specialist-info">
+                        <h4>Dr. James Anderson</h4>
+                        <span class="specialist-role">Orthopedic Surgeon</span>
+                        <p>MS, FRCS - Expert in joint replacement and sports injuries</p>
+                        <div class="specialist-stats">
+                            <div class="sp-stat">
+                                <i class="fas fa-star"></i>
+                                <span>4.9 Rating</span>
+                            </div>
+                            <div class="sp-stat">
+                                <i class="fas fa-users"></i>
+                                <span>3800+ Patients</span>
+                            </div>
+                        </div>
+                        <a href="#appointment" class="btn btn-sm btn-gradient">Book Appointment</a>
+                    </div>
+                </div>
+                <div class="specialist-card">
+                    <div class="specialist-image">
+                        <i class="fas fa-user-doctor"></i>
+                        <div class="specialist-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="specialist-info">
+                        <h4>Dr. Emily Chen</h4>
+                        <span class="specialist-role">Senior Pediatrician</span>
+                        <p>MD, DCH - 15+ years in pediatric care and child development</p>
+                        <div class="specialist-stats">
+                            <div class="sp-stat">
+                                <i class="fas fa-star"></i>
+                                <span>5.0 Rating</span>
+                            </div>
+                            <div class="sp-stat">
+                                <i class="fas fa-users"></i>
+                                <span>6000+ Patients</span>
+                            </div>
+                        </div>
+                        <a href="#appointment" class="btn btn-sm btn-gradient">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section - Modern Form -->
+    <section id="appointment" class="appointment">
+        <div class="container">
+            <div class="appointment-wrapper">
+                <div class="appointment-info">
+                    <span class="section-tag">Book Now</span>
+                    <h2 class="section-title">Schedule Your <span class="gradient-text">Appointment</span></h2>
+                    <p>Take the first step towards better health. Book an appointment with our specialists today.</p>
+                    <div class="appointment-benefits">
+                        <div class="benefit">
+                            <i class="fas fa-clock"></i>
+                            <span>Quick & Easy Booking</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Flexible Scheduling</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-bell"></i>
+                            <span>Appointment Reminders</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-shield-check"></i>
+                            <span>Secure & Confidential</span>
+                        </div>
+                    </div>
+                    <div class="contact-quick">
+                        <div class="cq-item">
+                            <div class="cq-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="cq-text">
+                                <span>Call Us</span>
+                                <strong>+1 (555) 123-4567</strong>
+                            </div>
+                        </div>
+                        <div class="cq-item">
+                            <div class="cq-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="cq-text">
+                                <span>Email Us</span>
+                                <strong>hello@healthplus.com</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="appointment-form-wrapper">
+                    <form class="appointment-form" id="appointmentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" placeholder="+1 (555) 000-0000" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-hospital"></i>
+                                    <select required>
+                                        <option value="">Select Department</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="ophthalmology">Ophthalmology</option>
+                                        <option value="dental">Dental Care</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Preferred Date</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Time</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-clock"></i>
+                                    <select required>
+                                        <option value="">Select Time</option>
+                                        <option value="09:00">09:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="14:00">02:00 PM</option>
+                                        <option value="15:00">03:00 PM</option>
+                                        <option value="16:00">04:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            <div class="input-wrapper textarea">
+                                <i class="fas fa-comment-medical"></i>
+                                <textarea placeholder="Describe your symptoms or concerns..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-gradient btn-block">
+                            <span>Confirm Appointment</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section - Modern Slider -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Our <span class="gradient-text">Patients Say</span></h2>
+                <p>Real stories from real patients about their experience with HealthPlus</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The care I received at HealthPlus was exceptional. Dr. Mitchell took the time to explain everything and made me feel completely at ease. The modern facilities and friendly staff made my recovery smooth and comfortable."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/80?img=11" alt="Patient">
+                        <div class="author-info">
+                            <h5>Michael Roberts</h5>
+                            <span>Heart Surgery Patient</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-badge">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card featured">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I can't thank the pediatric team enough for the wonderful care they provided for my daughter. Dr. Chen and her team are incredibly skilled and so gentle with children. We felt like family from day one."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/80?img=5" alt="Patient">
+                        <div class="author-info">
+                            <h5>Jennifer Adams</h5>
+                            <span>Parent of Pediatric Patient</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-badge">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"After my knee replacement surgery, I was walking again in just two weeks. The orthopedic team's expertise and the post-operative care were outstanding. Highly recommend HealthPlus to everyone!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/80?img=12" alt="Patient">
+                        <div class="author-info">
+                            <h5>David Thompson</h5>
+                            <span>Orthopedic Patient</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-badge">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info-cards">
+                    <div class="contact-card">
+                        <div class="cc-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <h4>Visit Us</h4>
+                        <p>123 Healthcare Avenue<br>Medical District, NY 10001</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cc-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4>Call Us</h4>
+                        <p>Main: +1 (555) 123-4567<br>Emergency: +1 (555) 911-0000</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cc-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email Us</h4>
+                        <p>info@healthplus.com<br>support@healthplus.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cc-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Working Hours</h4>
+                        <p>Mon - Fri: 8AM - 8PM<br>Sat - Sun: 9AM - 5PM</p>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Interactive Map</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col brand-col">
+                        <a href="#" class="footer-logo">
+                            <div class="logo-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <span>Health<span class="gradient-text">Plus</span></span>
+                        </a>
+                        <p>Providing exceptional healthcare services with compassion, expertise, and cutting-edge technology since 1998.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#specialists">Our Doctors</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><a href="#">Cardiology</a></li>
+                            <li><a href="#">Neurology</a></li>
+                            <li><a href="#">Orthopedics</a></li>
+                            <li><a href="#">Pediatrics</a></li>
+                            <li><a href="#">Emergency Care</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Newsletter</h4>
+                        <p>Subscribe to our newsletter for health tips and updates.</p>
+                        <form class="newsletter-form">
+                            <div class="newsletter-input">
+                                <input type="email" placeholder="Your email address">
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                        <div class="footer-badges">
+                            <span><i class="fas fa-award"></i> Certified</span>
+                            <span><i class="fas fa-shield-check"></i> HIPAA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 HealthPlus. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

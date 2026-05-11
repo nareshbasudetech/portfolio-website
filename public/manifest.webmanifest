@@ -1,0 +1,13 @@
+{
+  "name": "Naresh Basude — Portfolio",
+  "short_name": "Naresh",
+  "description": "Naresh Basude — full-stack developer, digital marketer, and designer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "lang": "en",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,257 @@
+---
+import { SITE, CONTACT } from '~/consts';
+
+interface Breadcrumb {
+  name: string;
+  item: string;
+}
+interface FaqItem {
+  q: string;
+  a: string;
+}
+interface ListItem {
+  name: string;
+  url: string;
+}
+interface PostMeta {
+  title: string;
+  summary: string;
+  slug: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  tags?: string[];
+  image?: string;
+}
+interface CityMeta {
+  name: string;
+  slug: string;
+  description: string;
+  areaServed?: string[];
+}
+
+interface Props {
+  type?: 'home' | 'about' | 'project' | 'projects' | 'post' | 'city' | 'cities' | 'writing' | 'service';
+  project?: {
+    name: string;
+    description: string;
+    url?: string;
+    canonicalUrl?: string;
+    year?: string | number;
+    image?: string;
+  };
+  post?: PostMeta;
+  city?: CityMeta;
+  breadcrumbs?: Breadcrumb[];
+  faqs?: FaqItem[];
+  itemList?: { name: string; items: ListItem[] };
+  service?: { name: string; description: string; slug: string };
+}
+
+const { type = 'home', project, post, city, breadcrumbs, faqs, itemList, service } = Astro.props;
+
+// ── Shared address ────────────────────────────────────────────────────
+const postalAddress = {
+  '@type': 'PostalAddress',
+  addressLocality: SITE.fullAddress.locality,
+  addressRegion: SITE.fullAddress.region,
+  postalCode: SITE.fullAddress.postalCode,
+  addressCountry: 'IN',
+};
+
+const geo = {
+  '@type': 'GeoCoordinates',
+  latitude: 19.2183,
+  longitude: 72.9781,
+};
+
+const openingHoursSpec = [
+  {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '09:00',
+    closes: '20:00',
+  },
+];
+
+// ── Person ────────────────────────────────────────────────────────────
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${SITE.url}/#person`,
+  name: SITE.name,
+  url: SITE.url,
+  image: new URL(SITE.ogImage, SITE.url).toString(),
+  jobTitle: SITE.jobTitle,
+  email: SITE.email,
+  telephone: CONTACT.phone,
+  description: SITE.description,
+  knowsAbout: SITE.knowsAbout,
+  address: postalAddress,
+  workLocation: { '@type': 'Place', address: postalAddress, geo },
+  worksFor: { '@id': `${SITE.url}/#service` },
+  sameAs: [CONTACT.linkedin, CONTACT.github, CONTACT.twitter].filter(Boolean),
+};
+
+// ── Global ProfessionalService ────────────────────────────────────────
+const professionalService = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#service`,
+  name: `${SITE.name} — Website & App Developer`,
+  url: SITE.url,
+  image: new URL(SITE.ogImage, SITE.url).toString(),
+  description: SITE.description,
+  priceRange: '₹₹',
+  email: SITE.email,
+  telephone: CONTACT.phone,
+  address: postalAddress,
+  geo,
+  openingHoursSpecification: openingHoursSpec,
+  currenciesAccepted: 'INR',
+  paymentAccepted: 'UPI, Bank Transfer, Razorpay',
+  areaServed: SITE.areaServed.map((a) => ({ '@type': 'Place', name: a })),
+  founder: { '@id': `${SITE.url}/#person` },
+  employee: { '@id': `${SITE.url}/#person` },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Website Development', description: 'Marketing websites, landing pages, brand sites — built fast, indexable, easy to maintain.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Web App Development', description: 'Internal tools, dashboards, CRMs, ERPs — multi-role workflows with admin layers.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mobile App Development', description: 'PWAs and native-feel mobile experiences — offline-aware, push-enabled, installable.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'WhatsApp Chatbot Development', description: 'Automated lead-qualification bots that route to your CRM and hand off to humans on signal.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Growth Marketing', description: 'Meta ads, Google ads, technical SEO, GEO, lifecycle messaging — across 20+ brands.' } },
+    ],
+  },
+  sameAs: [CONTACT.linkedin, CONTACT.github, CONTACT.twitter].filter(Boolean),
+};
+
+// ── WebSite ───────────────────────────────────────────────────────────
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  name: SITE.name,
+  url: SITE.url,
+  inLanguage: SITE.language,
+  author: { '@id': `${SITE.url}/#person` },
+  publisher: { '@id': `${SITE.url}/#person` },
+};
+
+// ── BreadcrumbList (page-specific, used everywhere via prop) ──────────
+const breadcrumbList = breadcrumbs && breadcrumbs.length > 0 && {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: b.name,
+    item: b.item.startsWith('http') ? b.item : `${SITE.url}${b.item.startsWith('/') ? b.item : `/${b.item}`}`,
+  })),
+};
+
+// ── CreativeWork (project pages) ──────────────────────────────────────
+const projectSchema = project && {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  '@id': `${project.canonicalUrl ?? project.url ?? SITE.url}#work`,
+  name: project.name,
+  description: project.description,
+  url: project.canonicalUrl ?? project.url,
+  ...(project.image ? { image: project.image } : {}),
+  ...(project.year ? { dateCreated: `${project.year}-01-01` } : {}),
+  creator: { '@id': `${SITE.url}/#person` },
+};
+
+// ── BlogPosting (writing posts) ───────────────────────────────────────
+const blogPosting = post && {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${SITE.url}/writing/${post.slug}#article`,
+  headline: post.title,
+  description: post.summary,
+  url: `${SITE.url}/writing/${post.slug}`,
+  datePublished: post.publishedAt.toISOString(),
+  dateModified: (post.updatedAt ?? post.publishedAt).toISOString(),
+  author: { '@id': `${SITE.url}/#person` },
+  publisher: { '@id': `${SITE.url}/#person` },
+  inLanguage: SITE.language,
+  keywords: (post.tags ?? []).join(', '),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/writing/${post.slug}` },
+  image: post.image ?? new URL(SITE.ogImage, SITE.url).toString(),
+};
+
+// ── FAQPage ───────────────────────────────────────────────────────────
+const faqSchema = faqs && faqs.length > 0 && {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// ── ItemList ──────────────────────────────────────────────────────────
+const itemListSchema = itemList && itemList.items.length > 0 && {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: itemList.name,
+  numberOfItems: itemList.items.length,
+  itemListElement: itemList.items.map((it, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: it.url.startsWith('http') ? it.url : `${SITE.url}${it.url}`,
+    name: it.name,
+  })),
+};
+
+// ── City-scoped ProfessionalService (city landing pages) ──────────────
+const cityService = city && {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}${city.slug}#city-service`,
+  name: `${SITE.name} — Website & App Developer in ${city.name}`,
+  url: `${SITE.url}${city.slug}`,
+  description: city.description,
+  image: new URL(SITE.ogImage, SITE.url).toString(),
+  priceRange: '₹₹',
+  email: SITE.email,
+  telephone: CONTACT.phone,
+  address: postalAddress,
+  geo,
+  openingHoursSpecification: openingHoursSpec,
+  currenciesAccepted: 'INR',
+  paymentAccepted: 'UPI, Bank Transfer, Razorpay',
+  areaServed: (city.areaServed ?? [city.name]).map((a) => ({ '@type': 'Place', name: a })),
+  provider: { '@id': `${SITE.url}/#service` },
+  founder: { '@id': `${SITE.url}/#person` },
+};
+
+// ── Service page schema ───────────────────────────────────────────────
+const serviceSchema = service && {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${SITE.url}${service.slug}#service-page`,
+  name: service.name,
+  description: service.description,
+  url: `${SITE.url}${service.slug}`,
+  provider: { '@id': `${SITE.url}/#person` },
+  areaServed: SITE.areaServed.map((a) => ({ '@type': 'Place', name: a })),
+  serviceType: service.name,
+};
+
+// ── Assemble ──────────────────────────────────────────────────────────
+const blocks: object[] = [person, professionalService, website];
+if (breadcrumbList) blocks.push(breadcrumbList);
+if (type === 'project' && projectSchema) blocks.push(projectSchema);
+if (type === 'post' && blogPosting) blocks.push(blogPosting);
+if (type === 'city' && cityService) blocks.push(cityService);
+if (type === 'service' && serviceSchema) blocks.push(serviceSchema);
+if (faqSchema) blocks.push(faqSchema);
+if (itemListSchema) blocks.push(itemListSchema);
+---
+
+{blocks.map((block) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(block)} />
+))}

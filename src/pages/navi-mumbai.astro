@@ -1,0 +1,218 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Navi Mumbai', p: 'Marketing sites, brand sites, e-commerce for Navi Mumbai IT/ITES firms, education institutions, healthcare clinics, and real-estate developers. Built to be maintainable by your team.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Navi Mumbai', p: 'Web apps, dashboards, internal tools, mobile-first PWAs. CRMs, ERPs, study apps — multi-role workflows for Navi Mumbai SMBs and IT-park companies.', href: '/projects/naresh-crm-lead-management', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Navi Mumbai', p: 'Conversational lead-qualification bots routed straight into your CRM. Bilingual (Hindi/English), retains conversation context, hands off to humans on signal.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · SEO in Navi Mumbai', p: '20+ brands shipped. Meta ads, Google ads, technical SEO, local SEO for Vashi/Belapur/Kharghar pin codes, lifecycle messaging. Server-side attribution.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'IT & ITES', s: 'Corporate sites, careers pages, intranets for Mindspace (Airoli), Reliable Tech Park, and CBD Belapur firms.' },
+  { b: 'Education & coaching', s: 'Admissions websites, study apps, lead pipelines for Navi Mumbai\'s growing education clusters.' },
+  { b: 'Healthcare & diagnostics', s: 'Clinic sites, appointment flows, doctor profiles, WhatsApp follow-up.' },
+  { b: 'Real estate', s: 'Tower-launch landing pages, site-visit campaigns, retargeting against unit views — strong category in Kharghar, Panvel, Ulwe.' },
+  { b: 'Manufacturing & B2B', s: 'Product catalogs, RFQ forms, B2B WhatsApp flows.' },
+  { b: 'Retail & SMBs', s: 'Marketing sites, online ordering, Google Business Profile for local-pack ranking.' },
+];
+
+const neighborhoods = ['Vashi', 'Belapur', 'Nerul', 'Kharghar', 'Panvel', 'Sanpada', 'Airoli', 'Kopar Khairane', 'Ghansoli', 'Seawoods', 'Ulwe', 'Taloja'];
+
+const faqs = [
+  { q: 'Can you visit Navi Mumbai for kickoff?', a: 'Yes — Vashi, Belapur, Kharghar, Airoli, Nerul are all easy to reach from Thane. For ongoing work it\'s mostly WhatsApp + video; in-person for the brief, sign-off, and milestone reviews.' },
+  { q: 'Do you work with IT park / SEZ companies?', a: 'Yes. Airoli (Mindspace, Reliable Tech Park) and CBD Belapur firms typically need corporate sites, careers/recruiting funnels, internal tools, and content systems. I work either directly with marketing/HR or as a contractor for their existing teams.' },
+  { q: 'Navi Mumbai SME pricing?', a: 'Project-based, discussed in the brief. No public rate card. Smaller scopes (5–8 page marketing site, brand identity, WhatsApp bot for one product) come in at SMB-friendly levels; larger scopes (full app builds, multi-month engagements) priced accordingly.' },
+  { q: 'Real-estate-specific work?', a: 'Yes — tower-launch landing pages, site-visit lead capture forms with WhatsApp routing, retargeting campaigns on Meta. Common for Kharghar, Panvel, Ulwe project launches.' },
+  { q: 'GST invoice + payment methods?', a: 'GST invoice yes. UPI, bank transfer (NEFT/IMPS), Razorpay all supported. International wires for non-INR clients.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Navi Mumbai — Naresh Basude"
+  description="Website & app developer in Navi Mumbai. Sites, apps, WhatsApp bots & ads for IT firms, education, healthcare, real estate. Vashi · Belapur · Kharghar."
+  schemaType="city"
+  city={{
+    name: 'Navi Mumbai',
+    slug: '/navi-mumbai',
+    description: 'Website and app developer in Navi Mumbai — Naresh Basude builds websites, web apps, mobile apps, WhatsApp automations, and runs growth marketing for Navi Mumbai IT firms, education, healthcare, and real-estate developers.',
+    areaServed: ['Navi Mumbai', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Navi Mumbai', item: '/navi-mumbai' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ NAVI MUMBAI ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      Website &amp; app developer<br /><em>in Navi Mumbai.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, a website and app developer
+      serving <strong>Navi Mumbai</strong> — Vashi, Belapur, Nerul,
+      Kharghar, Panvel, Airoli. I build websites, web apps, mobile apps,
+      WhatsApp automations, and run Meta + Google ads for IT firms,
+      education institutes, clinics, real-estate developers, and SMBs.
+      One brain, one timeline, projects delivered within 7 days.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Vashi</b>',
+    'App Developer · <b>Belapur</b>',
+    'WhatsApp Bot · <b>Kharghar</b>',
+    '<i>Meta + Google Ads</i> · Navi Mumbai',
+    'SEO &amp; GEO · <b>Maharashtra</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Navi Mumbai</span>
+      <span class="sec-head__lab">Services</span>
+    </header>
+
+    <ul class="city-services" role="list">
+      {services.map((s) => (
+        <li class="city-service">
+          <h2 class="city-service__h">{s.h}</h2>
+          <p class="city-service__p">{s.p}</p>
+          <a href={s.href} class="city-service__cta">{s.cta}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries I ship for in Navi Mumbai</span>
+      <span class="sec-head__lab">IT · Education · Real estate · Healthcare</span>
+    </header>
+
+    <div class="city-industries">
+      {industries.map((i) => (
+        <div class="city-industry">
+          <b>{i.b}</b>
+          <span>{i.s}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Areas covered in Navi Mumbai</span>
+      <span class="sec-head__lab">From Airoli to Panvel</span>
+    </header>
+
+    <ul class="city-areas" role="list" aria-label="Navi Mumbai neighborhoods served">
+      {neighborhoods.map((n) => <li class="city-area">{n}</li>)}
+    </ul>
+
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">
+      Airoli IT parks, CBD Belapur business district, Kharghar &amp;
+      Panvel real-estate hubs, Vashi commercial centre — easy to reach
+      from Thane. Most engagements run mostly remote with in-person
+      kickoff at your office.
+    </p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Why hire local in Navi Mumbai</span>
+      <span class="sec-head__lab">Local-pack visibility</span>
+    </header>
+
+    <div class="city-why">
+      <article class="city-why__item">
+        <h3 class="t-h3">Navi Mumbai SEO knowledge</h3>
+        <p>Local-pack ranking for Vashi/Belapur/Kharghar pin codes is its own discipline. I handle GBP + citations + on-page local signals together.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">IT park / SEZ familiarity</h3>
+        <p>Worked with Airoli and CBD Belapur firms. Comfortable with corporate procurement, SOWs, NDAs, and contractor onboarding processes.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">7-day delivery</h3>
+        <p>Most projects go live inside a week — agency-quality output without agency-length timelines.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Real cases shipped</h3>
+        <p>Education platforms, study apps, WhatsApp bots, CRMs, e-commerce, growth-marketing engagements across 20+ brands. <a href="/projects">See the work →</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; FAQs from Navi Mumbai clients</span>
+      <span class="sec-head__lab">The usual asks</span>
+    </header>
+
+    <ul class="city-faqs" role="list">
+      {faqs.map((f, i) => (
+        <li>
+          <details>
+            <summary>
+              <span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span>
+              <span>{f.q}</span>
+              <span class="city-faqs__plus" aria-hidden="true">+</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; Start now</span>
+      <span class="sec-head__lab">Replies inside 24h</span>
+    </header>
+
+    <p class="t-lede" style="max-width: 60ch;">
+      Send a quick message describing your project. I'll reply within
+      24 hours with whether it's a fit, a rough estimate, and next steps.
+    </p>
+
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span>
+      <span class="city-nap__val">Thane, Maharashtra (covering Navi Mumbai &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span>
+      <span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span>
+      <span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span>
+      <span class="city-nap__val">Navi Mumbai · Mumbai · Thane · Bhiwandi · Kalyan · India · Remote</span>
+    </address>
+
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/thane">Thane</a>
+      <a href="/mumbai">Mumbai</a>
+      <a href="/kalyan-bhiwandi">Kalyan-Bhiwandi</a>
+    </nav>
+  </section>
+</BaseLayout>

@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Vasai-Virar', p: 'Marketing sites, brand sites, e-commerce for Vasai-Virar SMBs, schools, churches/community institutions, real-estate developers, and retail. Maintainable stacks your team can run after handover.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Vasai-Virar', p: 'Mobile apps, web apps, internal tools, and school management systems for Vasai-Virar institutions and SMBs. PWA-first so users install without an app-store hassle.', href: '/projects/nursingpathshala-app', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Vasai-Virar', p: 'Automated WhatsApp lead-handling for high-volume admissions, real-estate, and retail enquiries. Multi-language flows, smart routing, CRM integration.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Vasai-Virar', p: 'Hyperlocal Meta + Google ads for Vasai East/West, Virar East/West, Nalasopara pin codes. GBP setup, citations, schema — local-pack visibility.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Education &amp; schools', s: 'Vasai has historical Catholic schools and growing private institutions. Admissions sites, parent portals, student apps.' },
+  { b: 'Real estate', s: 'Affordable-housing belt — Virar, Nalasopara, Naigaon. Tower-launch landing pages, site-visit campaigns, retargeting.' },
+  { b: 'Retail &amp; SMBs', s: 'Marketing sites, WhatsApp catalogs, GBP setup for the local-pack — covers retail belts along Vasai West and Virar East.' },
+  { b: 'Hospitality &amp; tourism', s: 'Vasai Fort and beachside hospitality — site, online booking, social presence, local SEO.' },
+  { b: 'Healthcare &amp; clinics', s: 'Clinic sites, doctor profiles, appointment flows, WhatsApp follow-up.' },
+  { b: 'Manufacturing &amp; B2B', s: 'Vasai-Virar has a growing MIDC belt. B2B catalog sites, RFQ flows, multi-language.' },
+];
+
+const neighborhoods = ['Vasai East', 'Vasai West', 'Virar East', 'Virar West', 'Nalasopara East', 'Nalasopara West', 'Naigaon East', 'Naigaon West', 'Nallasopara', 'Bhayli', 'Tulinj', 'Achole'];
+
+const faqs = [
+  { q: 'Do you visit Vasai-Virar in person?', a: 'Yes — for kickoff and milestone reviews. Vasai-Virar is about 90 min from Thane via the Western line or the new coastal road. Day-to-day work on WhatsApp + video.' },
+  { q: 'Multi-language for Vasai-Virar audiences?', a: 'Yes. Vasai has historical English-Marathi-Konkani audiences. Virar / Nalasopara skews Hindi-Marathi. Sites and bots can mix all four cleanly.' },
+  { q: 'School / educational institution websites?', a: 'Routine. Admissions intake, parent portals, faculty profiles, news/events, gallery, fee structures, school management systems. Often built on WordPress so admin/teacher teams can maintain.' },
+  { q: 'Real-estate site-visit campaigns?', a: 'Yes — landing page + Meta ads + WhatsApp lead-capture + retargeting against unit views. Common pattern for Virar / Nalasopara redevelopment projects.' },
+  { q: 'GST + Indian payments?', a: 'GST invoice yes. UPI, NEFT, Razorpay, cheque — all supported.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Vasai-Virar — Naresh Basude"
+  description="Website & app developer in Vasai-Virar. Sites, apps, WhatsApp bots & Meta/Google ads for schools, real estate, retail, hospitality. Multilingual."
+  schemaType="city"
+  city={{
+    name: 'Vasai-Virar',
+    slug: '/vasai-virar',
+    description: 'Website and app developer in Vasai-Virar — Naresh Basude builds websites, web apps, WhatsApp bots, school management systems, and runs Meta + Google ads for Vasai-Virar schools, real estate, retail, hospitality, and SMBs.',
+    areaServed: ['Vasai', 'Virar', 'Nalasopara', 'Naigaon', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Vasai-Virar', item: '/vasai-virar' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ VASAI-VIRAR ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+    <h1 class="t-display">Website &amp; app developer<br /><em>in Vasai-Virar.</em></h1>
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, serving <strong>Vasai, Virar,
+      Nalasopara, Naigaon</strong>, and the wider MMR. Websites, web apps,
+      mobile apps, WhatsApp automations, and Meta + Google ads for schools,
+      real-estate developers, retail SMBs, hospitality, and clinics across
+      the Vasai-Virar belt. Multilingual builds, 7-day delivery.
+    </p>
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Vasai</b>',
+    'App Developer · <b>Virar</b>',
+    'WhatsApp Bot · <b>Nalasopara</b>',
+    '<i>School Websites</i> · Vasai',
+    'Real Estate · <b>Virar East</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Vasai-Virar</span><span class="sec-head__lab">Services</span></header>
+    <ul class="city-services" role="list">{services.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p><a href={s.href} class="city-service__cta">{s.cta}</a></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries in Vasai-Virar</span><span class="sec-head__lab">Education · Real estate · Retail · Hospitality</span></header>
+    <div class="city-industries">{industries.map((i) => (<div class="city-industry"><b set:html={i.b} /><span set:html={i.s} /></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Areas covered</span><span class="sec-head__lab">Vasai · Virar · Nalasopara · Naigaon</span></header>
+    <ul class="city-areas" role="list">{neighborhoods.map((n) => <li class="city-area">{n}</li>)}</ul>
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">Vasai West (historical), Vasai East, Virar East/West, Nalasopara, Naigaon — all covered. Reach from Thane via Western Express or Western line.</p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Why local matters</span><span class="sec-head__lab">Multilingual + institution-heavy</span></header>
+    <div class="city-why">
+      <article class="city-why__item"><h3 class="t-h3">English-Marathi-Konkani-Hindi mix</h3><p>Vasai's audience mix is unusual — English-led for Catholic institutions, Marathi-Hindi for residential. Sites and bots launched in the right blend.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Institution-friendly stacks</h3><p>Schools, churches, community institutions need admin layers that volunteer staff can run. WordPress + custom admin = the right fit.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Real-estate funnel expertise</h3><p>Affordable-housing in Virar/Nalasopara needs hyperlocal targeting. I tune Meta + Google ads to Virar East vs Nalasopara West separately.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">7-day delivery</h3><p>Most marketing sites and school admissions sites go live within a week. <a href="/projects">See the work →</a></p></article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; FAQs from Vasai-Virar clients</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Got a website, app, school admin portal, or campaign in Vasai-Virar? Send a quick message — I'll reply within 24 hours.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span><span class="city-nap__val">Thane (covering Vasai-Virar &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span><span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span><span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span><span class="city-nap__val">Vasai · Virar · Nalasopara · Naigaon · Mira-Bhayandar · Mumbai · India · Remote</span>
+    </address>
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/thane">Thane</a><a href="/mumbai">Mumbai</a><a href="/mira-bhayandar">Mira-Bhayandar</a><a href="/cities">All cities</a>
+    </nav>
+  </section>
+</BaseLayout>

@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Ulhasnagar', p: 'Marketing sites, brand sites, e-commerce for Ulhasnagar denim/garment manufacturers, retail traders, and SMBs. Built for the strong Sindhi business community.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Ulhasnagar', p: 'Web apps, inventory/order management dashboards, B2B catalog apps. PWA-first for manufacturers and traders who need it mobile-accessible.', href: '/projects/naresh-crm-lead-management', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Ulhasnagar', p: 'B2B catalog + RFQ WhatsApp bots for Ulhasnagar manufacturers and wholesalers. Multi-language (Hindi / Marathi / Sindhi / English) flows.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Ulhasnagar', p: 'Hyperlocal ads for Ulhasnagar pin codes plus B2B-targeted campaigns for the wholesale community. GBP + local-pack ranking.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Denim &amp; garments', s: 'Ulhasnagar is a known denim/garment manufacturing hub. B2B catalogs with size/colour filters, RFQ flows, WhatsApp routing.' },
+  { b: 'Wholesale &amp; trading', s: 'Strong Sindhi trading community. Multi-language sites + WhatsApp catalogs + B2B price toggles.' },
+  { b: 'Retail &amp; SMBs', s: 'Local retail belt — marketing sites, online ordering, GBP for local-pack ranking.' },
+  { b: 'Food &amp; sweet shops', s: 'Ulhasnagar is famous for sweets and street food. Restaurant sites, online ordering, GBP setup, Meta ads for "near me" searches.' },
+  { b: 'Real estate', s: 'Affordable redevelopment market — Camp 1 through Camp 5. Tower launches, site-visit campaigns, retargeting.' },
+  { b: 'Education &amp; coaching', s: 'Admissions sites, study apps, lead-to-counsellor pipelines for tuition institutes.' },
+];
+
+const neighborhoods = ['Camp 1', 'Camp 2', 'Camp 3', 'Camp 4', 'Camp 5', 'Ulhasnagar East', 'Ulhasnagar West', 'Shanti Nagar', 'Vitthalwadi', 'Ulhasnagar Bazar', 'Netaji Chowk'];
+
+const faqs = [
+  { q: 'Multi-language — Sindhi script?', a: 'Yes. Ulhasnagar has a strong Sindhi community. Sites and bots can launch in Sindhi-Hindi-Marathi-English mix, with the same admin layer.' },
+  { q: 'Do you come to Ulhasnagar in person?', a: 'Yes — easy reach from Thane via the Central line or Kalyan-Ulhasnagar road. In-person for kickoff and milestone reviews.' },
+  { q: 'B2B catalog + RFQ flow for manufacturers?', a: 'Routine. Filter-rich catalog, GST-pricing toggle, RFQ form → CRM, WhatsApp follow-up. Built together as one funnel.' },
+  { q: 'Local SEO for Ulhasnagar wholesale?', a: 'Yes — different play than retail-only. GBP with the right category, B2B-friendly citation building, and on-page signals tuned for "wholesale [product] in Ulhasnagar" queries.' },
+  { q: 'GST + payment methods?', a: 'GST invoice, NEFT, UPI, Razorpay, cheque — all standard.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Ulhasnagar — Naresh Basude"
+  description="Website & app developer in Ulhasnagar. B2B catalog sites, apps, WhatsApp bots & ads for denim manufacturers, traders, retail. Sindhi/Hindi/Marathi."
+  schemaType="city"
+  city={{
+    name: 'Ulhasnagar',
+    slug: '/ulhasnagar',
+    description: 'Website and app developer in Ulhasnagar — Naresh Basude builds B2B catalog websites, web apps, WhatsApp bots, and runs Meta + Google ads for Ulhasnagar denim/garment manufacturers, traders, retail, and SMBs. Sindhi-Hindi-Marathi support.',
+    areaServed: ['Ulhasnagar', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Ulhasnagar', item: '/ulhasnagar' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ ULHASNAGAR ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+    <h1 class="t-display">Website &amp; app developer<br /><em>in Ulhasnagar.</em></h1>
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, serving <strong>Ulhasnagar Camps
+      1-5</strong>, Kalyan, Thane, and the wider MMR. B2B catalog websites,
+      web apps, WhatsApp automations, and Meta + Google ads for denim and
+      garment manufacturers, wholesalers, retail SMBs, F&amp;B, and real
+      estate. Sindhi / Hindi / Marathi / English supported. 7-day delivery.
+    </p>
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Ulhasnagar</b>',
+    'B2B Catalog · <b>Denim</b>',
+    'WhatsApp Bot · <b>Wholesale</b>',
+    '<i>Meta + Google Ads</i> · MMR',
+    'Local SEO · <b>Camp 3</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Ulhasnagar</span><span class="sec-head__lab">Services</span></header>
+    <ul class="city-services" role="list">{services.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p><a href={s.href} class="city-service__cta">{s.cta}</a></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries in Ulhasnagar</span><span class="sec-head__lab">Denim · Wholesale · Retail · F&B</span></header>
+    <div class="city-industries">{industries.map((i) => (<div class="city-industry"><b set:html={i.b} /><span set:html={i.s} /></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Areas covered</span><span class="sec-head__lab">Camp 1 through Camp 5</span></header>
+    <ul class="city-areas" role="list">{neighborhoods.map((n) => <li class="city-area">{n}</li>)}</ul>
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">All five Camps + Shanti Nagar + Vitthalwadi covered. Easy reach from Thane through Kalyan.</p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Why local matters</span><span class="sec-head__lab">B2B + multilingual</span></header>
+    <div class="city-why">
+      <article class="city-why__item"><h3 class="t-h3">Sindhi + multilingual</h3><p>Sites and bots in the languages your audience actually uses — Sindhi script, Hindi, Marathi, English mix.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">B2B catalog specialty</h3><p>Filter-rich catalog + GST-pricing toggle + RFQ flow + WhatsApp routing — built as one funnel, not three separate tools.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Manufacturer-friendly</h3><p>I work with the way Ulhasnagar denim and garment manufacturers actually run — small teams, WhatsApp-first, GST-heavy, multi-language.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Real cases nearby</h3><p>20+ ad accounts, B2B catalog sites, WhatsApp bots, CRMs. <a href="/projects">See the work →</a></p></article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; FAQs from Ulhasnagar clients</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Manufacturer, trader, or retail business in Ulhasnagar? Send a quick brief — reply inside 24 hours.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span><span class="city-nap__val">Thane (covering Ulhasnagar &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span><span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span><span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span><span class="city-nap__val">Ulhasnagar · Kalyan · Bhiwandi · Thane · India · Remote</span>
+    </address>
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/kalyan-bhiwandi">Kalyan-Bhiwandi</a><a href="/thane">Thane</a><a href="/ambernath-badlapur">Ambernath-Badlapur</a><a href="/cities">All cities</a>
+    </nav>
+  </section>
+</BaseLayout>

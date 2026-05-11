@@ -1,0 +1,108 @@
+---
+interface Props {
+  index: number;
+  title: string;
+  summary: string;
+  discipline: readonly string[] | string[];
+  year: number;
+  href: string;
+  accent: string;
+}
+
+const { index, title, summary, discipline, year, href, accent } = Astro.props;
+const num = String(index).padStart(2, '0');
+---
+
+<a class="row" href={href} style={`--ac:${accent}`}>
+  <span class="row__num">{num}</span>
+  <span class="row__title">
+    <span class="row__name">{title}</span>
+    <span class="row__sum">{summary}</span>
+  </span>
+  <span class="row__meta">{discipline.join(' · ')}</span>
+  <span class="row__year">{year}</span>
+  <span class="row__arr" aria-hidden="true">→</span>
+  <span class="row__bg" aria-hidden="true"></span>
+</a>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 60px minmax(0, 1.4fr) minmax(0, 0.8fr) auto auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    border-top: 1px solid var(--grid-line);
+    position: relative;
+    isolation: isolate;
+    transition: padding 320ms var(--ease-out-expo);
+  }
+  .row:last-of-type { border-bottom: 1px solid var(--grid-line); }
+  .row:hover { padding-left: 2rem; padding-right: 0.5rem; }
+
+  .row__bg {
+    position: absolute;
+    inset: 0 -1rem;
+    background: linear-gradient(90deg, color-mix(in oklab, var(--ac) 15%, transparent), transparent 70%);
+    opacity: 0;
+    transition: opacity 320ms var(--ease-out-expo);
+    z-index: -1;
+    border-radius: var(--radius-sm);
+  }
+  .row:hover .row__bg { opacity: 1; }
+
+  .row__num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--color-mute);
+    transition: color 280ms;
+  }
+  .row:hover .row__num { color: var(--ac); }
+
+  .row__title { display: flex; flex-direction: column; gap: 0.4rem; }
+  .row__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    transition: color 280ms;
+  }
+  .row:hover .row__name { color: var(--ac); }
+  .row__sum {
+    font-size: 0.92rem;
+    color: var(--color-ivory-dim);
+    line-height: 1.5;
+    max-width: 56ch;
+  }
+  .row__meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+  }
+  .row__year {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-ivory-dim);
+  }
+  .row__arr {
+    font-size: 1.4rem;
+    transform: translateX(-6px);
+    opacity: 0;
+    transition: transform 320ms var(--ease-out-expo), opacity 240ms;
+    color: var(--ac);
+  }
+  .row:hover .row__arr { transform: translateX(0); opacity: 1; }
+
+  @media (max-width: 820px) {
+    .row { grid-template-columns: 36px 1fr auto; gap: 0.8rem 1rem; padding: 1.4rem 0.5rem; }
+    .row__meta { grid-column: 2; font-size: 0.68rem; }
+    .row__year { grid-column: 3; grid-row: 1; }
+    .row__arr { display: none; }
+    .row:hover { padding-left: 0.8rem; padding-right: 0.3rem; }
+    .row__name { font-size: 1.2rem; }
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import { SITE } from '~/consts';
+---
+
+<div class="status" role="status" aria-label="Current availability">
+  <div class="status__inner shell">
+    <span class="status__l">
+      <span class="dot" aria-hidden="true"></span>
+      <b>{SITE.availability}</b>
+    </span>
+    <span class="status__m">India → Remote · Replies in &lt;24h</span>
+    <span class="status__r"><a href={`mailto:${SITE.email}`}>{SITE.email}</a> ↗</span>
+  </div>
+</div>
+
+<style>
+  .status {
+    background: var(--color-ink-2);
+    border-bottom: 1px solid var(--grid-line);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .status__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding-block: 0.6rem;
+    gap: 1rem;
+  }
+  .status__l { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .status__l b { color: var(--color-orange); font-weight: 500; }
+  .status__m { text-align: center; opacity: 0.6; }
+  .status__r { text-align: right; opacity: 0.7; }
+  .status__r a:hover { color: var(--color-orange); }
+  @media (max-width: 720px) {
+    .status__inner { grid-template-columns: 1fr 1fr; }
+    .status__m { display: none; }
+    .status__r { text-align: right; }
+  }
+</style>

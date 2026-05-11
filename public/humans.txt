@@ -1,0 +1,14 @@
+/* TEAM */
+  Developer · Marketer · Designer: Naresh Basude
+  Site: https://nareshbasude.in
+  Email: nareshbasude9@gmail.com
+  Location: India → Remote
+
+/* SITE */
+  Last update: 2026
+  Standards: HTML5, CSS3, ES2025
+  Stack: Astro, TypeScript, Tailwind v4
+  Hosting: Cloudflare Pages / GitHub Pages
+
+/* THANKS */
+  To everyone whose work I've learned from on the open web.

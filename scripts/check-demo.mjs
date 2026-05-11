@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage();
+const errors = [];
+page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errors.push(`[${m.type()}] ${m.text()}`); });
+page.on('pageerror', (e) => errors.push(`[pageerror] ${e.message}`));
+const url = 'http://localhost:4321/demos/westbrook/index.html';
+console.log('GET', url);
+await page.goto(url, { waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+const visibleText = await page.evaluate(() => document.body.innerText.slice(0, 500));
+console.log('\n--- VISIBLE ---');
+console.log(visibleText);
+console.log('\n--- ERRORS ---');
+errors.forEach((e) => console.log(e));
+await browser.close();

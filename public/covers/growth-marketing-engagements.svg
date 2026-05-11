@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Growth Marketing — illustrative case study cover">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#06140a"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#22c55e" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+
+  <!-- Big stat -->
+  <g transform="translate(60 100)">
+    <text font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" fill="#22c55e" opacity="0.9">CASE · GROWTH · MULTI-VERTICAL</text>
+    <text y="80" font-family="General Sans, sans-serif" font-size="120" font-weight="700" fill="#f5f2ec" letter-spacing="-5">20<tspan fill="#22c55e">+</tspan></text>
+    <text y="116" font-family="General Sans, sans-serif" font-size="22" font-weight="500" fill="#c9c5bd">brands shipped, measured, grown</text>
+  </g>
+
+  <!-- Industries grid -->
+  <g transform="translate(60 280)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">VERTICALS</text>
+
+    <g transform="translate(0 18)">
+      <rect width="240" height="70" rx="8" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect width="3" height="70" fill="#22c55e"/>
+      <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#22c55e">EDUCATION</text>
+      <text x="20" y="52" font-family="General Sans, sans-serif" font-size="14" font-weight="600" fill="#f5f2ec">Admissions funnels</text>
+
+      <rect x="260" width="240" height="70" rx="8" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect x="260" width="3" height="70" fill="#22c55e"/>
+      <text x="280" y="28" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#22c55e">REAL ESTATE</text>
+      <text x="280" y="52" font-family="General Sans, sans-serif" font-size="14" font-weight="600" fill="#f5f2ec">Site-visit campaigns</text>
+
+      <rect x="520" width="240" height="70" rx="8" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect x="520" width="3" height="70" fill="#22c55e"/>
+      <text x="540" y="28" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#22c55e">E-COMMERCE</text>
+      <text x="540" y="52" font-family="General Sans, sans-serif" font-size="14" font-weight="600" fill="#f5f2ec">Repeat-purchase</text>
+
+      <rect x="780" width="220" height="70" rx="8" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect x="780" width="3" height="70" fill="#22c55e"/>
+      <text x="800" y="28" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#22c55e">+ MORE</text>
+      <text x="800" y="52" font-family="General Sans, sans-serif" font-size="14" font-weight="600" fill="#f5f2ec">Healthcare · B2B</text>
+    </g>
+  </g>
+
+  <!-- Channels -->
+  <g transform="translate(60 410)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">CHANNELS</text>
+
+    <g transform="translate(0 18)" font-family="JetBrains Mono, monospace" font-size="11">
+      <rect width="120" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="60" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">META ADS</text>
+
+      <rect x="132" width="130" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="197" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">GOOGLE ADS</text>
+
+      <rect x="274" width="100" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="324" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">SEO</text>
+
+      <rect x="386" width="80" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="426" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">GEO</text>
+
+      <rect x="478" width="120" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="538" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">LIFECYCLE</text>
+
+      <rect x="610" width="140" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="680" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">SERVER-SIDE</text>
+
+      <rect x="762" width="120" height="34" rx="17" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="822" y="22" text-anchor="middle" fill="#f5f2ec" letter-spacing="1.5">RETARGET</text>
+    </g>
+  </g>
+
+  <!-- Compounding chart -->
+  <g transform="translate(60 510)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">COMPOUNDING · ACROSS ENGAGEMENTS</text>
+
+    <g transform="translate(0 16)">
+      <line x1="0" y1="170" x2="1080" y2="170" stroke="#1f1f1f"/>
+      <line x1="0" y1="120" x2="1080" y2="120" stroke="#1f1f1f"/>
+      <line x1="0" y1="70"  x2="1080" y2="70"  stroke="#1f1f1f"/>
+
+      <path d="M 0 170 Q 100 168, 200 162 T 400 140 T 600 100 T 800 60 T 1080 28 L 1080 170 Z" fill="url(#line)"/>
+      <path d="M 0 170 Q 100 168, 200 162 T 400 140 T 600 100 T 800 60 T 1080 28" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+      <circle cx="1080" cy="28" r="6" fill="#22c55e"/>
+      <circle cx="1080" cy="28" r="14" fill="none" stroke="#22c55e" stroke-opacity="0.4"/>
+    </g>
+
+    <g transform="translate(0 200)" font-family="JetBrains Mono, monospace" font-size="9" fill="#6f6c66" letter-spacing="2">
+      <text>2019</text>
+      <text x="200" text-anchor="middle">2021</text>
+      <text x="540" text-anchor="middle">2023</text>
+      <text x="880" text-anchor="middle">2025</text>
+      <text x="1080" text-anchor="end" fill="#22c55e">2026</text>
+    </g>
+  </g>
+
+  <!-- Brand corner -->
+  <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#f5f2ec" opacity="0.5">
+    <text x="60" y="48">GROWTH MARKETING · 20+ BRANDS · CASE</text>
+    <text x="1140" y="48" text-anchor="end">[ ILLUSTRATIVE ]</text>
+    <text x="60" y="780">MARKETING / META · GOOGLE · SEO</text>
+    <text x="1140" y="780" text-anchor="end">VOL · 02 / 2026</text>
+  </g>
+</svg>

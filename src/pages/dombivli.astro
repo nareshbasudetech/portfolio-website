@@ -1,0 +1,148 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Dombivli', p: 'Marketing sites, brand sites, e-commerce for Dombivli SMBs, coaching institutes, clinics, and retail businesses. WordPress for content-heavy sites, Next.js/Astro where speed matters.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Dombivli', p: 'Mobile-first PWAs, internal tools, CRMs, education apps. Built lean so Dombivli SMBs can run them without an in-house tech team.', href: '/projects/nursingpathshala-app', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Dombivli', p: 'Inbound WhatsApp enquiries auto-qualified, routed to your team, logged to a CRM. Hindi + Marathi flows for Dombivli\'s middle-class audience.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Dombivli', p: 'Hyperlocal ads tuned to Dombivli East/West pin codes. Google Business Profile, citations, and on-page local SEO so you show up in the local pack.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Retail &amp; SMBs', s: 'Phadke Road and the Manpada retail belt — small jewellers, sarees, electronics, kids-wear. Marketing sites, WhatsApp catalogs with Marathi labels, lifecycle SMS for festival pushes (Gudi Padwa, Diwali, Ganpati).' },
+  { b: 'Coaching &amp; education', s: 'Tuition density around Pendharkar College and the Tilak Nagar belt — JEE/NEET, CET, banking, MPSC. Admissions micro-sites, downloadable test-series PDFs, lead-to-counsellor pipelines, batch-wise WhatsApp groups.' },
+  { b: 'Clinics &amp; healthcare', s: 'Pathology labs, dentists, pediatricians, IVF clinics across Dombivli East. Doctor profile pages with QR-to-WhatsApp, appointment booking flows, post-visit SMS feedback loops.' },
+  { b: 'Real estate &amp; redevelopment', s: 'Cluster-redevelopment is constant in Dombivli East. Tower-launch landing pages with floor-plan downloads, RERA disclosures, site-visit lead capture, post-visit retargeting.' },
+  { b: 'Food &amp; hospitality', s: 'Misal/vada-pav joints, Maharashtrian thali, sweet shops. Restaurant sites, online ordering (own + Swiggy/Zomato), GBP for "near me" + Marathi-language reviews.' },
+  { b: 'Professional services', s: 'CA, lawyer, advocate, architect, photographer — small practices clustered around Tilak Nagar and Gandhi Nagar. Credibility sites with case examples, downloadable forms, WhatsApp lead capture.' },
+  { b: 'MIDC manufacturing', s: 'MIDC Dombivli chemicals belt + ancillaries. B2B catalog sites with GST toggle, RFQ flows, multi-language (Hindi-Marathi-English) for the supply chain.' },
+];
+
+const localContext = [
+  { h: 'Marathi-first market', p: 'Dombivli is one of MMR\'s most Marathi-language-dominant suburbs. English-led brand sites underperform here — your audience reads in Marathi, types in Marathi-English code-switch, and trusts content in the right register. I write copy with that mix in mind.' },
+  { h: 'East vs West are different markets', p: 'Dombivli East is denser, more redevelopment-heavy, family-led commerce. Dombivli West skews professional + transit-commuter. GBP setup and Meta-ads targeting treat them as two markets, not one — different pin codes, different intent.' },
+  { h: 'Local-pack first, ads second', p: 'For Dombivli SMBs, the cheapest lead is the Google Maps local-pack lead. I prioritize GBP + citations + on-page schema before scaling paid ads — most Dombivli businesses underspend on local SEO and overspend on cold ads.' },
+  { h: 'Festival cadence matters', p: 'Gudi Padwa, Ganpati, Diwali, Holi — Dombivli\'s SMB calendar runs on Marathi festivals. Campaigns built around the right festival calendar convert at 2–3× the baseline. Generic "September sale" copy reads as outsider.' },
+];
+
+const neighborhoods = ['Dombivli East', 'Dombivli West', 'Manpada', 'Tilak Nagar', 'Phadke Road', 'Gandhi Nagar', 'MIDC Dombivli', 'Ayre', 'Pendharkar College', 'Kopar', 'Thakurli'];
+
+const faqs = [
+  { q: 'Do you come to Dombivli in person?', a: 'Yes — Dombivli East/West are easy to reach from Thane. I do kickoff and milestone reviews in person; day-to-day work runs on WhatsApp + video.' },
+  { q: 'Marathi-first sites?', a: 'Yes — sites can launch in Marathi-first, Marathi-English, or any combination. WhatsApp bots handle Marathi-Hindi-English code-switching the way Dombivli users actually type.' },
+  { q: 'Do you work with smaller scopes — single landing page, single WhatsApp bot?', a: 'Yes. Smaller scopes (single-page micro-site, one-product WhatsApp bot, GBP setup + first ad campaign) are routine. Project-based pricing, GST invoice.' },
+  { q: 'Local SEO for Dombivli specifically?', a: 'Yes. Google Business Profile setup with the right primary category, citation building across Indian directories (Justdial, Sulekha, IndiaMart), and on-page local signals. Targets Dombivli East and Dombivli West pin codes separately.' },
+  { q: 'Indian payment methods?', a: 'GST invoice, bank transfer (NEFT/IMPS), UPI, Razorpay — all supported.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Dombivli — Naresh Basude"
+  description="Website & app developer in Dombivli. Marathi-friendly sites, apps, WhatsApp bots & Meta/Google ads for SMBs, coaching, clinics, retail, real estate."
+  schemaType="city"
+  city={{
+    name: 'Dombivli',
+    slug: '/dombivli',
+    description: 'Website and app developer in Dombivli — Naresh Basude builds Marathi-friendly websites, web apps, WhatsApp bots, and runs Meta + Google ads for Dombivli SMBs, coaching institutes, clinics, retail, and real-estate businesses.',
+    areaServed: ['Dombivli', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Dombivli', item: '/dombivli' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ DOMBIVLI ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+    <h1 class="t-display">Website &amp; app developer<br /><em>in Dombivli.</em></h1>
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, a website and app developer based in Thane,
+      serving <strong>Dombivli East &amp; West</strong>, Kalyan, Thane, and Mumbai.
+      Sites, web apps, WhatsApp automations, and Meta + Google ads for Dombivli
+      SMBs, coaching institutes, clinics, retail, and real-estate businesses.
+      Marathi-first if needed. Projects delivered in 7 days.
+    </p>
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Dombivli</b>',
+    'App Developer · <b>Dombivli East</b>',
+    'WhatsApp Bot · <b>Dombivli West</b>',
+    '<i>Meta + Google Ads</i> · Dombivli',
+    'Local SEO · <b>Dombivli</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Dombivli</span><span class="sec-head__lab">Services</span></header>
+    <ul class="city-services" role="list">{services.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p><a href={s.href} class="city-service__cta">{s.cta}</a></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries in Dombivli</span><span class="sec-head__lab">Retail · Education · Healthcare · Real estate</span></header>
+    <div class="city-industries">{industries.map((i) => (<div class="city-industry"><b>{i.b}</b><span set:html={i.s} /></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; What's different about the Dombivli market</span><span class="sec-head__lab">Local-context calls</span></header>
+    <div class="city-why">
+      {localContext.map((c) => (
+        <article class="city-why__item">
+          <h3 class="t-h3">{c.h}</h3>
+          <p>{c.p}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Areas covered in Dombivli</span><span class="sec-head__lab">East · West · Manpada · MIDC</span></header>
+    <ul class="city-areas" role="list">{neighborhoods.map((n) => <li class="city-area">{n}</li>)}</ul>
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">In-person reviews across Dombivli East (Phadke Road / Manpada / MIDC), Dombivli West (Tilak Nagar / Pendharkar / Gandhi Nagar), and the Ayre-Kopar-Thakurli adjacencies — easy reach from Thane via the Central line or the Manpada road.</p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Why local matters in Dombivli</span><span class="sec-head__lab">Built for SMBs</span></header>
+    <div class="city-why">
+      <article class="city-why__item"><h3 class="t-h3">Marathi-first if you want</h3><p>Most Dombivli SMBs serve a Marathi-speaking audience. Sites, ads, and WhatsApp bots launch in the right language without translation overhead.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">SMB-friendly pricing</h3><p>Single-page micro-sites, one-bot WhatsApp flows, GBP setup — priced for Dombivli SMBs, not Mumbai agencies.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">7-day delivery</h3><p>Most Dombivli projects go live within a week. You see real product, not Figma forever.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Real cases nearby</h3><p>NIP College (Thane), 20+ Meta + Google ad accounts. <a href="/projects">See the work →</a></p></article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; FAQs from Dombivli clients</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>07</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Got a website, app, catalog, or ad campaign in Dombivli? Send a quick message — I'll come back within 24 hours.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span><span class="city-nap__val">Thane (covering Dombivli &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span><span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span><span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span><span class="city-nap__val">Dombivli · Kalyan · Thane · Mumbai · Navi Mumbai · India · Remote</span>
+    </address>
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/thane">Thane</a><a href="/mumbai">Mumbai</a><a href="/navi-mumbai">Navi Mumbai</a><a href="/kalyan-bhiwandi">Kalyan-Bhiwandi</a><a href="/cities">All cities</a>
+    </nav>
+  </section>
+</BaseLayout>

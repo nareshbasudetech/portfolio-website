@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Not Found" description="The page you're looking for has moved or never existed." noindex>
+  <section class="shell err">
+    <div class="err__brackets">
+      <span>[ 404 ]</span>
+      <span>OFF · ROUTE</span>
+      <span>SIGNAL · LOST</span>
+    </div>
+    <h1 class="t-display">Off the<br /><em>map.</em></h1>
+    <p class="t-lede">
+      The URL doesn't match anything I've shipped — try the work, or send a note.
+    </p>
+    <div class="err__row">
+      <a href="/" class="btn">Home <span class="arr" aria-hidden="true">→</span></a>
+      <a href="/projects" class="btn btn--ghost">See work</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .err {
+    min-height: 70dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: clamp(4rem, 12vh, 8rem);
+    gap: 2rem;
+  }
+  .err__brackets {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    max-width: 700px;
+  }
+  .t-display em { color: var(--color-orange); font-style: italic; }
+  .err__row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+</style>

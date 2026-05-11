@@ -1,0 +1,158 @@
+---
+interface Props {
+  num: string;
+  kind: 'dev' | 'design' | 'marketing';
+  title: string;
+  blurb: string;
+  bullets: string[];
+  href?: string;
+}
+
+const { num, kind, title, blurb, bullets, href } = Astro.props;
+const accent = kind === 'dev' ? 'var(--color-orange)' : kind === 'design' ? 'var(--color-violet)' : 'var(--color-ivory)';
+---
+
+<article class="dc" style={`--ac:${accent}`} data-kind={kind}>
+  <header class="dc__hd">
+    <span class="t-mono">F-{num}</span>
+    <span class="dc__tag">{kind}</span>
+  </header>
+
+  <div class="dc__viz" aria-hidden="true">
+    {kind === 'dev' && (
+      <pre class="codeblk"><code><span class="kw">const</span> <span class="fn">work</span> = <span class="kw">async</span> () =&gt; &#123;
+  <span class="kw">await</span> <span class="fn">design</span>();
+  <span class="kw">await</span> <span class="fn">build</span>();
+  <span class="kw">return</span> <span class="fn">ship</span>();
+&#125;;</code></pre>
+    )}
+    {kind === 'design' && (
+      <div class="tokens">
+        <div class="tokens__row">
+          <span class="sw" style="--c:#050505"></span>
+          <span class="sw" style="--c:#f5f2ec"></span>
+          <span class="sw" style="--c:#ff5b1f"></span>
+          <span class="sw" style="--c:#7b5cff"></span>
+        </div>
+        <div class="tokens__type">
+          <span style="font-size:1.6rem;font-weight:700;letter-spacing:-0.03em">Aa</span>
+          <span style="font-size:1.1rem;font-weight:500">Aa</span>
+          <span style="font-size:0.78rem;font-family:var(--font-mono)">Aa</span>
+        </div>
+      </div>
+    )}
+    {kind === 'marketing' && (
+      <svg class="chart" viewBox="0 0 200 70" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="var(--ac)" stop-opacity="0.4" />
+            <stop offset="1" stop-color="var(--ac)" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path d="M0 60 Q 25 48, 50 50 T 100 36 T 150 24 T 200 8 L 200 70 L 0 70 Z" fill="url(#g)" />
+        <path d="M0 60 Q 25 48, 50 50 T 100 36 T 150 24 T 200 8" fill="none" stroke="var(--ac)" stroke-width="1.5" />
+        <circle cx="200" cy="8" r="3" fill="var(--ac)" />
+      </svg>
+    )}
+  </div>
+
+  <h3 class="t-h3 dc__title">{title}</h3>
+  <p class="dc__blurb">{blurb}</p>
+
+  <ul class="dc__list" role="list">
+    {bullets.map((b) => <li>{b}</li>)}
+  </ul>
+
+  {href && (
+    <a class="dc__more" href={href}>
+      See work <span aria-hidden="true">→</span>
+    </a>
+  )}
+</article>
+
+<style>
+  .dc {
+    position: relative;
+    padding: 1.75rem;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, color-mix(in oklab, var(--ac) 5%, transparent), transparent 50%), var(--color-ink-2);
+    transition: border-color 250ms, transform 250ms var(--ease-out-expo);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 420px;
+  }
+  .dc:hover { border-color: var(--ac); transform: translateY(-3px); }
+  .dc__hd { display: flex; justify-content: space-between; }
+  .dc__tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ac);
+  }
+  .dc__viz {
+    height: 110px;
+    border-radius: var(--radius-sm);
+    background: var(--color-ink-3);
+    border: 1px solid var(--grid-line);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 1rem;
+  }
+  .dc__title { color: var(--color-ivory); }
+  .dc__blurb { color: var(--color-ivory-dim); font-size: 0.95rem; line-height: 1.55; }
+  .dc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    opacity: 0.7;
+  }
+  .dc__list li::before { content: '— '; color: var(--ac); }
+  .dc__more {
+    margin-top: auto;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ac);
+    border-bottom: 1px solid color-mix(in oklab, var(--ac) 40%, transparent);
+    padding-bottom: 2px;
+  }
+
+  /* Code preview */
+  .codeblk {
+    margin: 0;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1.55;
+    color: var(--color-ivory-dim);
+    text-align: left;
+  }
+  .codeblk .kw { color: var(--color-orange); }
+  .codeblk .fn { color: var(--color-violet); }
+
+  /* Tokens preview */
+  .tokens { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+  .tokens__row { display: flex; gap: 0.4rem; }
+  .sw {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--c);
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 18%, transparent);
+  }
+  .tokens__type { display: flex; gap: 0.7rem; align-items: baseline; color: var(--color-ivory-dim); }
+
+  /* Chart */
+  .chart { width: 100%; height: 100%; }
+</style>

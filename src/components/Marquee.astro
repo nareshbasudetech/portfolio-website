@@ -1,0 +1,44 @@
+---
+interface Props {
+  items?: string[];
+  variant?: 'default' | 'ribbon';
+}
+
+const {
+  items = [
+    '<b>7-day</b> delivery',
+    '<b>Ship</b> the site',
+    '<i>Run</i> the campaign',
+    'Design the <b>funnel</b>',
+    'Measure the <i>lift</i>',
+    '<b>Available</b> now',
+    'India → Remote',
+  ],
+  variant = 'default',
+} = Astro.props;
+
+const doubled = [...items, ...items];
+---
+
+<div class:list={['marquee', variant === 'ribbon' && 'is-ribbon']} aria-hidden="true">
+  <div class="marquee__track">
+    {doubled.map((html) => (
+      <Fragment>
+        <span set:html={html} />
+        <span aria-hidden="true" class="sep">✦</span>
+      </Fragment>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee.is-ribbon {
+    background: var(--color-ink-2);
+    border-block: 1px solid var(--grid-line);
+  }
+  .sep {
+    color: var(--color-orange);
+    font-family: var(--font-mono);
+    opacity: 0.6;
+  }
+</style>

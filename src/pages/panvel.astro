@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Panvel', p: 'Marketing sites, brand sites, e-commerce for Panvel real-estate developers, hospitality, schools, and SMBs. Tuned for the NMIA-driven growth and fast-developing belt around Ulwe-Kamothe.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Panvel', p: 'Web apps, mobile apps, dashboards, CRMs. Real-estate inventory apps, hospitality booking, retail management — built for the new-economy Panvel.', href: '/projects/naresh-crm-lead-management', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Panvel', p: 'Real-estate lead bots, hospitality booking bots, customer service automation. High-volume inbound flows handled before they reach your team.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Panvel', p: 'Hyperlocal ads for Panvel, New Panvel, Kalamboli, Kamothe, Ulwe pin codes. Targets the airport-driven real-estate growth + tourism for Konkan trips.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Real estate', s: 'Panvel is the airport-growth zone. Tower launches across Kamothe, Kharghar (border), Ulwe, New Panvel — site-visit campaigns, retargeting.' },
+  { b: 'Hospitality &amp; tourism', s: 'Gateway to Konkan + airport hotels. Booking flows, online presence, Google Business Profile for travel queries.' },
+  { b: 'Logistics &amp; warehousing', s: 'Panvel\'s industrial belt — JNPT-adjacent. B2B catalog sites, RFQ flows, internal dashboards for transporters and 3PLs.' },
+  { b: 'Education &amp; schools', s: 'Growing institution belt — admissions sites, parent portals, student apps.' },
+  { b: 'Healthcare &amp; clinics', s: 'Panvel\'s new hospitals + clinics — appointment flows, doctor profiles, WhatsApp follow-up.' },
+  { b: 'Retail &amp; F&B', s: 'Marketing sites, online ordering, GBP setup for the residential belt around Khanda Colony and Old Panvel.' },
+];
+
+const neighborhoods = ['Old Panvel', 'New Panvel', 'Panvel East', 'Panvel West', 'Kalamboli', 'Kamothe', 'Ulwe', 'Khanda Colony', 'Adai', 'Taloja', 'Kharghar (border)', 'Roadpali'];
+
+const faqs = [
+  { q: 'Do you come to Panvel in person?', a: 'Yes — Panvel is about 90 min from Thane via the Sion-Panvel highway or rail. For real-estate site-visits, hospitality kickoffs, school visits, I come in person.' },
+  { q: 'NMIA-driven real-estate market — do you handle that?', a: 'Routine. Tower-launch landing pages, site-visit lead capture, retargeting against unit views, hyperlocal Meta ads targeting Ulwe/Kamothe/Kharghar buyers.' },
+  { q: 'JNPT logistics + warehouse business?', a: 'Yes. B2B catalog sites, RFQ flows, internal dashboards, GST-compliant invoicing flows — common for Panvel-adjacent logistics firms.' },
+  { q: 'Multi-language?', a: 'Hindi, Marathi, English mix. Panvel\'s growth-zone audience skews more Hindi-English than Marathi-only; sites adapt accordingly.' },
+  { q: 'GST + Indian payments?', a: 'GST invoice yes. UPI, NEFT, Razorpay all supported. International wires for non-INR clients.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Panvel — Naresh Basude"
+  description="Website & app developer in Panvel. Sites, apps, WhatsApp bots & ads for real estate, hospitality, JNPT logistics, schools across the NMIA growth zone."
+  schemaType="city"
+  city={{
+    name: 'Panvel',
+    slug: '/panvel',
+    description: 'Website and app developer in Panvel — Naresh Basude builds websites, web apps, WhatsApp bots, and runs Meta + Google ads for Panvel real-estate developers, hospitality, JNPT logistics, schools, and SMBs in the NMIA growth zone.',
+    areaServed: ['Panvel', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Panvel', item: '/panvel' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ PANVEL ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+    <h1 class="t-display">Website &amp; app developer<br /><em>in Panvel.</em></h1>
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, serving <strong>Panvel, New Panvel,
+      Kalamboli, Kamothe, Ulwe</strong>, and the NMIA-driven growth belt.
+      Websites, web apps, mobile apps, WhatsApp automations, and Meta + Google
+      ads for real-estate developers, hospitality, logistics, schools, clinics,
+      and SMBs. Projects delivered in 7 days.
+    </p>
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Panvel</b>',
+    'App Developer · <b>Kamothe</b>',
+    'WhatsApp Bot · <b>Ulwe</b>',
+    '<i>Real Estate</i> · NMIA Belt',
+    'Logistics · <b>JNPT-adjacent</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Panvel</span><span class="sec-head__lab">Services</span></header>
+    <ul class="city-services" role="list">{services.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p><a href={s.href} class="city-service__cta">{s.cta}</a></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries in Panvel</span><span class="sec-head__lab">Real estate · Hospitality · Logistics</span></header>
+    <div class="city-industries">{industries.map((i) => (<div class="city-industry"><b set:html={i.b} /><span set:html={i.s} /></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Areas covered</span><span class="sec-head__lab">Panvel · NMIA Belt</span></header>
+    <ul class="city-areas" role="list">{neighborhoods.map((n) => <li class="city-area">{n}</li>)}</ul>
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">Old Panvel, New Panvel, Kalamboli, Kamothe, Ulwe — and the new NMIA airport belt growing fast around Adai and Taloja. In-person reviews for real-estate and hospitality projects.</p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Why local matters in Panvel</span><span class="sec-head__lab">NMIA growth zone</span></header>
+    <div class="city-why">
+      <article class="city-why__item"><h3 class="t-h3">Airport-driven market</h3><p>Panvel's NMIA economic zone is real-estate-led growth. Hyperlocal targeting beats generic India ads for capturing buyers in Ulwe/Kamothe/Kharghar.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">JNPT logistics adjacency</h3><p>B2B warehousing and 3PL businesses near JNPT need catalog sites + RFQ flows + dashboards — different than residential commerce.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Hospitality + tourism upside</h3><p>Gateway to Konkan + airport hotels. Booking flows, GBP, Meta ads tuned for travel intent.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Real cases nearby</h3><p>20+ ad accounts, real-estate site-visit funnels, lead-management CRMs. <a href="/projects">See the work →</a></p></article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; FAQs from Panvel clients</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Real estate, hospitality, logistics, or SMB project in Panvel? Send a brief — I'll reply within 24 hours.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span><span class="city-nap__val">Thane (covering Panvel &amp; NMIA belt)</span>
+      <span class="city-nap__lbl">Phone</span><span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span><span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span><span class="city-nap__val">Panvel · Kalamboli · Kamothe · Ulwe · Navi Mumbai · Mumbai · India · Remote</span>
+    </address>
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/navi-mumbai">Navi Mumbai</a><a href="/mumbai">Mumbai</a><a href="/thane">Thane</a><a href="/cities">All cities</a>
+    </nav>
+  </section>
+</BaseLayout>

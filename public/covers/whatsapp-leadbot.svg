@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="WhatsApp Lead Bot — illustrative case study cover">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#06120c"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+
+  <!-- Phone -->
+  <g transform="translate(380 120)">
+    <rect width="280" height="560" rx="36" fill="#0a0a0a" stroke="#1f1f1f" stroke-width="6"/>
+    <rect x="14" y="14" width="252" height="532" rx="26" fill="#0a1612"/>
+
+    <!-- Status -->
+    <rect x="14" y="14" width="252" height="36" rx="22" fill="#0a1612"/>
+    <text x="36" y="36" font-family="JetBrains Mono, monospace" font-size="10" fill="#c9c5bd">9:41</text>
+    <text x="240" y="36" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#c9c5bd">🔋 88%</text>
+
+    <!-- Header -->
+    <rect x="14" y="50" width="252" height="56" fill="#0d1f17"/>
+    <circle cx="46" cy="78" r="16" fill="#22c55e"/>
+    <text x="46" y="83" text-anchor="middle" font-family="General Sans, sans-serif" font-size="14" font-weight="700" fill="#050505">N</text>
+    <text x="74" y="74" font-family="General Sans, sans-serif" font-size="13" font-weight="600" fill="#f5f2ec">Naresh · Education</text>
+    <text x="74" y="90" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">● online · auto</text>
+
+    <!-- Conversation -->
+    <g font-family="Inter, sans-serif" font-size="11">
+      <!-- Bot greet -->
+      <rect x="24" y="124" width="190" height="56" rx="16" fill="#1a2521"/>
+      <rect x="24" y="124" width="3" height="56" fill="#22c55e"/>
+      <text x="36" y="142" fill="#f5f2ec" font-weight="600">BOT</text>
+      <text x="36" y="160" fill="#c9c5bd">Hi! Looking for admission</text>
+      <text x="36" y="174" fill="#c9c5bd">info? Tell me the course.</text>
+
+      <!-- User -->
+      <rect x="74" y="190" width="180" height="32" rx="16" fill="#22c55e"/>
+      <text x="86" y="210" fill="#050505">B.Sc Nursing 2026</text>
+
+      <!-- Bot ask city -->
+      <rect x="24" y="232" width="200" height="36" rx="16" fill="#1a2521"/>
+      <rect x="24" y="232" width="3" height="36" fill="#22c55e"/>
+      <text x="36" y="252" fill="#c9c5bd">Got it. Which city?</text>
+
+      <!-- User -->
+      <rect x="124" y="278" width="130" height="32" rx="16" fill="#22c55e"/>
+      <text x="136" y="298" fill="#050505">Pune</text>
+
+      <!-- Bot match -->
+      <rect x="24" y="320" width="220" height="80" rx="16" fill="#1a2521"/>
+      <rect x="24" y="320" width="3" height="80" fill="#22c55e"/>
+      <text x="36" y="338" fill="#f5f2ec" font-weight="600">3 matches found</text>
+      <text x="36" y="356" fill="#c9c5bd">Counsellor will call by 11 AM.</text>
+      <text x="36" y="372" fill="#c9c5bd">Saved to CRM. Owner: Agent</text>
+      <text x="36" y="386" fill="#c9c5bd">03 (Pune region).</text>
+
+      <!-- Status -->
+      <rect x="24" y="410" width="220" height="32" rx="16" fill="#0d1f17" stroke="#22c55e" stroke-opacity="0.3"/>
+      <text x="36" y="430" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e" letter-spacing="2">→ HUMAN HAND-OFF QUEUED</text>
+    </g>
+
+    <!-- Input -->
+    <rect x="24" y="494" width="232" height="38" rx="19" fill="#0d1f17" stroke="#1f1f1f"/>
+    <text x="40" y="518" font-family="Inter, sans-serif" font-size="11" fill="#6f6c66">Type a message…</text>
+  </g>
+
+  <!-- Side context cards -->
+  <g transform="translate(80 170)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">FLOW · LEAD BOT</text>
+
+    <g transform="translate(0 24)">
+      <rect width="240" height="48" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect width="3" height="48" fill="#22c55e"/>
+      <text x="14" y="20" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e" letter-spacing="2">01</text>
+      <text x="14" y="36" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Greet + qualify</text>
+
+      <rect y="56" width="240" height="48" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect y="56" width="3" height="48" fill="#22c55e"/>
+      <text x="14" y="76" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e" letter-spacing="2">02</text>
+      <text x="14" y="92" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Capture intent</text>
+
+      <rect y="112" width="240" height="48" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <rect y="112" width="3" height="48" fill="#22c55e"/>
+      <text x="14" y="132" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e" letter-spacing="2">03</text>
+      <text x="14" y="148" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Match + route to CRM</text>
+
+      <rect y="168" width="240" height="48" rx="6" fill="#0d0d0d" stroke="#22c55e" stroke-opacity="0.4"/>
+      <rect y="168" width="3" height="48" fill="#22c55e"/>
+      <text x="14" y="188" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e" letter-spacing="2">04</text>
+      <text x="14" y="204" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Hand off to human</text>
+    </g>
+  </g>
+
+  <g transform="translate(880 170)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">TODAY · LIVE</text>
+
+    <g transform="translate(0 24)" font-family="JetBrains Mono, monospace">
+      <rect width="220" height="64" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <text x="14" y="22" font-size="9" letter-spacing="2" fill="#6f6c66">CONVERSATIONS</text>
+      <text x="14" y="48" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#22c55e">142</text>
+
+      <rect y="76" width="220" height="64" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <text x="14" y="98" font-size="9" letter-spacing="2" fill="#6f6c66">QUALIFIED</text>
+      <text x="14" y="124" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#7b5cff">87</text>
+
+      <rect y="152" width="220" height="64" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+      <text x="14" y="174" font-size="9" letter-spacing="2" fill="#6f6c66">BOT REPLIES</text>
+      <text x="14" y="200" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#f5f2ec">&lt; 5s</text>
+    </g>
+  </g>
+
+  <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#f5f2ec" opacity="0.5">
+    <text x="60" y="48">WHATSAPP · LEAD BOT · CASE STUDY · 2026</text>
+    <text x="1140" y="48" text-anchor="end">[ ILLUSTRATIVE ]</text>
+    <text x="60" y="780">DEV / AUTOMATION / GROWTH</text>
+    <text x="1140" y="780" text-anchor="end">VOL · 02 / 2026</text>
+  </g>
+</svg>

@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const tagIntros: Record<string, string> = {
+  seo: 'Notes on technical, on-page, and local SEO — what actually moves rankings for Indian SMBs in 2026. Schema, GBP, citation strategy, AI-search readiness, and the boring fundamentals most teams skip.',
+  local: 'Local SEO playbooks for the Mumbai Metropolitan Region — Google Business Profile, Indian citation directories, NAP consistency, schema with geo-coordinates, review acquisition. Tuned for pin-code-level ranking, not generic city queries.',
+  thane: 'Notes specific to running a developer/marketer practice out of Thane — local market context, what Thane SMBs actually pay for, in-person vs remote, and how local SEO works for MMR businesses.',
+  mumbai: 'Notes on the Mumbai developer/marketer market — agency vs freelance, BKC/Lower Parel/Andheri client patterns, mid-market pricing, and what Mumbai SaaS/DTC teams actually need from an outside developer.',
+  whatsapp: 'Notes on WhatsApp Business API, lead-qualification bots, B2B catalog flows, and CRM integration — what works for Indian businesses with high inbound volume, and the patterns that compound vs the ones that break.',
+  marketing: 'Notes on growth marketing for Indian SMBs — Meta + Google ads, attribution, lifecycle messaging, server-side tracking. What scales past the first ₹50K/month and what stalls.',
+  wordpress: 'Notes on WordPress — migrations from custom-PHP / Wix / Squarespace, headless WP setups, plugin discipline, and when WordPress is the right answer (and when it absolutely is not).',
+  freelance: 'Notes on the freelance developer business — pricing, scoping, retainer vs project, client communication, and the agency-vs-freelance trade-off honestly explained.',
+  agency: 'Notes comparing agency engagement vs freelance vs in-house — when to hire which, where the cost markup actually goes, and what a one-person operation can and cannot replace.',
+  hiring: 'Notes on hiring developers, marketers, and designers — what to look for, how to test, and the freelance-vs-agency-vs-FTE trade-off depending on stage.',
+  india: 'Notes on building, marketing, and operating in the Indian SMB market — GST, payment methods, language mix, festival cadence, and the bottom-up market dynamics that differ from the Western playbook.',
+  ship: 'Notes on shipping fast — the 7-day delivery playbook, scope discipline, "good first version", and why most projects fail at iteration, not initial launch.',
+  process: 'Notes on the process of shipping software — kickoff, discovery, milestone reviews, handover, and the rituals that keep a project moving without turning into a meeting culture.',
+  productivity: 'Notes on individual operator productivity — async tools, WhatsApp + video hybrid workflows, deep-work blocks, and the difference between staying busy and shipping things.',
+  decisions: 'Notes on engineering and operating decisions — stack choices, tradeoffs explained without religion, and the framework I use to pick boring-but-correct over novel-but-fragile.',
+  portfolio: 'Notes on portfolio sites for developers and creative practices — what to show, what to leave out, how to write case studies that win briefs, and the design moves that matter.',
+  design: 'Notes on design for SMB brand and product work — typography, color, motion, layout patterns, and design decisions that compound rather than just look pretty.',
+  dev: 'Notes on development practice — frameworks, patterns, tooling decisions, and what actually matters when you ship for SMB clients vs venture-funded teams.',
+  web: 'Notes on building for the web — frameworks, performance, accessibility, and the choices behind a fast, indexable, maintainable site in 2026.',
+  astro: 'Notes on Astro — the framework I default to for marketing sites and content-driven projects. What it does well, where it falls short, and how it stacks against Next.js and WordPress.',
+  nextjs: 'Notes on Next.js — production patterns, performance traps, deployment trade-offs, and when Next is the right call for SMB projects (and when it is overkill).',
+  automation: 'Notes on workflow automation — WhatsApp bots, lead routing, internal dashboards, CRM integration, and the small workflows that compound into real operational leverage.',
+};
+
+const intro = tagIntros[tag] ?? `Posts tagged "${tag}" — practical notes on building products, brands, and growth marketing for Indian SMBs.`;
+
+const tagDescription = intro.length > 160 ? intro.slice(0, 157) + '...' : intro;
+---
+
+<BaseLayout
+  title={`Writing tagged: ${tag} — Notes by Naresh Basude`}
+  description={tagDescription}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Writing', item: '/writing' },
+    { name: `Tag: ${tag}`, item: `/writing/tag/${tag}` },
+  ]}
+  itemList={{
+    name: `Posts tagged ${tag}`,
+    items: posts.map((p) => ({ name: p.data.title, url: `/writing/${p.id}` })),
+  }}
+>
+  <section class="shell hd">
+    <a href="/writing" class="back">← All writing</a>
+    <h1 class="t-display">Tagged: <em>{tag}</em></h1>
+    <p class="t-lede">{intro}</p>
+    <p class="t-mono-sm" style="margin-top: 1rem; opacity: 0.6;">
+      {posts.length} note{posts.length === 1 ? '' : 's'} below.
+    </p>
+  </section>
+
+  <section class="shell sec">
+    <ol class="posts" role="list">
+      {posts.map((p, i) => (
+        <li>
+          <a class="post" href={`/writing/${p.id}`}>
+            <span class="post__n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="post__t">
+              <span class="post__title">{p.data.title}</span>
+              <span class="post__sum">{p.data.summary}</span>
+              <span class="post__meta">
+                <time datetime={p.data.publishedAt.toISOString()}>{fmt(p.data.publishedAt)}</time>
+                {p.data.readingTime && <span>{p.data.readingTime}</span>}
+              </span>
+            </span>
+            <span class="post__arr" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>
+
+<style>
+  .hd { padding-block: clamp(3rem, 8vh, 6rem) clamp(2rem, 5vh, 4rem); }
+  .back {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; opacity: 0.65; display: inline-block; margin-bottom: 2rem;
+  }
+  .back:hover { color: var(--color-orange); opacity: 1; }
+  .t-display em { color: var(--color-violet); font-style: italic; }
+  .sec { padding-block: clamp(2rem, 5vh, 4rem) clamp(4rem, 8vh, 6rem); }
+
+  .posts { list-style: none; padding: 0; margin: 0; }
+  .post {
+    display: grid; grid-template-columns: 60px 1fr 24px; gap: 1.5rem;
+    align-items: start; padding: 2rem 0.4rem;
+    border-top: 1px solid var(--grid-line);
+    transition: padding 280ms var(--ease-out-expo);
+  }
+  .posts li:last-child .post { border-bottom: 1px solid var(--grid-line); }
+  .post:hover { padding-left: 1.4rem;
+    background: linear-gradient(90deg, color-mix(in oklab, var(--color-orange) 6%, transparent), transparent 70%);
+  }
+  .post__n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-mute); }
+  .post__t { display: flex; flex-direction: column; gap: 0.5rem; }
+  .post__title {
+    font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    font-weight: 600; letter-spacing: -0.02em;
+  }
+  .post__sum { color: var(--color-ivory-dim); line-height: 1.55; }
+  .post__meta {
+    font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-mute);
+    display: flex; gap: 1rem;
+  }
+  .post__arr { color: var(--color-orange); opacity: 0; transition: opacity 200ms; }
+  .post:hover .post__arr { opacity: 1; }
+</style>

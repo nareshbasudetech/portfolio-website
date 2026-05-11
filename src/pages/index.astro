@@ -1,0 +1,979 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Marquee from '@components/Marquee.astro';
+import DisciplineCard from '@components/DisciplineCard.astro';
+import WorkRow from '@components/WorkRow.astro';
+import FlipBoard from '@components/FlipBoard.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '~/consts';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.year - a.data.year);
+
+const featured = projects[0];
+---
+
+<BaseLayout schemaType="home">
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero__bg" aria-hidden="true"><div class="grid"></div></div>
+
+    <div class="shell hero__inner">
+      <div class="hero__rail" aria-hidden="true">
+        <span class="hero__rail-l">
+          <span class="dot"></span>
+          <span>Available now · Taking briefs</span>
+        </span>
+        <span class="hero__rail-m">Projects delivered within 7 days</span>
+        <span class="hero__rail-r">Thane · Bhiwandi · Mumbai · Remote</span>
+      </div>
+
+      <div class="hero__main">
+        <div class="hero__col">
+          <nav class="hero__kicker" aria-label="What I build">
+            <a href="/projects">Websites</a>
+            <span aria-hidden="true">·</span>
+            <a href="/projects/naresh-crm-lead-management">Web apps</a>
+            <span aria-hidden="true">·</span>
+            <a href="/projects/nursingpathshala-app">Mobile apps</a>
+            <span aria-hidden="true">·</span>
+            <a href="/projects/whatsapp-leadbot">Automations</a>
+            <span aria-hidden="true">·</span>
+            <a href="/projects/growth-marketing-engagements">Marketing</a>
+          </nav>
+
+          <h1
+            class="hero__h1"
+            aria-label="I ship the site, I run the campaign, and I design the funnel."
+            transition:name="hero-title"
+          >
+            <span class="line" aria-hidden="true"><span class="dim">I </span><em>ship</em><span class="dim"> the site,</span></span>
+            <span class="line" aria-hidden="true"><span class="dim">I </span><em>run</em><span class="dim"> the campaign,</span></span>
+            <span class="line" aria-hidden="true"><span class="dim">&amp; </span><em>design</em><span class="dim"> the funnel.</span></span>
+          </h1>
+
+          <p class="t-lede hero__lede">
+            A <strong>website &amp; app developer in Thane</strong> building
+            websites, web apps, mobile apps, automations, and running growth
+            marketing for businesses across Bhiwandi, Mumbai, and India.
+            One brain across code, brand, and growth — fewer handoffs,
+            sharper output, work that actually ships.
+          </p>
+
+          <div class="hero__cta">
+            <a href="/projects" class="btn">
+              See selected work <span class="arr" aria-hidden="true">→</span>
+            </a>
+            <a href={`mailto:${SITE.email}`} class="btn btn--ghost">
+              Start a project
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero__pledge" aria-label="7-day delivery pledge">
+          <span class="pledge__top t-mono-sm">[ DELIVERY · WINDOW ]</span>
+
+          <span class="pledge__digit" aria-hidden="true">7</span>
+
+          <span class="pledge__sub">
+            <b>Days</b>
+            <span>brief → delivery</span>
+          </span>
+
+          <ul class="pledge__list" role="list">
+            <li><span class="pledge__d">D1</span><span>Discover</span></li>
+            <li><span class="pledge__d">D2 — D6</span><span>Build</span></li>
+            <li><span class="pledge__d">D7</span><span>Ship &amp; lift</span></li>
+          </ul>
+
+          <span class="pledge__live">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Available now · Replies inside 24h</span>
+          </span>
+        </aside>
+      </div>
+
+      <footer class="hero__keys" aria-label="What I do">
+        <span><b>Dev</b><span>Next · Astro · TS · Node</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span><b>Design</b><span>UI · Brand · Motion</span></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span><b>Marketing</b><span>SEO · Ads · Lifecycle</span></span>
+      </footer>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" />
+
+  <!-- ============ FEATURED ============ -->
+  {featured && (
+    <section class="shell sec sec--feat">
+      <header class="sec-head">
+        <span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; Featured</span>
+        <span class="sec-head__lab">{featured.data.year}</span>
+      </header>
+
+      <article class="feat" style={`--ac:${featured.data.accent}`}>
+        <a class="feat__link" href={`/projects/${featured.id}`} aria-label={`Read case study: ${featured.data.title}`}></a>
+        <div class="feat__viz">
+          <img
+            src={featured.data.cover ?? `/covers/${featured.id}.svg`}
+            alt=""
+            width="1440"
+            height="960"
+            loading="eager"
+            decoding="async"
+          />
+          <span class="feat__chip">{featured.data.discipline.join(' · ')}</span>
+          {(() => {
+            const links = featured.data.links?.length
+              ? featured.data.links
+              : featured.data.url
+                ? [{ label: 'Visit live ↗', href: featured.data.url }]
+                : [];
+            return links.length > 0 ? (
+              <div class="feat__visit">
+                {links.map((l) => (
+                  <a href={l.href} class="visit-chip" rel="noopener" target="_blank">
+                    <span>{l.label.replace(' ↗', '')}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            ) : null;
+          })()}
+        </div>
+        <div class="feat__body">
+          <h2 class="t-h1">{featured.data.title}</h2>
+          <p class="t-lede">{featured.data.summary}</p>
+          <a class="feat__cta" href={`/projects/${featured.id}`}>Read the case study <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </section>
+  )}
+
+  <!-- ============ TRIFOLD ============ -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; What I do</span>
+      <span class="sec-head__lab">Three disciplines · One brain</span>
+    </header>
+
+    <h2 class="t-h1 sec__lead">
+      The whole funnel, <em>without the handoffs</em>.
+    </h2>
+    <p class="t-lede sec__sub">
+      Most teams need three people, three timelines, and three opinions
+      to ship one site. I'm one of each — so the work moves at the pace
+      of one mind, with the consistency of one voice.
+    </p>
+
+    <div class="trifold">
+      <DisciplineCard
+        num="001"
+        kind="dev"
+        title="Development"
+        blurb="Production web apps and sites, end-to-end. Performance budgets and DX that hold over time."
+        bullets={[
+          'Next.js · Astro · React · TS',
+          'Node · Edge · APIs · Postgres',
+          'Tailwind · Motion · Realtime',
+          'SEO, accessibility, perf budgets',
+        ]}
+        href="/projects"
+      />
+      <DisciplineCard
+        num="002"
+        kind="design"
+        title="Design"
+        blurb="Identities and interfaces with a system underneath — tokenized, motion-aware, ready to scale."
+        bullets={[
+          'Brand identity · Logos · Type',
+          'UI systems · Tokens · Motion',
+          'Figma · Illustrator · After Effects',
+          'Print-ready collateral',
+        ]}
+        href="/projects"
+      />
+      <DisciplineCard
+        num="003"
+        kind="marketing"
+        title="Marketing · 20+ brands"
+        blurb="Performance marketing across education, real estate, e-commerce, and more — Meta ads, Google ads, technical SEO, and lifecycle that pays itself back."
+        bullets={[
+          'Meta + Google ads · Server-side',
+          'Technical SEO · GEO · AI search',
+          'Lifecycle · Email · WhatsApp',
+          '20+ brands across 5 verticals',
+        ]}
+        href="/projects/growth-marketing-engagements"
+      />
+    </div>
+  </section>
+
+  <!-- ============ DEPARTURES BOARD ============ -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Departures</span>
+      <span class="sec-head__lab">All shipped in 2026</span>
+    </header>
+
+    <h2 class="t-h1 sec__lead">
+      Recent flights, on the <em>board</em>.
+    </h2>
+    <p class="t-lede sec__sub">
+      Each row is a project that left the gate this cycle.
+      Click a destination to read the case study.
+    </p>
+
+    <FlipBoard />
+  </section>
+
+  <!-- ============ SELECTED WORK ============ -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; All Selected Work</span>
+      <span class="sec-head__lab">Volume 02 · 2026</span>
+    </header>
+
+    <div class="work__lead">
+      <h2 class="t-h1">
+        Things I've <em>shipped</em>, <br />branded, and grown.
+      </h2>
+      <a href="/projects" class="work__all t-mono">All projects ↗</a>
+    </div>
+
+    <ol class="work__list" role="list">
+      {projects.map((p, i) => (
+        <WorkRow
+          index={i + 1}
+          title={p.data.title}
+          summary={p.data.summary}
+          discipline={p.data.discipline}
+          year={p.data.year}
+          href={`/projects/${p.id}`}
+          accent={p.data.accent}
+        />
+      ))}
+    </ol>
+  </section>
+
+  <!-- ============ CAPABILITIES ============ -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; What I deliver</span>
+      <span class="sec-head__lab">End-to-end · One brain</span>
+    </header>
+
+    <h2 class="t-h1 sec__lead">
+      Apps, sites, and the <em>automations</em> behind them.
+    </h2>
+    <p class="t-lede sec__sub">
+      Brief in, working product out. The same person designs, builds, and ships
+      it — so you don't lose a week between every conversation.
+    </p>
+
+    <div class="caps" role="list">
+      <div class="cap" role="listitem">
+        <span class="cap__num">01</span>
+        <h3 class="t-h3">Apps</h3>
+        <p>Mobile-first web apps and PWAs — student platforms, study companions, lead products. Offline-aware, push-enabled, installable.</p>
+        <ul>
+          <li>PWAs · React Native</li>
+          <li>Auth · Roles · Subscriptions</li>
+          <li>Lifecycle messaging</li>
+        </ul>
+      </div>
+
+      <div class="cap" role="listitem">
+        <span class="cap__num">02</span>
+        <h3 class="t-h3">Websites</h3>
+        <p>Marketing sites, admissions funnels, brand sites, e-commerce — production-ready spines or full custom builds. Editable by your team without engineering.</p>
+        <ul>
+          <li>WordPress · Astro · Next.js</li>
+          <li>Schema-clean · SEO-ready</li>
+          <li>Content velocity for non-devs</li>
+        </ul>
+      </div>
+
+      <div class="cap" role="listitem">
+        <span class="cap__num">03</span>
+        <h3 class="t-h3">Web apps</h3>
+        <p>Internal tools, dashboards, CRMs, ERPs. Multi-role workflows, integrations, admin panels. Built to fit how the team actually works — not the other way around.</p>
+        <ul>
+          <li>Roles · Hierarchies · Audit</li>
+          <li>API integrations · Realtime</li>
+          <li>Admin layers your team owns</li>
+        </ul>
+      </div>
+
+      <div class="cap" role="listitem">
+        <span class="cap__num">04</span>
+        <h3 class="t-h3">Automations</h3>
+        <p>Bots, scrapers, lead pipelines, n8n / Make workflows, WhatsApp / Instagram / web auto-responders. The boring repetitive work, automated and observable.</p>
+        <ul>
+          <li>WhatsApp + Meta channels</li>
+          <li>Lead capture → CRM pipelines</li>
+          <li>Workflow orchestration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; How I work</span>
+      <span class="sec-head__lab">3 phases · One outcome</span>
+    </header>
+
+    <div class="steps">
+      <article class="step">
+        <span class="step__num">01</span>
+        <h3 class="t-h3">Discover</h3>
+        <p>One workshop. We pin down the user, the pitch, and the number we'll move. Everything afterward serves that number.</p>
+        <span class="t-mono-sm step__t">Day 1</span>
+      </article>
+      <article class="step">
+        <span class="step__num">02</span>
+        <h3 class="t-h3">Build</h3>
+        <p>Brand, UI, and code ship in parallel — not in handoffs. You see real product daily, not Figma forever.</p>
+        <span class="t-mono-sm step__t">Days 2 — 6</span>
+      </article>
+      <article class="step">
+        <span class="step__num">03</span>
+        <h3 class="t-h3">Ship & lift</h3>
+        <p>Project delivered by day 7 — live URL, instrumentation in place, SEO and lifecycle wired up from the first deploy.</p>
+        <span class="t-mono-sm step__t">Day 7</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>07</b> &nbsp;/&nbsp; Field notes</span>
+      <span class="sec-head__lab">Anonymized client feedback</span>
+    </header>
+
+    <div class="quotes">
+      <figure class="quote">
+        <blockquote>
+          Replaced a four-person scope with one. Faster output and a launch that actually moved the metric we cared about.
+        </blockquote>
+        <figcaption>
+          <span><b>Founder</b> · SaaS · 2026</span>
+          <span class="t-mono-sm">Operator suite</span>
+        </figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>
+          Brand, site, and ads landed as one piece — for the first time the admissions funnel felt like one product.
+        </blockquote>
+        <figcaption>
+          <span><b>Director</b> · Education · 2026</span>
+          <span class="t-mono-sm">Rebrand + growth</span>
+        </figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>
+          CAC down materially while organic kept compounding. Growth work that pays itself back inside two quarters.
+        </blockquote>
+        <figcaption>
+          <span><b>Head of Growth</b> · DTC · 2026</span>
+          <span class="t-mono-sm">E-commerce stack</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding-block: clamp(2.5rem, 6vh, 5rem) clamp(3rem, 7vh, 6rem);
+    overflow: hidden;
+  }
+  .hero__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .grid {
+    position: absolute;
+    inset: -2px;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: clamp(60px, 8vw, 110px) clamp(60px, 8vw, 110px);
+    mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, #000 30%, transparent 90%);
+    opacity: 0.4;
+  }
+  .hero__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .hero__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .hero__col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 2vh, 1.75rem);
+  }
+
+  /* Single editorial rail above the headline */
+  .hero__rail {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--grid-line);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .hero__rail-l {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-orange);
+  }
+  .hero__rail-m { text-align: center; color: var(--color-ivory); opacity: 0.85; }
+  .hero__rail-r { text-align: right; opacity: 0.6; }
+
+  /* Kicker — what I build, sits above H1 */
+  .hero__kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.75rem;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--grid-line);
+    position: relative;
+  }
+  .hero__kicker::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 56px;
+    height: 2px;
+    background: var(--color-orange);
+  }
+  .hero__kicker a {
+    color: var(--color-ivory);
+    text-decoration: none;
+    transition: color 200ms;
+    position: relative;
+  }
+  .hero__kicker a:hover, .hero__kicker a:focus-visible {
+    color: var(--color-orange);
+    outline: none;
+  }
+  .hero__kicker a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1px;
+    background: var(--color-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 240ms var(--ease-out-expo);
+  }
+  .hero__kicker a:hover::after { transform: scaleX(1); }
+  .hero__kicker > span { color: var(--color-mute); }
+
+  /* Headline — hero-specific size, tighter so CTAs stay above fold */
+  .hero__h1 {
+    margin: 0;
+    max-width: 16ch;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 5rem);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+  }
+  .hero__h1 .line { display: block; overflow: hidden; }
+  .hero__h1 .dim { color: var(--color-ivory-dim); }
+  .hero__h1 em {
+    font-style: italic;
+    color: var(--color-orange);
+    font-family: var(--font-display);
+    margin: 0 0.05em;
+  }
+  .hero__h1 .line:nth-child(2) em { color: var(--color-violet); }
+  .hero__h1 .line:nth-child(3) em { color: var(--color-ivory); }
+
+  .hero__lede { max-width: 56ch; }
+  .hero__cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  /* ── 7-day pledge panel (right column) ───────────────────────────── */
+  .hero__pledge {
+    position: relative;
+    display: grid;
+    grid-template-areas:
+      'top  top'
+      'digit sub'
+      'list list'
+      'live live';
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1rem 1.25rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background:
+      radial-gradient(80% 60% at 30% 20%, color-mix(in oklab, var(--color-violet) 14%, transparent), transparent 60%),
+      radial-gradient(80% 70% at 80% 100%, color-mix(in oklab, var(--color-orange) 16%, transparent), transparent 60%),
+      var(--color-ink-2);
+    overflow: hidden;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in oklab, var(--color-ivory) 4%, transparent),
+      0 30px 80px color-mix(in oklab, var(--color-orange) 10%, transparent);
+    align-self: center;
+  }
+  .hero__pledge::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -25%;
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px dashed color-mix(in oklab, var(--color-orange) 22%, transparent);
+    pointer-events: none;
+    animation: pledge-spin 60s linear infinite;
+  }
+  .hero__pledge::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -20%;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px dotted color-mix(in oklab, var(--color-violet) 22%, transparent);
+    pointer-events: none;
+    animation: pledge-spin 90s linear infinite reverse;
+  }
+  @keyframes pledge-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__pledge::before, .hero__pledge::after { animation: none; }
+  }
+
+  .pledge__top {
+    grid-area: top;
+    display: flex;
+    align-items: center;
+    color: var(--color-orange);
+    letter-spacing: 0.18em;
+    font-size: 0.66rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--grid-line);
+    margin-bottom: 0.25rem;
+  }
+
+  .pledge__digit {
+    grid-area: digit;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(7rem, 14vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--color-orange);
+    text-shadow:
+      0 0 60px color-mix(in oklab, var(--color-orange) 35%, transparent),
+      0 0 120px color-mix(in oklab, var(--color-orange) 18%, transparent);
+    align-self: end;
+    padding-bottom: 0.4rem;
+    position: relative;
+    z-index: 2;
+  }
+  .pledge__sub {
+    grid-area: sub;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    align-self: end;
+    padding-bottom: 0.6rem;
+    position: relative;
+    z-index: 2;
+  }
+  .pledge__sub b {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    letter-spacing: -0.025em;
+    color: var(--color-ivory);
+    line-height: 1;
+  }
+  .pledge__sub span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ivory-dim);
+  }
+
+  .pledge__list {
+    grid-area: list;
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border-top: 1px dashed var(--grid-line);
+    padding-top: 0.85rem;
+    position: relative;
+    z-index: 2;
+  }
+  .pledge__list li {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-ivory);
+  }
+  .pledge__d {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-orange);
+  }
+
+  .pledge__live {
+    grid-area: live;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed var(--grid-line);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ivory-dim);
+    position: relative;
+    z-index: 2;
+  }
+  .pledge__live .dot { background: var(--color-orange); }
+
+  @media (max-width: 1000px) {
+    .hero__main { grid-template-columns: 1fr; gap: 2rem; }
+    .hero__col { height: auto; }
+    .hero__pledge { max-width: 540px; }
+  }
+
+  /* Discipline keys footer */
+  .hero__keys {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--grid-line);
+    font-size: 0.85rem;
+    color: var(--color-ivory-dim);
+  }
+  .hero__keys > span { display: inline-flex; gap: 0.6rem; align-items: baseline; }
+  .hero__keys b {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    font-weight: 500;
+  }
+  .hero__keys .sep { color: var(--color-mute); }
+
+  /* ===== SECTIONS ===== */
+  .sec { padding-block: clamp(4rem, 9vh, 7rem); }
+  .sec__lead { max-width: 22ch; margin-bottom: 1.25rem; }
+  .sec__lead em { color: var(--color-orange); font-style: italic; }
+  .sec__sub { margin-bottom: 3rem; }
+
+  /* ===== FEATURED ===== */
+  .sec--feat { padding-top: clamp(3rem, 7vh, 5rem); }
+  .feat {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 2rem;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-ink-2);
+    transition: border-color 280ms, transform 320ms var(--ease-out-expo);
+  }
+  .feat:hover { border-color: var(--ac); transform: translateY(-3px); }
+  .feat__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .feat__viz {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--color-ink-3);
+    overflow: hidden;
+  }
+  .feat__viz img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .feat__chip {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.75rem;
+    background: color-mix(in oklab, var(--color-ink) 80%, transparent);
+    backdrop-filter: blur(8px);
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 14%, transparent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ivory);
+    z-index: 2;
+  }
+  .feat__visit {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 0.4rem;
+    justify-content: flex-end;
+    z-index: 2;
+    max-width: calc(100% - 2rem);
+  }
+  .feat__body {
+    padding: 2.5rem 2rem 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: center;
+  }
+  .feat__cta {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ac);
+    position: relative;
+    z-index: 2;
+  }
+  .feat__cta:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .visit-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.85rem;
+    background: color-mix(in oklab, var(--color-ink) 80%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 20%, transparent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ivory);
+    transition: background 200ms, color 200ms, border-color 200ms;
+    text-decoration: none;
+  }
+  .visit-chip:hover {
+    background: var(--ac);
+    color: var(--color-ink);
+    border-color: var(--ac);
+  }
+
+  /* Trifold */
+  .trifold {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* WORK */
+  .work__lead {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .work__lead h2 { line-height: 1; }
+  .work__lead em { color: var(--color-orange); font-style: italic; }
+  .work__all { padding-bottom: 0.4rem; border-bottom: 1px solid var(--grid-line); }
+  .work__all:hover { color: var(--color-orange); border-bottom-color: var(--color-orange); }
+  .work__list { list-style: none; padding: 0; margin: 0; display: contents; }
+
+  /* Numbers */
+  .nums {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background: var(--color-ink-2);
+    overflow: hidden;
+  }
+
+  /* Capabilities */
+  .caps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  .cap {
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background: var(--color-ink-2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 320px;
+  }
+  .cap__num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--color-orange);
+  }
+  .cap p { color: var(--color-ivory-dim); line-height: 1.55; font-size: 0.95rem; flex: 1; }
+  .cap ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px dashed var(--grid-line);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-ivory-dim);
+  }
+  .cap ul li::before { content: '— '; color: var(--color-orange); }
+  .cap:nth-child(2) .cap__num,
+  .cap:nth-child(2) ul li::before { color: var(--color-violet); }
+  .cap:nth-child(4) .cap__num,
+  .cap:nth-child(4) ul li::before { color: var(--color-ivory); }
+
+  /* Process */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .step {
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background: var(--color-ink-2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 280px;
+    position: relative;
+  }
+  .step__num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-orange);
+  }
+  .step p { color: var(--color-ivory-dim); line-height: 1.55; font-size: 0.95rem; }
+  .step__t { margin-top: auto; opacity: 0.65; }
+
+  /* Quotes */
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .quote {
+    margin: 0;
+    padding: 2rem 1.75rem;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background: var(--color-ink-2);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-height: 220px;
+    position: relative;
+  }
+  .quote::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--color-orange);
+    opacity: 0.4;
+  }
+  .quote blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--color-ivory);
+  }
+  .quote figcaption {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-ivory-dim);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .feat { grid-template-columns: 1fr; }
+    .feat__body { padding: 2rem; }
+    .feat__viz { aspect-ratio: 16/10; }
+    .hero__split { grid-template-columns: 1fr; gap: 1.75rem; align-items: start; }
+    .hero__rail { grid-template-columns: 1fr 1fr; }
+    .hero__rail-m { display: none; }
+    .hero__rail-r { text-align: right; }
+  }
+  @media (max-width: 1000px) {
+    .trifold, .steps, .quotes, .caps { grid-template-columns: 1fr; }
+    .nums { grid-template-columns: repeat(2, 1fr); }
+    .nums > :nth-child(-n+2) { border-bottom: 1px solid var(--grid-line); }
+    .nums > :nth-child(2n) { border-right: 0; }
+  }
+  @media (max-width: 600px) {
+    .nums { grid-template-columns: 1fr; }
+    .nums > * { border-right: 0 !important; border-bottom: 1px solid var(--grid-line); }
+    .nums > :last-child { border-bottom: 0; }
+    .hero__keys { gap: 0.6rem 1rem; font-size: 0.78rem; }
+  }
+</style>

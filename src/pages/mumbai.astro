@@ -1,0 +1,245 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Mumbai', p: 'Marketing websites, brand sites, e-commerce — for Mumbai startups, agencies, DTC brands, and SMBs. Modern stacks (Next.js, Astro), Shopify/WordPress where it fits.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Mumbai', p: 'Web apps, internal tools, CRMs, and mobile-first PWAs for Mumbai-based SaaS, fintech, and e-commerce teams. Performance budgets that hold over time.', href: '/projects/naresh-crm-lead-management', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Mumbai', p: 'Lead-qualification bots that route inbound chats into your CRM. Built for the high-volume DTC and education funnels common in Mumbai.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads Expert in Mumbai', p: 'Performance marketing for Mumbai brands across SaaS, DTC, real estate, hospitality. Meta ads, Google ads, technical SEO, lifecycle — server-side attribution.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'SaaS & startups', s: 'Marketing sites, dashboards, onboarding flows. Lower Parel, BKC, Powai-based founders.' },
+  { b: 'DTC e-commerce', s: 'Custom Shopify and Next.js storefronts, server-side tracking, lifecycle email + WhatsApp.' },
+  { b: 'Fintech', s: 'Marketing pages, lead-capture funnels, compliance-friendly content systems.' },
+  { b: 'Media & entertainment', s: 'Brand sites, microsites for releases/launches, programmatic SEO for content libraries.' },
+  { b: 'Real estate', s: 'Project landing pages, site-visit campaigns, retargeting against unit views.' },
+  { b: 'Hospitality & F&B', s: 'Restaurant sites, online ordering, Google Business Profile + local SEO for Mumbai pin codes.' },
+];
+
+const neighborhoods = ['Andheri', 'Bandra', 'Powai', 'BKC', 'Lower Parel', 'Goregaon', 'Borivali', 'Worli', 'Colaba', 'Juhu', 'Khar', 'Malad', 'Kandivali', 'Ghatkopar'];
+
+const faqs = [
+  { q: 'Can you meet in person in Mumbai — BKC / Lower Parel / Andheri?', a: 'Yes, for kickoff or quarterly milestone reviews. Day-to-day work runs over WhatsApp + video so we don\'t lose hours to traffic. Drives between Thane and Mumbai are 60–90 min depending on time of day — I plan accordingly.' },
+  { q: 'Do you work with agencies as a white-label developer?', a: 'Yes. Agencies in Mumbai sometimes loop me in for specific stacks (Next.js, Astro, WhatsApp bots, headless commerce) where they don\'t have in-house. White-label NDAs are fine.' },
+  { q: 'Mumbai market rates — what should I expect?', a: 'Project-based, discussed in the brief. Generally I price by scope, not by hour. For Mumbai SaaS marketing sites, brand identity packages, and small web apps, I sit in the mid-market range — below agency retainer cost, above bottom-of-funnel freelancer rates.' },
+  { q: 'Hindi / Marathi / English mix?', a: 'All three. Most Mumbai clients want English-led brand sites; I also build Hindi-language WhatsApp flows and Marathi-language local content when the audience needs it.' },
+  { q: 'GST invoice + Indian payment methods?', a: 'Yes — GST invoice, bank transfer, UPI all supported. Razorpay/Stripe for international clients.' },
+];
+---
+
+<BaseLayout
+  title="Website & App Developer in Mumbai — Naresh Basude"
+  description="Website & app developer in Mumbai. Naresh Basude ships sites, apps, WhatsApp bots & Meta/Google ads for SaaS, DTC, fintech, and SMB clients across MMR."
+  schemaType="city"
+  city={{
+    name: 'Mumbai',
+    slug: '/mumbai',
+    description: 'Website and app developer in Mumbai — Naresh Basude builds websites, web apps, mobile apps, WhatsApp automations, and runs Meta + Google ads for Mumbai SaaS, DTC, fintech, and SMBs.',
+    areaServed: ['Mumbai', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Mumbai', item: '/mumbai' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ MUMBAI ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      Website &amp; app developer<br /><em>in Mumbai.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, a website and app developer based
+      in the MMR, serving <strong>Mumbai</strong> startups, agencies, DTC
+      brands, real-estate developers, and SMBs. Websites, web apps, mobile
+      apps, WhatsApp automations, and growth marketing — Meta ads, Google
+      ads, technical SEO. One brain, one timeline, projects delivered
+      within 7 days.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Mumbai</b>',
+    'App Developer · <b>BKC</b>',
+    'WhatsApp Bot · <b>Andheri</b>',
+    '<i>Meta + Google Ads</i> · Mumbai',
+    'SEO &amp; GEO · <b>Lower Parel</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Mumbai</span>
+      <span class="sec-head__lab">Services</span>
+    </header>
+
+    <ul class="city-services" role="list">
+      {services.map((s) => (
+        <li class="city-service">
+          <h2 class="city-service__h">{s.h}</h2>
+          <p class="city-service__p">{s.p}</p>
+          <a href={s.href} class="city-service__cta">{s.cta}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries I ship for in Mumbai</span>
+      <span class="sec-head__lab">SaaS · DTC · Fintech · Real estate</span>
+    </header>
+
+    <div class="city-industries">
+      {industries.map((i) => (
+        <div class="city-industry">
+          <b>{i.b}</b>
+          <span>{i.s}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Live work for Mumbai &amp; MMR clients</span>
+      <span class="sec-head__lab">Real URLs — go look</span>
+    </header>
+
+    <ul class="city-proof" role="list">
+      <li class="city-proof__item">
+        <a href="https://bookwithteachers.com" target="_blank" rel="noopener" class="city-proof__url">bookwithteachers.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">BookWithTeachers — e-learning + bookstore for the Mumbai education belt, custom Next.js storefront. <a href="/projects/bookwithteachers">Read case →</a></span>
+      </li>
+      <li class="city-proof__item">
+        <a href="https://abseducationalsolution.com/" target="_blank" rel="noopener" class="city-proof__url">abseducationalsolution.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">ABS Educational Solutions — counsellor-led admissions site with admin layer the team runs. <a href="/projects/education-platforms">Read case →</a></span>
+      </li>
+      <li class="city-proof__item">
+        <a href="https://ngiadmissionmilega.com/" target="_blank" rel="noopener" class="city-proof__url">ngiadmissionmilega.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">NGI Admission Milega — direct admissions funnel, lead routing baked in. <a href="/projects/education-platforms">Read case →</a></span>
+      </li>
+      <li class="city-proof__item">
+        <a href="https://nipcollege.com" target="_blank" rel="noopener" class="city-proof__url">nipcollege.com <span aria-hidden="true">↗</span></a>
+        <span class="city-proof__what">NIP College — custom-PHP rebuilt as maintainable WordPress, SEO equity preserved. <a href="/projects/nipcollege-rebuild">Read case →</a></span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Areas covered in Mumbai</span>
+      <span class="sec-head__lab">Western · Central · South</span>
+    </header>
+
+    <ul class="city-areas" role="list" aria-label="Mumbai neighborhoods served">
+      {neighborhoods.map((n) => <li class="city-area">{n}</li>)}
+    </ul>
+
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">
+      In-person meetings in Mumbai for kickoff and milestone reviews —
+      mostly BKC, Lower Parel, Andheri, Powai (where most client teams
+      sit). Day-to-day work runs over WhatsApp + video so we don't lose
+      hours to traffic.
+    </p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Why hire local in Mumbai</span>
+      <span class="sec-head__lab">vs. agency vs. abroad</span>
+    </header>
+
+    <div class="city-why">
+      <article class="city-why__item">
+        <h3 class="t-h3">No agency markup</h3>
+        <p>One person, no project manager fee, no junior-to-senior chain markup. Same skill stack, fairer rates.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Same hours, same WhatsApp</h3>
+        <p>Replies in the timezone you actually work in. Most Mumbai clients reach me on WhatsApp first, email second.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Ship in 7 days</h3>
+        <p>Most websites and small apps go live in a week. Agency timelines (4–8 weeks) compressed to under one.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Real cases shipped</h3>
+        <p>20+ brands across SaaS, DTC, education, real estate. CRM, WhatsApp bots, headless commerce, growth marketing. <a href="/projects">See the work →</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; FAQs from Mumbai clients</span>
+      <span class="sec-head__lab">The usual asks</span>
+    </header>
+
+    <ul class="city-faqs" role="list">
+      {faqs.map((f, i) => (
+        <li>
+          <details>
+            <summary>
+              <span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span>
+              <span>{f.q}</span>
+              <span class="city-faqs__plus" aria-hidden="true">+</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>07</b> &nbsp;/&nbsp; Start now</span>
+      <span class="sec-head__lab">Replies inside 24h</span>
+    </header>
+
+    <p class="t-lede" style="max-width: 60ch;">
+      Send a quick message describing your project, audience, and
+      timeline. I'll reply within 24 hours with whether it's a fit, a
+      rough estimate, and the next step.
+    </p>
+
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span>
+      <span class="city-nap__val">Thane, Maharashtra (covering Mumbai &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span>
+      <span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span>
+      <span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span>
+      <span class="city-nap__val">Mumbai · Navi Mumbai · Thane · Bhiwandi · Kalyan · India · Remote worldwide</span>
+    </address>
+
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/thane">Thane</a>
+      <a href="/navi-mumbai">Navi Mumbai</a>
+      <a href="/kalyan-bhiwandi">Kalyan-Bhiwandi</a>
+    </nav>
+  </section>
+</BaseLayout>

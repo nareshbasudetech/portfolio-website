@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Industry Web Templates — illustrative case study cover">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1a1305"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+
+  <!-- 4 mini-thumbs in a grid -->
+  <g transform="translate(80 130)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#6f6c66">TEMPLATE LIBRARY</text>
+    <text y="32" font-family="General Sans, sans-serif" font-size="36" font-weight="700" fill="#f5f2ec" letter-spacing="-1.5">Production-ready spines.</text>
+    <text y="58" font-family="Inter, sans-serif" font-size="13" fill="#c9c5bd">Clone, customize, and ship in days — for clients who need quality on a small-business timeline.</text>
+  </g>
+
+  <g transform="translate(80 240)">
+    <!-- E-COMMERCE -->
+    <g>
+      <rect width="240" height="240" rx="10" fill="#0a0a0a" stroke="#f59e0b" stroke-opacity="0.3"/>
+      <rect width="240" height="36" rx="10" fill="#0d0d0d"/>
+      <text x="120" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#f59e0b">E-COMMERCE</text>
+
+      <g transform="translate(16 56)">
+        <text font-family="General Sans, sans-serif" font-size="14" font-weight="700" fill="#f5f2ec">SHOP THE EDIT</text>
+        <text y="14" font-family="Inter, sans-serif" font-size="9" fill="#c9c5bd">Limited drop · ships free</text>
+
+        <rect y="28" width="96" height="80" rx="4" fill="#1a1305"/>
+        <circle cx="48" cy="68" r="20" fill="#f59e0b" opacity="0.3"/>
+        <text x="0" y="124" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">Atelier · $48</text>
+
+        <rect x="112" y="28" width="96" height="80" rx="4" fill="#0d1305"/>
+        <rect x="138" y="50" width="44" height="40" rx="2" fill="#22c55e" opacity="0.25"/>
+        <text x="112" y="124" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">Tote · $84</text>
+
+        <rect y="140" width="208" height="32" rx="16" fill="#f59e0b"/>
+        <text x="104" y="160" text-anchor="middle" font-family="General Sans, sans-serif" font-size="10" font-weight="600" fill="#050505">Shop the edit ↗</text>
+      </g>
+    </g>
+
+    <!-- HOSPITAL -->
+    <g transform="translate(260 0)">
+      <rect width="240" height="240" rx="10" fill="#0a0a0a" stroke="#0ea5e9" stroke-opacity="0.3"/>
+      <rect width="240" height="36" rx="10" fill="#0d0d0d"/>
+      <text x="120" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#0ea5e9">HOSPITAL</text>
+
+      <g transform="translate(16 56)">
+        <text font-family="General Sans, sans-serif" font-size="14" font-weight="700" fill="#f5f2ec">CARE, NEAR YOU.</text>
+        <text y="14" font-family="Inter, sans-serif" font-size="9" fill="#c9c5bd">12 specialties · 24/7 ER</text>
+
+        <g transform="translate(0 28)" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">
+          <rect width="208" height="22" rx="4" fill="#0d1620"/>
+          <text x="10" y="14" fill="#f5f2ec">▸ Cardiology</text>
+          <text x="190" y="14" text-anchor="end" fill="#0ea5e9">→</text>
+
+          <rect y="28" width="208" height="22" rx="4" fill="#0d1620"/>
+          <text x="10" y="42" fill="#f5f2ec">▸ Orthopaedics</text>
+          <text x="190" y="42" text-anchor="end" fill="#0ea5e9">→</text>
+
+          <rect y="56" width="208" height="22" rx="4" fill="#0d1620"/>
+          <text x="10" y="70" fill="#f5f2ec">▸ Pediatrics</text>
+          <text x="190" y="70" text-anchor="end" fill="#0ea5e9">→</text>
+        </g>
+
+        <rect y="140" width="208" height="32" rx="16" fill="#0ea5e9"/>
+        <text x="104" y="160" text-anchor="middle" font-family="General Sans, sans-serif" font-size="10" font-weight="600" fill="#050505">Book appointment ↗</text>
+      </g>
+    </g>
+
+    <!-- DOCTOR -->
+    <g transform="translate(520 0)">
+      <rect width="240" height="240" rx="10" fill="#0a0a0a" stroke="#22c55e" stroke-opacity="0.3"/>
+      <rect width="240" height="36" rx="10" fill="#0d0d0d"/>
+      <text x="120" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#22c55e">DOCTOR · CLINIC</text>
+
+      <g transform="translate(16 56)">
+        <circle cx="32" cy="32" r="24" fill="#22c55e" opacity="0.25"/>
+        <text x="72" y="28" font-family="General Sans, sans-serif" font-size="14" font-weight="700" fill="#f5f2ec">Dr. Mehta</text>
+        <text x="72" y="44" font-family="Inter, sans-serif" font-size="10" fill="#c9c5bd">Dermatology · 12 yrs</text>
+        <text x="72" y="58" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">★ 4.9 · 240 reviews</text>
+
+        <g transform="translate(0 84)" font-family="JetBrains Mono, monospace" font-size="9" fill="#c9c5bd">
+          <text>NEXT SLOTS</text>
+          <rect y="10" width="60" height="22" rx="11" fill="#161018" stroke="#22c55e" stroke-opacity="0.4"/>
+          <text x="30" y="25" text-anchor="middle">Today 4PM</text>
+
+          <rect x="68" y="10" width="60" height="22" rx="11" fill="#161018" stroke="#22c55e" stroke-opacity="0.4"/>
+          <text x="98" y="25" text-anchor="middle">Tom 11AM</text>
+
+          <rect x="136" y="10" width="60" height="22" rx="11" fill="#161018" stroke="#22c55e" stroke-opacity="0.4"/>
+          <text x="166" y="25" text-anchor="middle">Tom 5PM</text>
+        </g>
+
+        <rect y="140" width="208" height="32" rx="16" fill="#22c55e"/>
+        <text x="104" y="160" text-anchor="middle" font-family="General Sans, sans-serif" font-size="10" font-weight="600" fill="#050505">Book consult ↗</text>
+      </g>
+    </g>
+
+    <!-- COLLEGE -->
+    <g transform="translate(780 0)">
+      <rect width="240" height="240" rx="10" fill="#0a0a0a" stroke="#7b5cff" stroke-opacity="0.3"/>
+      <rect width="240" height="36" rx="10" fill="#0d0d0d"/>
+      <text x="120" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#7b5cff">COLLEGE</text>
+
+      <g transform="translate(16 56)">
+        <text font-family="General Sans, sans-serif" font-size="13" font-weight="700" fill="#f5f2ec">ADMISSIONS · 2026</text>
+        <text y="14" font-family="Inter, sans-serif" font-size="9" fill="#c9c5bd">Open till May 31</text>
+
+        <g transform="translate(0 26)" font-family="JetBrains Mono, monospace" font-size="9" fill="#c9c5bd">
+          <rect width="100" height="36" rx="6" fill="#161018"/>
+          <text x="10" y="14" fill="#7b5cff" letter-spacing="2">PROGRAMME</text>
+          <text x="10" y="28" fill="#f5f2ec" font-family="General Sans, sans-serif" font-size="10" font-weight="600">B.Sc</text>
+
+          <rect x="108" width="100" height="36" rx="6" fill="#161018"/>
+          <text x="118" y="14" fill="#7b5cff" letter-spacing="2">SEATS</text>
+          <text x="118" y="28" fill="#f5f2ec" font-family="General Sans, sans-serif" font-size="10" font-weight="600">120</text>
+
+          <rect y="44" width="100" height="36" rx="6" fill="#161018"/>
+          <text x="10" y="58" fill="#7b5cff" letter-spacing="2">FEES</text>
+          <text x="10" y="72" fill="#f5f2ec" font-family="General Sans, sans-serif" font-size="10" font-weight="600">₹65k/yr</text>
+
+          <rect x="108" y="44" width="100" height="36" rx="6" fill="#161018"/>
+          <text x="118" y="58" fill="#7b5cff" letter-spacing="2">DURATION</text>
+          <text x="118" y="72" fill="#f5f2ec" font-family="General Sans, sans-serif" font-size="10" font-weight="600">3 yrs</text>
+        </g>
+
+        <rect y="140" width="208" height="32" rx="16" fill="#7b5cff"/>
+        <text x="104" y="160" text-anchor="middle" font-family="General Sans, sans-serif" font-size="10" font-weight="600" fill="#050505">Apply now ↗</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom strip -->
+  <g transform="translate(80 540)">
+    <rect width="1040" height="120" rx="10" fill="#0d0d0d" stroke="#1f1f1f"/>
+
+    <g font-family="JetBrains Mono, monospace" fill="#c9c5bd">
+      <text x="30" y="36" font-size="10" letter-spacing="2" fill="#6f6c66">ALL TEMPLATES SHARE</text>
+
+      <text x="30" y="60" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Tokens · Components · Patterns</text>
+      <text x="30" y="78" font-size="10">Brand swap = real swap, not a rewrite</text>
+
+      <text x="290" y="60" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Mobile-first · Schema-clean</text>
+      <text x="290" y="78" font-size="10">Performance score 90+ baseline</text>
+
+      <text x="560" y="60" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Built for handover</text>
+      <text x="560" y="78" font-size="10">Client team edits without engineering</text>
+
+      <text x="820" y="60" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">Ship in days</text>
+      <text x="820" y="78" font-size="10">From brief to live URL</text>
+    </g>
+  </g>
+
+  <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#f5f2ec" opacity="0.5">
+    <text x="60" y="48">INDUSTRY TEMPLATES · CASE STUDY · 2026</text>
+    <text x="1140" y="48" text-anchor="end">[ ILLUSTRATIVE ]</text>
+    <text x="60" y="780">DESIGN / DEV / TEMPLATES</text>
+    <text x="1140" y="780" text-anchor="end">VOL · 02 / 2026</text>
+  </g>
+</svg>

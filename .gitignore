@@ -1,0 +1,43 @@
+# Build output
+dist/
+.astro/
+.build-stage/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.production
+.env.local
+.env.*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# OS
+*.swp
+
+# Audit run artifacts (regenerable via .audit/scan.py)
+.audit/pages.json
+.audit/scan-output.txt
+.audit/broken-links.json
+.audit/desktop.json
+.audit/mobile.json
+.audit/static.json
+.audit/summary.json
+.audit/todos.json
+.audit/desktop/
+.audit/mobile/
+.walkthrough/

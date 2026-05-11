@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="NIP College Rebuild — illustrative case study cover">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1a0e05"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+
+  <!-- Before/after split -->
+  <g transform="translate(60 130)">
+    <!-- BEFORE -->
+    <g>
+      <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#6f6c66">[ BEFORE · LEGACY PHP ]</text>
+      <rect y="20" width="540" height="540" rx="12" fill="#0a0a0a" stroke="#1f1f1f"/>
+      <rect y="20" width="540" height="36" rx="12" fill="#0d0d0d"/>
+      <rect y="38" width="540" height="18" fill="#0d0d0d"/>
+      <circle cx="18" cy="38" r="5" fill="#6f6c66"/>
+      <text x="270" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6f6c66">php · 2014 build</text>
+
+      <!-- Old site mock - dated/cluttered -->
+      <rect x="20" y="76" width="500" height="60" fill="#1a1305"/>
+      <text x="40" y="100" font-family="Times, serif" font-size="22" fill="#f5f2ec">NIP COLLEGE</text>
+      <text x="40" y="118" font-family="Times, serif" font-size="11" fill="#c9c5bd">Welcome to our institution est. 1995</text>
+
+      <!-- Old menu -->
+      <g transform="translate(20 152)" font-family="Times, serif" font-size="11" fill="#0ea5e9">
+        <rect width="500" height="22" fill="#0d0d0d"/>
+        <text x="14" y="15">Home</text>
+        <text x="74" y="15">About Us</text>
+        <text x="148" y="15">Courses</text>
+        <text x="218" y="15">Faculty</text>
+        <text x="282" y="15">Admissions</text>
+        <text x="362" y="15">Gallery</text>
+        <text x="424" y="15">Contact</text>
+      </g>
+
+      <!-- Old chunky body -->
+      <g transform="translate(20 196)" font-family="Times, serif">
+        <text font-size="11" fill="#c9c5bd">▸ Latest Notice: Admissions open for 2024-25</text>
+        <text y="20" font-size="11" fill="#c9c5bd">▸ Result: B.Sc. Nursing Sem-II declared</text>
+        <text y="40" font-size="11" fill="#c9c5bd">▸ Event: Annual Day on 12th March</text>
+
+        <rect y="60" width="240" height="160" fill="#1f1f1f"/>
+        <text x="120" y="148" text-anchor="middle" font-size="10" fill="#6f6c66">[ image placeholder ]</text>
+
+        <rect x="260" y="60" width="240" height="160" fill="#1f1f1f"/>
+        <text x="380" y="148" text-anchor="middle" font-size="10" fill="#6f6c66">[ image placeholder ]</text>
+
+        <text y="244" font-size="10" fill="#6f6c66">© NIP College 2014 · Powered by Custom PHP</text>
+      </g>
+
+      <!-- Tags -->
+      <g transform="translate(20 480)" font-family="JetBrains Mono, monospace" font-size="9" fill="#ff5b1f">
+        <text>✕ EDITS REQUIRE A DEV</text>
+        <text y="16">✕ NO CMS</text>
+        <text y="32">✕ MOBILE BROKEN</text>
+      </g>
+    </g>
+
+    <!-- Arrow -->
+    <g transform="translate(560 270)">
+      <path d="M 0 30 L 60 30 M 50 20 L 60 30 L 50 40" fill="none" stroke="#ff5b1f" stroke-width="2"/>
+      <text y="-10" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#ff5b1f">REBUILD</text>
+    </g>
+
+    <!-- AFTER -->
+    <g transform="translate(640 0)">
+      <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#ff5b1f">[ AFTER · WORDPRESS ]</text>
+      <rect y="20" width="440" height="540" rx="12" fill="#0a0a0a" stroke="#ff5b1f" stroke-opacity="0.3"/>
+      <rect y="20" width="440" height="36" rx="12" fill="#0d0d0d"/>
+      <rect y="38" width="440" height="18" fill="#0d0d0d"/>
+      <circle cx="18" cy="38" r="5" fill="#ff5b1f"/>
+      <text x="220" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6f6c66">nipcollege.com / 2024</text>
+
+      <!-- Modern header -->
+      <g transform="translate(20 76)">
+        <text font-family="General Sans, sans-serif" font-size="18" font-weight="700" fill="#f5f2ec" letter-spacing="-0.5">NIP COLLEGE</text>
+        <text x="280" y="12" font-family="JetBrains Mono, monospace" font-size="9" fill="#ff5b1f" letter-spacing="2">EST · 1995</text>
+      </g>
+
+      <g transform="translate(20 106)" font-family="General Sans, sans-serif" font-size="11" fill="#f5f2ec">
+        <text opacity="0.85">Courses</text>
+        <text x="60" opacity="0.85">Faculty</text>
+        <text x="116" opacity="0.85">Admissions</text>
+        <text x="190" opacity="0.85">News</text>
+        <text x="232" opacity="0.85">Contact</text>
+      </g>
+
+      <!-- Modern hero -->
+      <g transform="translate(20 144)">
+        <text font-family="General Sans, sans-serif" font-size="32" font-weight="700" fill="#f5f2ec" letter-spacing="-1">Building careers</text>
+        <text y="32" font-family="General Sans, sans-serif" font-size="32" font-weight="700" fill="#ff5b1f" letter-spacing="-1">since 1995.</text>
+
+        <text y="64" font-family="Inter, sans-serif" font-size="11" fill="#c9c5bd">Three decades of nursing &amp; allied-health education.</text>
+
+        <rect y="84" width="120" height="32" rx="16" fill="#ff5b1f"/>
+        <text x="60" y="105" text-anchor="middle" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#050505">Apply now ↗</text>
+      </g>
+
+      <!-- Course chips -->
+      <g transform="translate(20 308)">
+        <text font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#6f6c66">PROGRAMMES</text>
+        <g transform="translate(0 14)">
+          <rect width="120" height="36" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+          <text x="14" y="22" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">B.Sc Nursing</text>
+
+          <rect x="132" width="120" height="36" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+          <text x="146" y="22" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">GNM</text>
+
+          <rect x="264" width="120" height="36" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+          <text x="278" y="22" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">D. Pharma</text>
+
+          <rect y="44" width="120" height="36" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+          <text x="14" y="66" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">B. Pharma</text>
+
+          <rect x="132" y="44" width="120" height="36" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+          <text x="146" y="66" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">ANM</text>
+
+          <rect x="264" y="44" width="120" height="36" rx="6" fill="#0d0d0d" stroke="#1f1f1f"/>
+          <text x="278" y="66" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">Paramedical</text>
+        </g>
+      </g>
+
+      <!-- Tags -->
+      <g transform="translate(20 460)" font-family="JetBrains Mono, monospace" font-size="9" fill="#5af28b">
+        <text>✓ TEAM EDITS LIVE</text>
+        <text y="16">✓ FULL CMS</text>
+        <text y="32">✓ MOBILE-FIRST · PERF SCORE 96</text>
+      </g>
+    </g>
+  </g>
+
+  <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#f5f2ec" opacity="0.5">
+    <text x="60" y="48">NIPCOLLEGE.COM · PHP → WP · CASE STUDY · 2026</text>
+    <text x="1140" y="48" text-anchor="end">[ ILLUSTRATIVE ]</text>
+    <text x="60" y="780">DEV / MIGRATION / EDUCATION</text>
+    <text x="1140" y="780" text-anchor="end">VOL · 02 / 2026</text>
+  </g>
+</svg>

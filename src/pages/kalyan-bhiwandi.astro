@@ -1,0 +1,218 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Kalyan & Bhiwandi', p: 'Marketing sites, brand sites, e-commerce — for Kalyan retail SMBs, Bhiwandi logistics/textile firms, education institutes, and real-estate developers. WordPress or Next.js depending on who maintains it.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Kalyan & Bhiwandi', p: 'Web apps, internal dashboards, CRMs, and mobile-first PWAs for warehousing/logistics workflows, retail operations, and education content delivery.', href: '/projects/naresh-crm-lead-management', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Kalyan & Bhiwandi', p: 'High-volume inbound enquiries on WhatsApp? Automated qualification bots that filter, route, and log every conversation. Hindi-Marathi-Gujarati supported.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Kalyan & Bhiwandi', p: '20+ brands. Meta ads, Google ads, hyperlocal targeting for Kalyan and Bhiwandi pin codes, GBP + citations for local-pack ranking.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Logistics & warehousing', s: 'Bhiwandi is Asia\'s largest warehouse cluster. Internal dashboards, B2B catalogs, lead routing, ops tools for transporters and 3PLs.' },
+  { b: 'Textile & manufacturing', s: 'Bhiwandi\'s power-loom belt. Product catalogs in 3 languages, B2B enquiry forms with WhatsApp routing, GST-compliant invoicing flows.' },
+  { b: 'Retail & SMBs', s: 'Kalyan-Dombivli\'s growing retail belt. Marketing sites, online ordering, Google Business Profile + local-pack ranking.' },
+  { b: 'Education & coaching', s: 'Admissions sites, lead-to-counsellor pipelines, student apps for Kalyan-Bhiwandi coaching institutes.' },
+  { b: 'Real estate', s: 'Affordable-housing project launches across Kalyan, Dombivli, Bhiwandi. Site-visit campaigns + retargeting.' },
+  { b: 'Healthcare & pharma', s: 'Clinic sites, appointment flows, doctor profiles. Hindi-Marathi UX for local audience.' },
+];
+
+const neighborhoods = ['Kalyan West', 'Kalyan East', 'Khadakpada', 'Adharwadi', 'Murbad Road', 'Bhiwandi-Nizampur', 'Kalher', 'Padgha', 'Mankoli', 'Anjur Phata', 'Kongaon', 'Sonale'];
+
+const faqs = [
+  { q: 'Do you visit Bhiwandi warehouses or Kalyan offices?', a: 'Yes. For logistics or warehouse projects in Bhiwandi (Kalher, Padgha, Mankoli, Anjur Phata) I visit on-site for the brief and milestone reviews. Kalyan retail / office work — same. Day-to-day is WhatsApp + video.' },
+  { q: 'Multi-language (Hindi / Marathi / Gujarati / Urdu)?', a: 'Yes — common in Bhiwandi for catalog sites, especially for textile and logistics businesses serving multi-lingual audiences. Sites can launch in 2 or 3 languages, with the same admin layer.' },
+  { q: 'What does pricing look like for SMBs here?', a: 'Project-based, discussed in the brief. Kalyan and Bhiwandi SMB scopes (4–6 page marketing site, WhatsApp catalog, basic Meta ads setup) come in at SMB-friendly levels. GST invoice and Indian payment methods supported.' },
+  { q: 'B2B catalog with quote-request flow?', a: 'Routine. Bhiwandi textile and warehousing clients typically need a product/service catalog, an RFQ form, and WhatsApp-based follow-up. I build the catalog (with filters, GST pricing toggle), the RFQ → CRM pipeline, and the WhatsApp bot together.' },
+  { q: 'Local SEO for Kalyan / Bhiwandi pin codes?', a: 'Yes — Google Business Profile setup, NAP citations across Indian directories, local-pack on-page signals, and review collection workflow. Kalyan + Bhiwandi pin code targeting is a specific local-SEO play I run.' },
+];
+---
+
+<BaseLayout
+  title="Web & App Developer in Kalyan-Bhiwandi · Naresh Basude"
+  description="Website & app developer for Kalyan-Bhiwandi. Sites, apps, WhatsApp bots & growth marketing for the logistics warehouse cluster + textile belt."
+  schemaType="city"
+  city={{
+    name: 'Kalyan-Bhiwandi',
+    slug: '/kalyan-bhiwandi',
+    description: 'Website and app developer for Kalyan and Bhiwandi — Naresh Basude builds websites, web apps, mobile apps, WhatsApp automations, and runs growth marketing for logistics, textile, retail, education, and real-estate firms.',
+    areaServed: ['Kalyan', 'Bhiwandi', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Kalyan-Bhiwandi', item: '/kalyan-bhiwandi' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ KALYAN-BHIWANDI ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      Website &amp; app developer<br /><em>in Kalyan-Bhiwandi.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, a website and app developer
+      serving <strong>Kalyan, Bhiwandi, Dombivli</strong>, and the wider
+      MMR. I build websites, web apps, WhatsApp automations, and run
+      growth marketing for logistics, textile, retail, education,
+      real-estate, and healthcare businesses across the Kalyan-Bhiwandi
+      belt. One person, projects delivered within 7 days.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Kalyan</b>',
+    'App Developer · <b>Bhiwandi</b>',
+    'WhatsApp Bot · <b>Dombivli</b>',
+    '<i>Logistics + Textile</i> · Bhiwandi',
+    'Local SEO · <b>Kalyan-Dombivli</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Kalyan-Bhiwandi</span>
+      <span class="sec-head__lab">Services</span>
+    </header>
+
+    <ul class="city-services" role="list">
+      {services.map((s) => (
+        <li class="city-service">
+          <h2 class="city-service__h">{s.h}</h2>
+          <p class="city-service__p">{s.p}</p>
+          <a href={s.href} class="city-service__cta">{s.cta}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries I ship for in Kalyan-Bhiwandi</span>
+      <span class="sec-head__lab">Logistics · Textile · Retail · Real estate</span>
+    </header>
+
+    <div class="city-industries">
+      {industries.map((i) => (
+        <div class="city-industry">
+          <b>{i.b}</b>
+          <span>{i.s}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Areas covered</span>
+      <span class="sec-head__lab">Kalyan · Bhiwandi · Dombivli</span>
+    </header>
+
+    <ul class="city-areas" role="list" aria-label="Kalyan-Bhiwandi neighborhoods served">
+      {neighborhoods.map((n) => <li class="city-area">{n}</li>)}
+    </ul>
+
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">
+      Easy reach from Thane to Kalyan, Dombivli, Bhiwandi. For warehouse
+      and textile projects in Bhiwandi (Kalher, Padgha, Mankoli, Anjur
+      Phata), in-person visits for the brief and milestone reviews.
+      Day-to-day work runs over WhatsApp + video.
+    </p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Why this matters here</span>
+      <span class="sec-head__lab">Built for the local market</span>
+    </header>
+
+    <div class="city-why">
+      <article class="city-why__item">
+        <h3 class="t-h3">Language &amp; market fit</h3>
+        <p>Hindi, Marathi, Gujarati, Urdu — common in Bhiwandi's textile and logistics audiences. Sites, ads, and WhatsApp bots launch in the right language.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">B2B-first thinking</h3>
+        <p>Kalyan-Bhiwandi runs on B2B. Catalogs, RFQ forms, GST-pricing toggles, multi-language UX — built into the build, not bolted on.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Hyperlocal targeting</h3>
+        <p>Meta and Google ads tuned for Kalyan / Bhiwandi / Dombivli pin codes — not generic India targeting. Better cost-per-lead, qualified at scale.</p>
+      </article>
+      <article class="city-why__item">
+        <h3 class="t-h3">Real cases shipped</h3>
+        <p>Education platforms, study apps, CRMs, WhatsApp bots, 20+ ad accounts across multiple verticals. <a href="/projects">See the work →</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; FAQs from Kalyan-Bhiwandi clients</span>
+      <span class="sec-head__lab">The usual asks</span>
+    </header>
+
+    <ul class="city-faqs" role="list">
+      {faqs.map((f, i) => (
+        <li>
+          <details>
+            <summary>
+              <span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span>
+              <span>{f.q}</span>
+              <span class="city-faqs__plus" aria-hidden="true">+</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; Start now</span>
+      <span class="sec-head__lab">Replies inside 24h</span>
+    </header>
+
+    <p class="t-lede" style="max-width: 60ch;">
+      Got a website, app, catalog, or growth campaign in Kalyan, Bhiwandi,
+      or Dombivli? Send a quick message — I'll come back within 24 hours.
+    </p>
+
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span>
+      <span class="city-nap__val">Thane, Maharashtra (covering Kalyan-Bhiwandi-Dombivli)</span>
+      <span class="city-nap__lbl">Phone</span>
+      <span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span>
+      <span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span>
+      <span class="city-nap__val">Kalyan · Bhiwandi · Dombivli · Thane · Mumbai · Navi Mumbai · India · Remote</span>
+    </address>
+
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/thane">Thane</a>
+      <a href="/mumbai">Mumbai</a>
+      <a href="/navi-mumbai">Navi Mumbai</a>
+    </nav>
+  </section>
+</BaseLayout>

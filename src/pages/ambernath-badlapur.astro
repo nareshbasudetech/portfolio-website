@@ -1,0 +1,147 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const services = [
+  { h: 'Website Developer in Ambernath & Badlapur', p: 'Affordable, well-maintained websites for Ambernath-Badlapur SMBs — coaching institutes, clinics, retail, real estate, and small manufacturers. WordPress or Astro depending on who maintains it.', href: '/projects', cta: 'See website work →' },
+  { h: 'App Developer in Ambernath & Badlapur', p: 'Web apps, internal tools, education apps, retail dashboards. PWA-first so users install without app-store friction.', href: '/projects/nursingpathshala-app', cta: 'See app work →' },
+  { h: 'WhatsApp Bot Developer in Ambernath & Badlapur', p: 'Automated lead handling for high-volume inbound enquiries. Hindi-Marathi flows for the local audience. Routes to your team, logs to CRM.', href: '/projects/whatsapp-leadbot', cta: 'See the bot →' },
+  { h: 'Meta + Google Ads · Local SEO in Ambernath & Badlapur', p: 'Affordable hyperlocal ad campaigns + Google Business Profile setup for local-pack ranking. Targets Ambernath East/West and Badlapur East/West separately.', href: '/projects/growth-marketing-engagements', cta: 'See growth work →' },
+];
+
+const industries = [
+  { b: 'Small manufacturing &amp; MIDC', s: 'Ambernath\'s Additional MIDC + the older MIDC Ambernath belt — defense ancillaries, chemicals, fabrication, packaging. B2B catalog sites with GST-pricing toggle, RFQ flows, multi-language quote requests, internal dashboards for shop-floor.' },
+  { b: 'Coaching &amp; education', s: 'Growing tuition belt across Kulgaon, Badlapur West, Ambernath East. JEE/NEET coaching, MPSC, banking, IELTS centres. Admissions micro-sites, batch-wise WhatsApp groups, downloadable demo-class scheduling.' },
+  { b: 'Retail &amp; SMBs', s: 'Ambernath East/West main-road retail + Badlapur Kulgaon Road — jewellers, mobile shops, garments, kirana modernization. Marketing sites with Marathi labels, WhatsApp catalogs, GBP setup per pin code.' },
+  { b: 'Affordable real estate', s: 'Badlapur East is one of MMR\'s most active affordable-housing belts (under ₹50L 1-BHK launches near the station). Tower-launch landing pages, site-visit lead capture, RERA disclosures, post-visit retargeting via Meta + WhatsApp.' },
+  { b: 'Healthcare &amp; clinics', s: 'Multispeciality clinics + pathology labs growing along Ambernath West and Badlapur East. Doctor profiles with appointment booking, WhatsApp follow-up after visit, post-treatment review collection.' },
+  { b: 'Hospitality &amp; F&B', s: 'Local restaurants + Maharashtrian sweet shops + small banquets. Restaurant sites, online ordering (own + Swiggy/Zomato), GBP for "near me" searches with Marathi-language reviews.' },
+];
+
+const localContext = [
+  { h: 'MIDC + affordable-housing dual market', p: 'Ambernath has two engines — the MIDC industrial belt (B2B, GST-heavy, multi-language) and the affordable-housing belt of Badlapur East (B2C, site-visit-funnel, Marathi-Hindi). Most agencies pick one playbook for both and lose half the audience. I build distinct funnels for distinct markets.' },
+  { h: 'Marathi-Hindi mix, not English-led', p: 'Both Ambernath and Badlapur skew strongly Marathi-Hindi. English-led brand sites underperform — your audience reads Marathi product names, types Hindi-English code-switch in WhatsApp, and trusts content that respects the register. I write copy for that mix from the start.' },
+  { h: 'Central-line transit anchors the geography', p: 'Both Ambernath and Badlapur are Central-line stations on the Karjat fast line. Local-pack signals that respect station-adjacent pin codes (vs further-out residential pockets like Kulgaon or Manjarli) rank differently. GBP setup treats East/West and station-side as separate audiences.' },
+  { h: 'Project-based, not retainer-first', p: 'Ambernath/Badlapur SMB scopes are typically project-priced — single landing page, single WhatsApp flow, single GBP setup. Mumbai-agency retainer models don\'t fit this market. I price for the SMB scope, not for billable hours.' },
+];
+
+const neighborhoods = ['Ambernath East', 'Ambernath West', 'Badlapur East', 'Badlapur West', 'Kulgaon', 'Ulhas Nagar Road', 'MIDC Ambernath', 'Manjarli', 'Katrap', 'Belavali', 'Jambhul', 'Vangani'];
+
+const faqs = [
+  { q: 'Do you visit Ambernath / Badlapur in person?', a: 'Yes — easy reach from Thane via the Central line. About 60-90 min depending on which side. In-person for kickoff and milestone reviews.' },
+  { q: 'SMB-friendly pricing?', a: 'Yes — Ambernath/Badlapur SMB scopes (single-page site, basic WhatsApp bot, GBP setup) are priced for the local market, not Mumbai agencies. Project-based, GST invoice.' },
+  { q: 'Marathi-first sites?', a: 'Yes. Most Ambernath / Badlapur audiences are Marathi-Hindi-speaking. Sites and WhatsApp bots launch in the right language mix without extra translation overhead.' },
+  { q: 'Local SEO for Ambernath / Badlapur?', a: 'Yes — Google Business Profile setup, citation building, on-page local signals. East and West treated as separate areas for ranking purposes.' },
+  { q: 'GST + payments?', a: 'GST invoice, UPI, NEFT, cheque — all standard.' },
+];
+---
+
+<BaseLayout
+  title="Web Developer in Ambernath & Badlapur · Naresh Basude"
+  description="Website & app developer in Ambernath-Badlapur. Sites, apps, WhatsApp bots & ads for SMBs, manufacturers, coaching, real estate. Marathi-friendly."
+  schemaType="city"
+  city={{
+    name: 'Ambernath-Badlapur',
+    slug: '/ambernath-badlapur',
+    description: 'Website and app developer for Ambernath and Badlapur — Naresh Basude builds affordable websites, web apps, WhatsApp bots, and runs Meta + Google ads for SMBs, manufacturers, coaching institutes, clinics, retail, and real-estate developers.',
+    areaServed: ['Ambernath', 'Badlapur', ...neighborhoods],
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Ambernath-Badlapur', item: '/ambernath-badlapur' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ AMBERNATH-BADLAPUR ]</span>
+      <span>WEBSITE · APP · MARKETING · AUTOMATION</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+    <h1 class="t-display">Website &amp; app developer<br /><em>in Ambernath-Badlapur.</em></h1>
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>, serving <strong>Ambernath East/West,
+      Badlapur East/West, Kulgaon</strong>, and the wider MMR. Affordable
+      websites, web apps, WhatsApp automations, and Meta + Google ads for SMBs,
+      manufacturers, coaching institutes, clinics, retail, and real-estate
+      developers. Marathi-Hindi-English mix. 7-day delivery.
+    </p>
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href={`tel:${CONTACT.phone}`} class="btn btn--ghost">Call {CONTACT.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'Website Developer · <b>Ambernath</b>',
+    'App Developer · <b>Badlapur</b>',
+    'WhatsApp Bot · <b>Kulgaon</b>',
+    '<i>Local Ads</i> · MIDC Ambernath',
+    'Local SEO · <b>Both Cities</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; What I do in Ambernath-Badlapur</span><span class="sec-head__lab">Services</span></header>
+    <ul class="city-services" role="list">{services.map((s) => (<li class="city-service"><h2 class="city-service__h">{s.h}</h2><p class="city-service__p">{s.p}</p><a href={s.href} class="city-service__cta">{s.cta}</a></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Industries here</span><span class="sec-head__lab">SMB · Manufacturing · Education · Retail</span></header>
+    <div class="city-industries">{industries.map((i) => (<div class="city-industry"><b set:html={i.b} /><span set:html={i.s} /></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; What's different about the Ambernath-Badlapur market</span><span class="sec-head__lab">Local-context calls</span></header>
+    <div class="city-why">
+      {localContext.map((c) => (
+        <article class="city-why__item">
+          <h3 class="t-h3">{c.h}</h3>
+          <p>{c.p}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; Areas covered</span><span class="sec-head__lab">Ambernath · Badlapur · Kulgaon</span></header>
+    <ul class="city-areas" role="list">{neighborhoods.map((n) => <li class="city-area">{n}</li>)}</ul>
+    <p class="t-lede" style="margin-top: 1.5rem; max-width: 60ch;">Ambernath East/West, Badlapur East/West, Kulgaon, MIDC Ambernath, plus the Manjarli-Katrap-Belavali-Jambhul-Vangani residential pockets — easy reach from Thane via the Karjat fast line. In-person reviews for kickoff and milestones.</p>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Why local matters</span><span class="sec-head__lab">Affordable + Marathi-friendly</span></header>
+    <div class="city-why">
+      <article class="city-why__item"><h3 class="t-h3">SMB-priced</h3><p>Most engagements here are SMB-sized scopes priced for the local market — not Mumbai agency rates.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Marathi-first if needed</h3><p>Most local audiences are Marathi-Hindi-speaking. Sites and bots launched in the right language without overhead.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">7-day delivery</h3><p>Most marketing sites and small apps go live within a week. Larger products iterate from there.</p></article>
+      <article class="city-why__item"><h3 class="t-h3">Real cases nearby</h3><p>20+ ad accounts, B2B catalog sites, education platforms, CRMs. <a href="/projects">See the work →</a></p></article>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>06</b> &nbsp;/&nbsp; FAQs</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>07</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">SMB project in Ambernath or Badlapur? Send a brief — reply inside 24 hours.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+    <address class="city-nap">
+      <span class="city-nap__lbl">Based in</span><span class="city-nap__val">Thane (covering Ambernath-Badlapur &amp; MMR)</span>
+      <span class="city-nap__lbl">Phone</span><span class="city-nap__val"><a href={`tel:${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></span>
+      <span class="city-nap__lbl">Email</span><span class="city-nap__val"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
+      <span class="city-nap__lbl">Service area</span><span class="city-nap__val">Ambernath · Badlapur · Kulgaon · Kalyan · Thane · India · Remote</span>
+    </address>
+    <nav class="city-cross" aria-label="Other city pages">
+      <span class="city-cross__lbl">Other cities ↘</span>
+      <a href="/kalyan-bhiwandi">Kalyan-Bhiwandi</a><a href="/ulhasnagar">Ulhasnagar</a><a href="/thane">Thane</a><a href="/cities">All cities</a>
+    </nav>
+  </section>
+</BaseLayout>

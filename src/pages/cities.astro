@@ -1,0 +1,175 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+
+const cities = [
+  { slug: '/thane',              name: 'Thane',              tag: 'Home base',                desc: 'Wagle Estate · Naupada · Ghodbunder Road · Hiranandani Estate. Coaching, real estate, clinics, retail, IT.' },
+  { slug: '/mumbai',             name: 'Mumbai',             tag: 'MMR · Western + Central',  desc: 'Andheri · BKC · Powai · Lower Parel · Bandra. SaaS, DTC e-com, fintech, media, real estate, hospitality.' },
+  { slug: '/navi-mumbai',        name: 'Navi Mumbai',        tag: 'CBD Belapur · Airoli',     desc: 'Vashi · Belapur · Nerul · Kharghar · Panvel · Airoli. IT/ITES, education, healthcare, real estate.' },
+  { slug: '/kalyan-bhiwandi',    name: 'Kalyan-Bhiwandi',    tag: 'Logistics + textile hub',  desc: 'Bhiwandi-Nizampur · Kalher · Padgha · Anjur Phata · Kalyan W/E. Asia\'s largest warehouse cluster + textile belt.' },
+  { slug: '/dombivli',           name: 'Dombivli',           tag: 'Marathi-first SMBs',        desc: 'Dombivli East · West · Manpada · Tilak Nagar. Retail, coaching, clinics, real estate, F&B.' },
+  { slug: '/mira-bhayandar',     name: 'Mira-Bhayandar',     tag: 'Jewelry + multilingual',    desc: 'Mira Road E/W · Bhayandar E/W · Kashimira. Gujarati and Marwari commerce — jewelry, retail, real estate.' },
+  { slug: '/vasai-virar',        name: 'Vasai-Virar',        tag: 'Schools + affordable RE',   desc: 'Vasai E/W · Virar E/W · Nalasopara · Naigaon. Schools (Catholic + private), affordable real estate, retail.' },
+  { slug: '/panvel',             name: 'Panvel',             tag: 'NMIA growth zone',          desc: 'Old + New Panvel · Kalamboli · Kamothe · Ulwe. Airport-driven real estate, hospitality, JNPT-adjacent logistics.' },
+  { slug: '/ulhasnagar',         name: 'Ulhasnagar',         tag: 'Denim + Sindhi B2B',        desc: 'Camp 1 through Camp 5. Denim/garment manufacturing, Sindhi wholesale community, retail.' },
+  { slug: '/ambernath-badlapur', name: 'Ambernath-Badlapur', tag: 'Affordable SMB belt',       desc: 'Ambernath E/W · Badlapur E/W · Kulgaon · MIDC Ambernath. Manufacturing, coaching, retail, real estate.' },
+];
+---
+
+<BaseLayout
+  title="Cities — Website & App Developer across MMR"
+  description="Website & app developer serving 10 cities across MMR — Thane, Mumbai, Navi Mumbai, Kalyan-Bhiwandi, Dombivli, Mira-Bhayandar, Vasai-Virar, Panvel + more."
+  schemaType="cities"
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Cities', item: '/cities' },
+  ]}
+  itemList={{ name: 'MMR City Service Areas', items: cities.map((c) => ({ name: c.name, url: c.slug })) }}
+>
+  <section class="shell hd">
+    <div class="hd__brackets">
+      <span>[ CITIES ]</span>
+      <span>MUMBAI METROPOLITAN REGION</span>
+      <span>10 CITY PAGES</span>
+    </div>
+
+    <h1 class="t-display">
+      Service areas<br /><em>across MMR.</em>
+    </h1>
+
+    <p class="t-lede hd__lede">
+      I'm based in <strong>Thane</strong> and serve clients across the
+      Mumbai Metropolitan Region — in person where it helps, remote
+      where it's faster. Each city has its own landing page with the
+      industries, neighborhoods, and pricing context relevant to it.
+    </p>
+
+    <p class="t-lede hd__lede" style="margin-top: 1rem;">
+      Same services across all cities — <strong>website development, app
+      development, WhatsApp automation, Meta + Google ads, technical and
+      local SEO</strong> — tuned to each market.
+    </p>
+  </section>
+
+  <section class="shell sec">
+    <ul class="city-list" role="list">
+      {cities.map((c, i) => (
+        <li>
+          <a href={c.slug} class="city-row">
+            <span class="city-row__n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="city-row__main">
+              <span class="city-row__name">{c.name}</span>
+              <span class="city-row__tag">{c.tag}</span>
+            </span>
+            <span class="city-row__desc">{c.desc}</span>
+            <span class="city-row__arr" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>★</b> &nbsp;/&nbsp; Outside MMR?</span>
+      <span class="sec-head__lab">India + Remote worldwide</span>
+    </header>
+    <p class="t-lede" style="max-width: 60ch;">
+      If you're in another Indian city or anywhere else in the world, the
+      same services run remote-first over WhatsApp + video + async tools.
+      Reply time stays under 24 hours regardless of timezone.
+    </p>
+    <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hd { padding-block: clamp(3rem, 8vh, 6rem) clamp(2rem, 5vh, 4rem); }
+  .hd__brackets {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 2rem;
+  }
+  .hd__brackets > :first-child { color: var(--color-orange); opacity: 1; }
+  .t-display em { color: var(--color-orange); font-style: italic; }
+  .hd__lede strong { color: var(--color-orange); font-weight: 500; }
+  .hd__lede { margin-top: 2rem; max-width: 64ch; }
+  .sec { padding-block: clamp(2rem, 5vh, 4rem); }
+
+  .city-list { list-style: none; padding: 0; margin: 0; }
+  .city-list li { border-top: 1px solid var(--grid-line); }
+  .city-list li:last-child { border-bottom: 1px solid var(--grid-line); }
+
+  .city-row {
+    display: grid;
+    grid-template-columns: 56px minmax(200px, 1.2fr) minmax(0, 2fr) 28px;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.6rem 0.5rem;
+    transition: padding 320ms var(--ease-out-expo), background 240ms;
+  }
+  .city-row:hover, .city-row:focus-visible {
+    padding-left: 1.4rem;
+    background: linear-gradient(90deg, color-mix(in oklab, var(--color-orange) 8%, transparent), transparent 70%);
+    outline: none;
+  }
+
+  .city-row__n {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--color-mute);
+  }
+  .city-row:hover .city-row__n { color: var(--color-orange); }
+
+  .city-row__main { display: flex; flex-direction: column; gap: 0.3rem; }
+  .city-row__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    letter-spacing: -0.015em;
+    color: var(--color-ivory);
+    line-height: 1.05;
+  }
+  .city-row:hover .city-row__name { color: var(--color-orange); }
+  .city-row__tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+  }
+  .city-row__desc {
+    color: var(--color-ivory-dim);
+    line-height: 1.5;
+    font-size: 0.92rem;
+  }
+  .city-row__arr {
+    color: var(--color-orange);
+    transform: translateX(-6px);
+    opacity: 0;
+    transition: transform 280ms var(--ease-out-expo), opacity 200ms;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+  .city-row:hover .city-row__arr { transform: translateX(0); opacity: 1; }
+
+  @media (max-width: 820px) {
+    .city-row {
+      grid-template-columns: 36px 1fr;
+      gap: 0.6rem 1rem;
+    }
+    .city-row__desc { grid-column: 2; }
+    .city-row__arr { display: none; }
+  }
+</style>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
+  <!-- Shield base -->
+  <path d="M50 5L95 20V65C95 85 75 105 50 115C25 105 5 85 5 65V20L50 5Z" fill="#1a2a40" stroke="#c9a227" stroke-width="2"/>
+
+  <!-- Inner shield -->
+  <path d="M50 12L88 25V63C88 80 70 98 50 107C30 98 12 80 12 63V25L50 12Z" fill="#0d1520"/>
+
+  <!-- Horizontal division line -->
+  <line x1="12" y1="55" x2="88" y2="55" stroke="#c9a227" stroke-width="1"/>
+
+  <!-- Book symbol -->
+  <g transform="translate(35, 25)">
+    <rect x="0" y="0" width="30" height="22" rx="2" fill="#fdfbf7" stroke="#c9a227" stroke-width="1"/>
+    <line x1="15" y1="2" x2="15" y2="20" stroke="#c9a227" stroke-width="1"/>
+    <line x1="3" y1="6" x2="12" y2="6" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="3" y1="9" x2="12" y2="9" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="3" y1="12" x2="12" y2="12" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="3" y1="15" x2="12" y2="15" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="18" y1="6" x2="27" y2="6" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="18" y1="9" x2="27" y2="9" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="18" y1="12" x2="27" y2="12" stroke="#273f60" stroke-width="0.5"/>
+    <line x1="18" y1="15" x2="27" y2="15" stroke="#273f60" stroke-width="0.5"/>
+  </g>
+
+  <!-- Torch/flame symbol -->
+  <g transform="translate(42, 62)">
+    <rect x="5" y="15" width="6" height="20" fill="#c9a227"/>
+    <ellipse cx="8" cy="10" rx="8" ry="12" fill="#c9a227"/>
+    <ellipse cx="8" cy="8" rx="5" ry="8" fill="#fef08a"/>
+    <ellipse cx="8" cy="6" rx="3" ry="5" fill="#fefce8"/>
+  </g>
+
+  <!-- Stars -->
+  <circle cx="25" cy="75" r="3" fill="#c9a227"/>
+  <circle cx="75" cy="75" r="3" fill="#c9a227"/>
+  <circle cx="25" cy="35" r="2" fill="#c9a227"/>
+  <circle cx="75" cy="35" r="2" fill="#c9a227"/>
+
+  <!-- Laurel leaves left -->
+  <g transform="translate(15, 85) rotate(-30)">
+    <ellipse cx="5" cy="0" rx="3" ry="8" fill="none" stroke="#c9a227" stroke-width="1"/>
+  </g>
+  <g transform="translate(18, 92) rotate(-15)">
+    <ellipse cx="5" cy="0" rx="3" ry="8" fill="none" stroke="#c9a227" stroke-width="1"/>
+  </g>
+
+  <!-- Laurel leaves right -->
+  <g transform="translate(70, 85) rotate(30)">
+    <ellipse cx="5" cy="0" rx="3" ry="8" fill="none" stroke="#c9a227" stroke-width="1"/>
+  </g>
+  <g transform="translate(67, 92) rotate(15)">
+    <ellipse cx="5" cy="0" rx="3" ry="8" fill="none" stroke="#c9a227" stroke-width="1"/>
+  </g>
+
+  <!-- Founding year -->
+  <text x="50" y="102" text-anchor="middle" font-family="serif" font-size="8" fill="#c9a227">1847</text>
+</svg>

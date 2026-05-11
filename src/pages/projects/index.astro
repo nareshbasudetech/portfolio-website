@@ -1,0 +1,401 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.year - a.data.year,
+);
+
+const featured = projects.filter((p) => p.data.featured).slice(0, 3);
+const rest = projects.filter((p) => !featured.includes(p));
+
+const all = projects.length;
+const byKind = (k: string) => projects.filter((p) => p.data.discipline.includes(k as any)).length;
+---
+
+<BaseLayout
+  title="Projects — Selected Work by Naresh Basude"
+  description="Selected work by Naresh Basude — full-stack development, design, and growth marketing across SaaS, e-commerce, and education. 20+ shipped products."
+  schemaType="projects"
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Projects', item: '/projects' },
+  ]}
+  itemList={{
+    name: 'Selected Projects',
+    items: projects.map((p) => ({ name: p.data.title, url: `/projects/${p.id}` })),
+  }}
+>
+  <!-- HEAD -->
+  <section class="shell hd">
+    <div class="hd__brackets">
+      <span>[ INDEX ]</span>
+      <span>VOLUME 02 · 2026</span>
+      <span>SHIPPED THIS YEAR</span>
+    </div>
+    <h1 class="t-display">
+      <span>Selected</span><br /><em>work.</em>
+    </h1>
+    <p class="t-lede hd__lede">
+      A few of the things I've shipped, branded, and grown across SaaS,
+      e-commerce, and education. Filter by discipline below.
+    </p>
+
+    <div class="hd__counts" role="tablist" aria-label="Filter by discipline">
+      <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">
+        <span class="t-mono-sm">All</span><b>{all}</b>
+      </button>
+      <button class="filter" data-filter="Dev" role="tab" aria-selected="false">
+        <span class="t-mono-sm">Dev</span><b>{byKind('Dev')}</b>
+      </button>
+      <button class="filter" data-filter="Design" role="tab" aria-selected="false">
+        <span class="t-mono-sm">Design</span><b>{byKind('Design')}</b>
+      </button>
+      <button class="filter" data-filter="Marketing" role="tab" aria-selected="false">
+        <span class="t-mono-sm">Marketing</span><b>{byKind('Marketing')}</b>
+      </button>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>★</b> &nbsp;/&nbsp; Featured</span>
+      <span class="sec-head__lab">Top picks</span>
+    </header>
+
+    <div class="feat">
+      {featured.map((p, i) => {
+        const links = p.data.links?.length
+          ? p.data.links
+          : p.data.url
+            ? [{ label: 'Visit live ↗', href: p.data.url }]
+            : [];
+        return (
+        <article class="card filter-card" style={`--ac:${p.data.accent}`} data-large={i === 0} data-discipline={p.data.discipline.join(',')}>
+          <a class="card__link" href={`/projects/${p.id}`} aria-label={`Read case study: ${p.data.title}`}></a>
+          <div class="card__viz">
+            <span class="card__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="card__year">{p.data.year}</span>
+            <img class="card__img" src={p.data.cover ?? `/covers/${p.id}.svg`} alt="" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+            {links.length > 0 && (
+              <div class="card__visit">
+                {links.map((l) => (
+                  <a href={l.href} class="visit-chip" rel="noopener" target="_blank">
+                    <span>{l.label.replace(' ↗', '')}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="card__body">
+            <span class="t-mono-sm">{p.data.discipline.join(' · ')}</span>
+            <h3 class="t-h2">{p.data.title}</h3>
+            <p class="card__sum">{p.data.summary}</p>
+            <span class="card__more">Read case study <span aria-hidden="true">→</span></span>
+          </div>
+        </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- ALL -->
+  <section class="shell sec">
+    <header class="sec-head">
+      <span class="sec-head__num"><b>{String(featured.length + 1).padStart(2, '0')}+</b> &nbsp;/&nbsp; Archive</span>
+      <span class="sec-head__lab">{rest.length} more</span>
+    </header>
+
+    {rest.length === 0 ? (
+      <p class="empty">All projects featured above.</p>
+    ) : (
+      <ol class="archive" role="list">
+        {rest.map((p, i) => (
+          <li class="filter-card" data-discipline={p.data.discipline.join(',')}>
+            <a href={`/projects/${p.id}`} class="row" style={`--ac:${p.data.accent}`}>
+              <span class="row__n">{String(featured.length + i + 1).padStart(2, '0')}</span>
+              <span class="row__t">
+                <span class="row__name">{p.data.title}</span>
+                <span class="row__sum">{p.data.summary}</span>
+              </span>
+              <span class="row__d">{p.data.discipline.join(' · ')}</span>
+              <span class="row__y">{p.data.year}</span>
+              <span class="row__a">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    function init() {
+      const filters = document.querySelectorAll('.filter');
+      const cards = document.querySelectorAll('.filter-card');
+      if (!filters.length || !cards.length) return;
+
+      function apply(value) {
+        filters.forEach((f) => {
+          const active = f.dataset.filter === value;
+          f.classList.toggle('is-active', active);
+          f.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        cards.forEach((c) => {
+          if (value === 'all') {
+            c.classList.remove('is-hidden');
+            return;
+          }
+          const tags = (c.dataset.discipline || '').split(',');
+          c.classList.toggle('is-hidden', !tags.includes(value));
+        });
+      }
+
+      filters.forEach((f) => {
+        f.addEventListener('click', () => apply(f.dataset.filter));
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<style>
+  /* HEAD */
+  .hd { padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 6vh, 5rem); }
+  .hd__brackets {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 2rem;
+  }
+  .t-display em {
+    color: var(--color-orange);
+    font-style: italic;
+    font-family: var(--font-display);
+  }
+  .hd__lede { margin-top: 2rem; }
+  .hd__counts {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--grid-line);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1rem 1rem 0.85rem;
+    background: transparent;
+    border: 0;
+    border-left: 2px solid transparent;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+    transition: border-color 220ms, background 220ms, transform 280ms var(--ease-out-expo);
+  }
+  .filter:hover { background: color-mix(in oklab, var(--color-ivory) 3%, transparent); }
+  .filter:focus-visible { outline: 2px solid var(--color-orange); outline-offset: -2px; }
+  .filter.is-active {
+    border-left-color: var(--color-orange);
+    background: linear-gradient(90deg, color-mix(in oklab, var(--color-orange) 10%, transparent), transparent 80%);
+  }
+  .filter b {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    letter-spacing: -0.02em;
+  }
+  .filter[data-filter="Dev"] b { color: var(--color-orange); }
+  .filter[data-filter="Design"] b { color: var(--color-violet); }
+  .filter[data-filter="Marketing"] b { color: var(--color-ivory); }
+
+  /* Hidden state when filter is active */
+  .filter-card.is-hidden {
+    display: none;
+  }
+
+  .sec { padding-block: clamp(3rem, 8vh, 6rem); }
+
+  /* FEATURED */
+  .feat {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--grid-line);
+    border-radius: var(--radius-md);
+    background: var(--color-ink-2);
+    overflow: hidden;
+    transition: border-color 280ms, transform 320ms var(--ease-out-expo);
+    min-height: 380px;
+  }
+  .card__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .card[data-large='true'] {
+    grid-column: span 2;
+    flex-direction: row;
+    min-height: 460px;
+  }
+  .card[data-large='true'] .card__viz { flex: 1.4; min-height: 100%; }
+  .card[data-large='true'] .card__body { flex: 1; max-width: 36rem; }
+  .card:hover { border-color: var(--ac); transform: translateY(-3px); }
+
+  .card__viz {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--color-ink-3);
+    overflow: hidden;
+  }
+  .card[data-large='true'] .card__viz { aspect-ratio: auto; }
+  .card__num {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--color-ivory-dim);
+    z-index: 2;
+  }
+  .card__year {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--color-ivory-dim);
+    z-index: 2;
+  }
+  .card__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card__visit {
+    position: absolute;
+    bottom: 0.85rem;
+    right: 0.85rem;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 0.4rem;
+    justify-content: flex-end;
+    z-index: 3;
+    max-width: calc(100% - 1.7rem);
+  }
+  .visit-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.8rem;
+    background: color-mix(in oklab, var(--color-ink) 80%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 20%, transparent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ivory);
+    transition: background 200ms, color 200ms, border-color 200ms;
+    text-decoration: none;
+  }
+  .visit-chip:hover {
+    background: var(--ac);
+    color: var(--color-ink);
+    border-color: var(--ac);
+  }
+  .card__num, .card__year, .card__more { position: relative; z-index: 2; }
+  .card__body { position: relative; z-index: 2; }
+
+  .card__body {
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+  }
+  .card__sum {
+    color: var(--color-ivory-dim);
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+  .card__more {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ac);
+  }
+
+  /* ARCHIVE */
+  .archive { list-style: none; padding: 0; margin: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1.4fr) minmax(0, 0.9fr) auto auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.6rem 0.5rem;
+    border-top: 1px solid var(--grid-line);
+    transition: padding 320ms var(--ease-out-expo), background 280ms;
+  }
+  .archive li:last-child .row { border-bottom: 1px solid var(--grid-line); }
+  .row:hover { padding-left: 1.5rem; background: linear-gradient(90deg, color-mix(in oklab, var(--ac) 8%, transparent), transparent 70%); }
+  .row__n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-mute); }
+  .row:hover .row__n { color: var(--ac); }
+  .row__t { display: flex; flex-direction: column; gap: 0.3rem; }
+  .row__name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; letter-spacing: -0.015em; }
+  .row__sum { font-size: 0.88rem; color: var(--color-ivory-dim); }
+  .row__d { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-mute); }
+  .row__y { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ivory-dim); }
+  .row__a { color: var(--ac); transform: translateX(-4px); opacity: 0; transition: transform 280ms, opacity 200ms; }
+  .row:hover .row__a { transform: translateX(0); opacity: 1; }
+
+  .empty {
+    padding: 2rem 0;
+    color: var(--color-ivory-dim);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 1000px) {
+    .feat { grid-template-columns: 1fr; }
+    .card[data-large='true'] { grid-column: span 1; flex-direction: column; min-height: 380px; }
+    .card[data-large='true'] .card__viz { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 720px) {
+    .row { grid-template-columns: 36px 1fr auto; gap: 0.6rem 1rem; }
+    .row__d { grid-column: 2; font-size: 0.65rem; }
+    .row__y { grid-column: 3; grid-row: 1; }
+    .row__a { display: none; }
+    .row__name { font-size: 1.1rem; }
+    .hd__counts { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

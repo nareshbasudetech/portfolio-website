@@ -1,0 +1,115 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '~/consts';
+import Marquee from '@components/Marquee.astro';
+
+const flows = [
+  { h: 'Lead qualification', p: 'The bot asks the 5–7 questions your sales team asks every time, in Hindi-English code-switch the way Indian buyers actually type. Qualified leads get tagged, routed, and logged before a human touches them.' },
+  { h: 'B2B catalog + RFQ', p: 'Filter-rich product catalog inside WhatsApp itself — by size, colour, material, GST-pricing toggle. RFQ form posts straight to your CRM with the conversation context attached.' },
+  { h: 'Admissions & enrolment', p: 'Course brochures, fee structures, counsellor handoff. For education clients with high-volume inbound — admissions sites + WhatsApp flow built as one funnel, not three.' },
+  { h: 'Appointment & booking', p: 'Clinics, salons, hospitality — slot selection, confirmation, reminder, follow-up. Same flow auto-reschedules cancellations.' },
+  { h: 'Order tracking & support', p: 'Order status, returns, FAQ answers handled before they reach a human. The ones that need a human get escalated with full conversation history attached.' },
+  { h: 'Drip + re-engagement', p: 'Quiet leads get nudged on a schedule. Lapsed customers get re-engagement campaigns. All measured server-side, attributed back to source.' },
+];
+
+const stack = [
+  { b: 'WhatsApp Business API', s: 'Official Meta Cloud API or BSP routing — not the unreliable scraping kind that breaks every quarter.' },
+  { b: 'Multi-language flows', s: 'Hindi, Marathi, Gujarati, Sindhi, English — language switching mid-conversation, the way users actually talk.' },
+  { b: 'CRM integration', s: 'Routes to your existing CRM (Salesforce, Zoho, HubSpot, custom) — or my own Naresh-CRM if you don\'t have one yet.' },
+  { b: 'Server-side analytics', s: 'Every conversation logged. Source attribution. Conversion measured at the lead level, not the click level.' },
+  { b: 'Smart handoff', s: 'Bot knows when to give up. Hard signals (intent keywords, time-of-day, lead score) trigger human escalation with context attached.' },
+  { b: 'GDPR + India DPDP-friendly', s: 'Opt-in, opt-out, consent logging, data retention — built right, not bolted on.' },
+];
+
+const faqs = [
+  { q: 'How long to launch a WhatsApp bot?', a: '7 days for a standard lead-qualification or appointment bot. 2–3 weeks for B2B catalogs with deep filtering and CRM-deep integrations. Discovery on day one.' },
+  { q: 'Do I need a verified WhatsApp Business account first?', a: 'Yes — Meta Business Manager + WhatsApp Business API access. I can help you get it set up if not done already. Process takes 3–5 days for Meta approval.' },
+  { q: 'What does a WhatsApp bot cost in India?', a: 'Project-based — build cost depends on flow complexity, language count, CRM integration depth. Plus Meta\'s per-message conversation fee (₹0.30–₹0.80 depending on category). Most SMBs land in mid-market range.' },
+  { q: 'Can it handle Hindi / Marathi / Gujarati / Sindhi?', a: 'Yes. Mixed-language flows are routine. Most local audiences code-switch — the bot is built to handle that, not break on it.' },
+  { q: 'Will it replace my sales team?', a: 'No — it removes the repetitive bottom of the funnel so your team works only on leads worth their time. Most clients see the team\'s effective conversation count drop 70%, output go up.' },
+  { q: 'GST invoice + Indian payment methods?', a: 'GST invoice yes. UPI, NEFT, Razorpay, cheque — all supported.' },
+];
+---
+
+<BaseLayout
+  title="WhatsApp Bot Developer in India · Naresh Basude"
+  description="WhatsApp chatbot developer for India — lead bots, B2B catalogs, appointment flows on official WhatsApp Business API. Multi-language, CRM-integrated."
+  schemaType="service"
+  service={{
+    name: 'WhatsApp Chatbot Development',
+    description: 'WhatsApp Business API automation — lead qualification, B2B catalog + RFQ, appointment booking, admissions, and order tracking flows. Multi-language (Hindi/Marathi/Gujarati/Sindhi/English), CRM-integrated, server-side measured.',
+    slug: '/whatsapp-bot-developer',
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'WhatsApp Bot Developer', item: '/whatsapp-bot-developer' },
+  ]}
+  faqs={faqs}
+>
+  <section class="shell city">
+    <div class="city__brackets" aria-hidden="true">
+      <span>[ WHATSAPP BOT DEVELOPER ]</span>
+      <span>OFFICIAL META CLOUD API</span>
+      <span>AVAILABLE NOW</span>
+    </div>
+
+    <h1 class="t-display">
+      WhatsApp bot developer<br /><em>built for Indian businesses.</em>
+    </h1>
+
+    <p class="t-lede city__lede">
+      I'm <strong>Naresh Basude</strong>. I build lead-qualification bots,
+      B2B catalogs, appointment flows, and admissions automation on the
+      official WhatsApp Business API. Multi-language. CRM-integrated.
+      Server-side measured. <strong>7-day delivery</strong> for standard
+      flows.
+    </p>
+
+    <div class="city__cta">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">WhatsApp me <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Send a brief</a>
+      <a href="/projects/whatsapp-leadbot" class="btn btn--ghost">See the case study</a>
+    </div>
+  </section>
+
+  <Marquee variant="ribbon" items={[
+    'WhatsApp Bot · <b>Lead Qualification</b>',
+    'B2B Catalog · <b>RFQ Flows</b>',
+    '<i>Appointment Bot</i> · Clinics',
+    'Admissions · <b>Counsellor Handoff</b>',
+    'CRM Integrated · <b>Server-Side</b>',
+    'Available now',
+  ]} />
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>01</b> &nbsp;/&nbsp; Flows I build</span><span class="sec-head__lab">From qualification to retention</span></header>
+    <ul class="city-services" role="list">{flows.map((f) => (<li class="city-service"><h2 class="city-service__h">{f.h}</h2><p class="city-service__p">{f.p}</p></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>02</b> &nbsp;/&nbsp; Stack &amp; principles</span><span class="sec-head__lab">Official API · Multi-language · Measured</span></header>
+    <div class="city-industries">{stack.map((i) => (<div class="city-industry"><b>{i.b}</b><span>{i.s}</span></div>))}</div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>03</b> &nbsp;/&nbsp; Case study</span><span class="sec-head__lab">Real numbers, named client</span></header>
+    <p class="t-lede" style="max-width: 60ch;">A lead-qualification bot that took an education team from 50 manual qualifications a day to zero — same lead volume, same response quality, the agent now only takes the calls the bot couldn't fully qualify.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href="/projects/whatsapp-leadbot" class="btn">Read the case study <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>04</b> &nbsp;/&nbsp; FAQs</span><span class="sec-head__lab">The usual asks</span></header>
+    <ul class="city-faqs" role="list">{faqs.map((f, i) => (<li><details><summary><span class="city-faqs__n">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span><span class="city-faqs__plus" aria-hidden="true">+</span></summary><p>{f.a}</p></details></li>))}</ul>
+  </section>
+
+  <section class="shell city-sec">
+    <header class="sec-head"><span class="sec-head__num"><b>05</b> &nbsp;/&nbsp; Start now</span><span class="sec-head__lab">Replies inside 24h</span></header>
+    <p class="t-lede" style="max-width: 60ch;">Got a flow in mind? Send a quick brief — I'll reply within 24 hours with whether it's a fit, a rough estimate, and what the launch timeline looks like.</p>
+    <div class="city__cta" style="margin-top: 1.5rem;">
+      <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener" class="btn">Message on WhatsApp <span aria-hidden="true">↗</span></a>
+      <a href={`mailto:${SITE.email}`} class="btn btn--ghost">Email a brief</a>
+    </div>
+  </section>
+</BaseLayout>

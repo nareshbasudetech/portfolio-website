@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="NursingPathshala App — illustrative case study cover">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1a0a14"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+
+  <!-- Two phone screens side-by-side -->
+  <g transform="translate(220 110)">
+    <!-- Phone 1: Home -->
+    <rect width="260" height="540" rx="34" fill="#0a0a0a" stroke="#1f1f1f" stroke-width="6"/>
+    <rect x="14" y="14" width="232" height="512" rx="24" fill="#0d0a0e"/>
+
+    <text x="130" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#c9c5bd">9:41 · IN · 5G</text>
+
+    <!-- Header -->
+    <g transform="translate(28 56)">
+      <text font-family="General Sans, sans-serif" font-size="14" fill="#c9c5bd">Hi, Priya 👋</text>
+      <text y="22" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#f5f2ec" letter-spacing="-0.5">Day 14 streak</text>
+    </g>
+
+    <!-- Today card -->
+    <g transform="translate(28 110)">
+      <rect width="204" height="100" rx="14" fill="#ec4899" opacity="0.92"/>
+      <text x="14" y="24" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#fff" opacity="0.85">TODAY · CONTINUE</text>
+      <text x="14" y="50" font-family="General Sans, sans-serif" font-size="14" font-weight="700" fill="#fff">Anatomy · Skeletal</text>
+      <text x="14" y="68" font-family="Inter, sans-serif" font-size="10" fill="#fff" opacity="0.85">Lesson 8 of 12</text>
+      <rect x="14" y="78" width="170" height="3" fill="#fff" opacity="0.3"/>
+      <rect x="14" y="78" width="113" height="3" fill="#fff"/>
+    </g>
+
+    <!-- Sections -->
+    <g transform="translate(28 226)">
+      <text font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#6f6c66">SUBJECTS · GNM</text>
+
+      <g transform="translate(0 14)">
+        <rect width="98" height="100" rx="10" fill="#161018"/>
+        <rect x="14" y="14" width="36" height="36" rx="8" fill="#ec4899" opacity="0.3"/>
+        <text x="14" y="68" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">Anatomy</text>
+        <text x="14" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">12 / 24</text>
+
+        <rect x="106" width="98" height="100" rx="10" fill="#161018"/>
+        <rect x="120" y="14" width="36" height="36" rx="8" fill="#7b5cff" opacity="0.3"/>
+        <text x="120" y="68" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">Pharma</text>
+        <text x="120" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">5 / 18</text>
+
+        <rect y="108" width="98" height="100" rx="10" fill="#161018"/>
+        <rect x="14" y="122" width="36" height="36" rx="8" fill="#22c55e" opacity="0.3"/>
+        <text x="14" y="176" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">Nutrition</text>
+        <text x="14" y="192" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">8 / 12</text>
+
+        <rect x="106" y="108" width="98" height="100" rx="10" fill="#161018"/>
+        <rect x="120" y="122" width="36" height="36" rx="8" fill="#ff5b1f" opacity="0.3"/>
+        <text x="120" y="176" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">Mock Tests</text>
+        <text x="120" y="192" font-family="JetBrains Mono, monospace" font-size="8" fill="#c9c5bd">3 ready</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Phone 2: Lesson -->
+  <g transform="translate(540 110)">
+    <rect width="260" height="540" rx="34" fill="#0a0a0a" stroke="#1f1f1f" stroke-width="6"/>
+    <rect x="14" y="14" width="232" height="512" rx="24" fill="#0d0a0e"/>
+
+    <text x="130" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#c9c5bd">9:42</text>
+
+    <!-- Header -->
+    <g transform="translate(28 56)">
+      <text font-family="JetBrains Mono, monospace" font-size="9" fill="#ec4899" letter-spacing="2">ANATOMY · LESSON 08</text>
+      <text y="20" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#f5f2ec" letter-spacing="-0.5">Skeletal System</text>
+    </g>
+
+    <!-- Video frame -->
+    <g transform="translate(28 110)">
+      <rect width="204" height="120" rx="10" fill="#0a0a0a"/>
+      <circle cx="102" cy="60" r="22" fill="#fff" opacity="0.2"/>
+      <path d="M 96 50 L 96 70 L 112 60 Z" fill="#fff"/>
+      <text x="14" y="108" font-family="JetBrains Mono, monospace" font-size="9" fill="#c9c5bd">12:34 / 18:20</text>
+    </g>
+
+    <!-- Notes -->
+    <g transform="translate(28 246)">
+      <text font-family="JetBrains Mono, monospace" font-size="9" fill="#6f6c66" letter-spacing="2">NOTES</text>
+      <g transform="translate(0 12)">
+        <rect width="204" height="42" rx="6" fill="#161018"/>
+        <text x="12" y="20" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">206 bones in adult body</text>
+        <text x="12" y="34" font-family="Inter, sans-serif" font-size="10" fill="#c9c5bd">Axial · 80 / Appendicular · 126</text>
+
+        <rect y="50" width="204" height="42" rx="6" fill="#161018"/>
+        <text x="12" y="70" font-family="General Sans, sans-serif" font-size="11" font-weight="600" fill="#f5f2ec">5 functions</text>
+        <text x="12" y="84" font-family="Inter, sans-serif" font-size="10" fill="#c9c5bd">Support · Protect · Movement…</text>
+      </g>
+    </g>
+
+    <!-- Mock test CTA -->
+    <g transform="translate(28 360)">
+      <rect width="204" height="44" rx="22" fill="#ec4899"/>
+      <text x="102" y="29" text-anchor="middle" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#fff">Take mock test ↗</text>
+    </g>
+
+    <!-- Streak / offline -->
+    <g transform="translate(28 420)">
+      <rect width="204" height="64" rx="10" fill="#161018"/>
+      <text x="14" y="22" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#6f6c66">SAVED OFFLINE</text>
+      <text x="14" y="42" font-family="General Sans, sans-serif" font-size="12" font-weight="600" fill="#f5f2ec">3 lessons · 2 mock tests</text>
+      <text x="14" y="56" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">● READY · NO DATA NEEDED</text>
+    </g>
+  </g>
+
+  <!-- Side annotation -->
+  <g transform="translate(60 170)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">NURSINGPATHSHALA</text>
+    <text y="32" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#f5f2ec" letter-spacing="-0.5">GNM &amp; Nursing</text>
+    <text y="58" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#ec4899" letter-spacing="-0.5">study app.</text>
+
+    <text y="100" font-family="Inter, sans-serif" font-size="11" fill="#c9c5bd">Mobile-first study app for</text>
+    <text y="118" font-family="Inter, sans-serif" font-size="11" fill="#c9c5bd">nursing students. Lessons,</text>
+    <text y="136" font-family="Inter, sans-serif" font-size="11" fill="#c9c5bd">notes, mock tests, offline-</text>
+    <text y="154" font-family="Inter, sans-serif" font-size="11" fill="#c9c5bd">ready.</text>
+  </g>
+
+  <g transform="translate(870 170)">
+    <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#6f6c66">WHAT'S INSIDE</text>
+    <g font-family="JetBrains Mono, monospace" font-size="10" fill="#c9c5bd">
+      <text y="32">— Course-aligned syllabus</text>
+      <text y="56">— Video + notes + tests</text>
+      <text y="80">— Offline-first PWA</text>
+      <text y="104">— Streaks + push lifecycle</text>
+      <text y="128">— Subscriptions + one-off</text>
+      <text y="152">— Teacher / admin panel</text>
+    </g>
+  </g>
+
+  <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3" fill="#f5f2ec" opacity="0.5">
+    <text x="60" y="48">NURSINGPATHSHALA · STUDY APP · 2026</text>
+    <text x="1140" y="48" text-anchor="end">[ ILLUSTRATIVE ]</text>
+    <text x="60" y="780">DEV / DESIGN / EDU-MOBILE</text>
+    <text x="1140" y="780" text-anchor="end">VOL · 02 / 2026</text>
+  </g>
+</svg>

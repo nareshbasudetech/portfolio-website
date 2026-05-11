@@ -1,0 +1,187 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((p) => ({
+    params: { slug: p.id },
+    props: { post: p, all: posts },
+  }));
+}
+
+const { post, all } = Astro.props;
+const { Content } = await render(post);
+
+const sorted = [...all].sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+);
+const idx = sorted.findIndex((p) => p.id === post.id);
+const prev = idx > 0 ? sorted[idx - 1] : null;
+const next = idx < sorted.length - 1 ? sorted[idx + 1] : null;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.summary}
+  type="article"
+  schemaType="post"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  post={{
+    title: post.data.title,
+    summary: post.data.summary,
+    slug: post.id,
+    publishedAt: post.data.publishedAt,
+    updatedAt: post.data.updatedAt,
+    tags: post.data.tags,
+  }}
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Writing', item: '/writing' },
+    { name: post.data.title, item: `/writing/${post.id}` },
+  ]}
+>
+  <article class="post">
+    <header class="post__hd shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/writing">Writing</a>
+        <span>/</span>
+        <span class="cur">{post.id}</span>
+      </nav>
+
+      <div class="meta">
+        <time datetime={post.data.publishedAt.toISOString()}>
+          {fmt(post.data.publishedAt)}
+        </time>
+        {post.data.readingTime && <span>·</span>}
+        {post.data.readingTime && <span>{post.data.readingTime}</span>}
+        {post.data.tags.length > 0 && <span>·</span>}
+        {post.data.tags.map((t) => (
+          <a class="tag" href={`/writing/tag/${t}`}>{t}</a>
+        ))}
+      </div>
+
+      <h1 class="t-display">{post.data.title}</h1>
+      <p class="t-lede">{post.data.summary}</p>
+    </header>
+
+    <div class="post__body shell">
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+
+    <footer class="post__pager shell">
+      {prev ? (
+        <a href={`/writing/${prev.id}`} class="pgr pgr--l">
+          <span class="t-mono-sm">← Previous</span>
+          <span>{prev.data.title}</span>
+        </a>
+      ) : <span></span>}
+      <a href="/writing" class="pgr pgr--c">
+        <span class="t-mono-sm">All notes</span>
+        <span>Back to index ↗</span>
+      </a>
+      {next ? (
+        <a href={`/writing/${next.id}`} class="pgr pgr--r">
+          <span class="t-mono-sm">Next →</span>
+          <span>{next.data.title}</span>
+        </a>
+      ) : <span></span>}
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post { padding-block: clamp(3rem, 8vh, 6rem) 0; }
+  .post__hd { padding-bottom: clamp(3rem, 6vh, 5rem); border-bottom: 1px solid var(--grid-line); max-width: 920px; }
+  .crumbs {
+    display: flex; gap: 0.5rem; margin-bottom: 2rem;
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; opacity: 0.55;
+  }
+  .crumbs a:hover { color: var(--color-orange); }
+  .cur { color: var(--color-orange); }
+
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin-bottom: 2rem;
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-ivory-dim);
+  }
+  .tag {
+    padding: 0.25rem 0.6rem; border: 1px solid var(--grid-line); border-radius: 999px;
+    color: var(--color-violet);
+  }
+  .tag:hover { border-color: var(--color-violet); }
+
+  .post .t-display {
+    font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 22ch; margin-bottom: 1.5rem;
+  }
+
+  .post__body {
+    padding-block: clamp(3rem, 6vh, 5rem);
+  }
+  .prose { max-width: 64ch; }
+  .prose :global(h2) {
+    font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 600; letter-spacing: -0.02em; margin: 3rem 0 1rem;
+    line-height: 1.1;
+  }
+  .prose :global(h2)::before {
+    content: '§ '; color: var(--color-orange); font-family: var(--font-mono);
+    font-size: 0.7em; letter-spacing: 0.05em;
+  }
+  .prose :global(p) {
+    line-height: 1.75; font-size: 1.05rem; color: var(--color-ivory-dim); margin: 1rem 0;
+  }
+  .prose :global(p:first-of-type)::first-letter {
+    font-family: var(--font-display); font-size: 3.5em; font-weight: 700;
+    line-height: 0.9; float: left; padding: 0.3rem 0.4rem 0 0;
+    color: var(--color-orange);
+  }
+  .prose :global(ul), .prose :global(ol) {
+    line-height: 1.75; margin: 1rem 0; padding-left: 1.5rem; color: var(--color-ivory-dim);
+  }
+  .prose :global(li) { margin: 0.4rem 0; }
+  .prose :global(li::marker) { color: var(--color-orange); }
+  .prose :global(blockquote) {
+    margin: 2rem 0; padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--color-orange);
+    font-family: var(--font-display); font-size: 1.25rem; line-height: 1.4;
+    color: var(--color-ivory);
+  }
+  .prose :global(a) {
+    color: var(--color-orange); text-decoration: underline; text-underline-offset: 3px;
+  }
+
+  .post__pager {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; gap: 1.5rem;
+    padding: 3rem 0; border-top: 1px solid var(--grid-line); margin-top: 2rem;
+  }
+  .pgr {
+    display: flex; flex-direction: column; gap: 0.4rem;
+    transition: color 220ms;
+  }
+  .pgr > span:last-child {
+    font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
+  }
+  .pgr--r { text-align: right; align-items: flex-end; }
+  .pgr--c {
+    text-align: center; padding: 0.8rem 1.4rem;
+    border: 1px solid var(--grid-line); border-radius: var(--radius-md);
+  }
+  .pgr--c:hover { border-color: var(--color-orange); color: var(--color-orange); }
+  .pgr:hover { color: var(--color-orange); }
+
+  @media (max-width: 900px) {
+    .post__pager { grid-template-columns: 1fr; gap: 1rem; }
+    .pgr--r { text-align: left; align-items: flex-start; }
+  }
+</style>

@@ -1,0 +1,150 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime(),
+);
+
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout
+  title="Writing — Notes by Naresh Basude · Developer in Thane"
+  description="Notes on building products, brands, and growth by Naresh Basude — local SEO, freelance vs agency, WhatsApp bots, WordPress migration, 7-day delivery."
+  schemaType="writing"
+  breadcrumbs={[
+    { name: 'Home', item: '/' },
+    { name: 'Writing', item: '/writing' },
+  ]}
+  itemList={{
+    name: 'Writing — Notes by Naresh Basude',
+    items: posts.map((p) => ({ name: p.data.title, url: `/writing/${p.id}` })),
+  }}
+>
+  <section class="shell hd">
+    <div class="hd__brackets">
+      <span>[ WRITING ]</span>
+      <span>NOTES &middot; FROM &middot; THE &middot; WORK</span>
+      <span>VOL &middot; 02</span>
+    </div>
+    <h1 class="t-display"><em>Notes</em>, <br/>not posts.</h1>
+    <p class="t-lede hd__lede">
+      Short pieces on building products, brands, and the growth that ties
+      them together. Updated when there's something worth saying.
+    </p>
+
+    {tags.length > 0 && (
+      <div class="hd__tags" aria-label="Browse by tag">
+        <span class="t-mono-sm">Tags ↘</span>
+        {tags.map((t) => (
+          <a href={`/writing/tag/${t}`} class="tag">{t}</a>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <section class="shell sec">
+    {posts.length === 0 ? (
+      <p class="empty">No posts yet — the first essay drops soon.</p>
+    ) : (
+      <ol class="posts" role="list">
+        {posts.map((p, i) => (
+          <li>
+            <a class="post" href={`/writing/${p.id}`}>
+              <span class="post__n">{String(i + 1).padStart(2, '0')}</span>
+              <span class="post__t">
+                <span class="post__title">{p.data.title}</span>
+                <span class="post__sum">{p.data.summary}</span>
+                <span class="post__meta">
+                  <time datetime={p.data.publishedAt.toISOString()}>
+                    {fmt(p.data.publishedAt)}
+                  </time>
+                  {p.data.readingTime && <span>{p.data.readingTime}</span>}
+                  {p.data.tags.map((t) => <span class="post__tag">{t}</span>)}
+                </span>
+              </span>
+              <span class="post__arr" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .hd { padding-block: clamp(3rem, 8vh, 6rem) clamp(2rem, 5vh, 4rem); }
+  .hd__brackets {
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; opacity: 0.55; margin-bottom: 2rem;
+  }
+  .t-display em { color: var(--color-orange); font-style: italic; }
+  .hd__lede { margin-top: 2rem; }
+  .hd__tags {
+    margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+    padding-top: 2rem; border-top: 1px solid var(--grid-line);
+  }
+  .hd__tags > span:first-child { margin-right: 0.5rem; }
+  .tag {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--grid-line); border-radius: 999px;
+    font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--color-ivory-dim);
+    transition: border-color 200ms, color 200ms, background 200ms;
+  }
+  .tag:hover { border-color: var(--color-orange); color: var(--color-ivory);
+    background: color-mix(in oklab, var(--color-orange) 10%, transparent);
+  }
+
+  .sec { padding-block: clamp(2rem, 5vh, 4rem) clamp(4rem, 8vh, 6rem); }
+  .empty { font-family: var(--font-mono); font-size: 0.95rem; color: var(--color-ivory-dim); padding: 3rem 0; }
+
+  .posts { list-style: none; padding: 0; margin: 0; }
+  .post {
+    display: grid;
+    grid-template-columns: 60px 1fr 24px;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 2rem 0.4rem;
+    border-top: 1px solid var(--grid-line);
+    transition: padding 280ms var(--ease-out-expo);
+  }
+  .posts li:last-child .post { border-bottom: 1px solid var(--grid-line); }
+  .post:hover, .post:focus-visible {
+    padding-left: 1.4rem; outline: none;
+    background: linear-gradient(90deg, color-mix(in oklab, var(--color-orange) 6%, transparent), transparent 70%);
+  }
+  .post__n {
+    font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;
+    color: var(--color-mute);
+  }
+  .post__t { display: flex; flex-direction: column; gap: 0.6rem; }
+  .post__title {
+    font-family: var(--font-display); font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    font-weight: 600; letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .post:hover .post__title { color: var(--color-orange); }
+  .post__sum { color: var(--color-ivory-dim); line-height: 1.55; max-width: 60ch; }
+  .post__meta {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+    font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-mute);
+  }
+  .post__tag { color: var(--color-violet); }
+  .post__arr {
+    color: var(--color-orange); transform: translateX(-4px); opacity: 0;
+    transition: transform 280ms var(--ease-out-expo), opacity 200ms;
+    font-size: 1.2rem;
+  }
+  .post:hover .post__arr { transform: translateX(0); opacity: 1; }
+
+  @media (max-width: 720px) {
+    .post { grid-template-columns: 36px 1fr; gap: 0.8rem 1rem; }
+    .post__arr { display: none; }
+  }
+</style>
