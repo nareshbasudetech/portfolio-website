@@ -1,0 +1,109 @@
+# Nginx config for nareshbasude.in (portfolio) — use this if your VPS already has nginx
+#
+# Install location: /etc/nginx/sites-available/nareshbasude.in
+# Symlink:          sudo ln -s /etc/nginx/sites-available/nareshbasude.in /etc/nginx/sites-enabled/
+# After editing:    sudo nginx -t && sudo systemctl reload nginx
+#
+# HTTPS via certbot:  sudo certbot --nginx -d nareshbasude.in -d www.nareshbasude.in
+
+# ─── Redirect www → apex ─────────────────────────────────────────────
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.nareshbasude.in;
+    return 301 https://nareshbasude.in$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name www.nareshbasude.in;
+
+    # ssl_certificate     /etc/letsencrypt/live/nareshbasude.in/fullchain.pem;
+    # ssl_certificate_key /etc/letsencrypt/live/nareshbasude.in/privkey.pem;
+
+    return 301 https://nareshbasude.in$request_uri;
+}
+
+# ─── HTTP → HTTPS for apex ───────────────────────────────────────────
+server {
+    listen 80;
+    listen [::]:80;
+    server_name nareshbasude.in;
+    return 301 https://nareshbasude.in$request_uri;
+}
+
+# ─── Main portfolio server block ─────────────────────────────────────
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name nareshbasude.in;
+
+    # SSL — certbot fills these in
+    # ssl_certificate     /etc/letsencrypt/live/nareshbasude.in/fullchain.pem;
+    # ssl_certificate_key /etc/letsencrypt/live/nareshbasude.in/privkey.pem;
+    # include /etc/letsencrypt/options-ssl-nginx.conf;
+    # ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    # Document root — must match VPS_PATH in GitHub Actions secrets
+    root /var/www/portfolio;
+    index index.html;
+
+    # Gzip
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/json application/javascript application/xml+rss application/atom+xml image/svg+xml;
+
+    # Security headers
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    server_tokens off;
+
+    # Cache static assets aggressively
+    location ~* \.(css|js|svg|png|jpg|jpeg|webp|avif|ico|woff|woff2|ttf)$ {
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        try_files $uri =404;
+    }
+
+    # Sitemap / robots / llms.txt
+    location ~* ^/(sitemap.*\.xml|robots\.txt|llms\.txt|rss\.xml|humans\.txt)$ {
+        expires 10m;
+        add_header Cache-Control "public, max-age=600" always;
+    }
+
+    # Strip trailing slashes (Astro's trailingSlash: 'never')
+    rewrite ^/(.+)/$ /$1 permanent;
+
+    # Clean URLs — try /path, /path/index.html, /path.html
+    location / {
+        try_files $uri $uri/index.html $uri.html /404.html;
+        add_header Cache-Control "public, max-age=300, must-revalidate" always;
+    }
+
+    # 404
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+
+    # Access log
+    access_log /var/log/nginx/portfolio.access.log;
+    error_log  /var/log/nginx/portfolio.error.log;
+}
+
+# ─── Whatsapp bot subdomain ──────────────────────────────────────────
+# Add this server block, or rename your existing nareshbasude.in config's
+# server_name to whatsapp.nareshbasude.in. Whichever fits your current setup.
+#
+# server {
+#     listen 443 ssl http2;
+#     server_name whatsapp.nareshbasude.in;
+#     # ssl_certificate ...;
+#     root /var/www/whatsapp-bot;   # or wherever the bot lives
+#     # ... existing config ...
+# }

@@ -1,0 +1,68 @@
+name: Build & Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID }}
+
+      - name: Sanity-check build
+        run: |
+          test -f dist/index.html || (echo "ERROR: dist/index.html missing" && exit 1)
+          test -f dist/sitemap-index.xml || (echo "ERROR: sitemap missing" && exit 1)
+          test -f dist/robots.txt || (echo "ERROR: robots.txt missing" && exit 1)
+          test -f dist/llms.txt || (echo "ERROR: llms.txt missing" && exit 1)
+          PAGES=$(find dist -name "*.html" | wc -l)
+          echo "Built $PAGES HTML pages"
+          [ "$PAGES" -ge 50 ] || (echo "ERROR: too few pages ($PAGES)" && exit 1)
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H -p "${{ secrets.VPS_PORT || '22' }}" "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Rsync dist/ to VPS
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.VPS_PORT || '22' }} -o StrictHostKeyChecking=accept-new" \
+            dist/ \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_PATH }}/"
+
+      - name: Smoke-test deploy
+        run: |
+          sleep 3
+          curl -sf -o /dev/null -w "HTTP %{http_code}  size=%{size_download}b  time=%{time_total}s\n" https://nareshbasude.in/ || (echo "Smoke test failed" && exit 1)
+          curl -sf -o /dev/null -w "sitemap: HTTP %{http_code}\n" https://nareshbasude.in/sitemap-index.xml
+          curl -sf -o /dev/null -w "llms.txt: HTTP %{http_code}\n" https://nareshbasude.in/llms.txt
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

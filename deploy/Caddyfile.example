@@ -1,0 +1,108 @@
+# Caddyfile for nareshbasude.in (portfolio) + whatsapp.nareshbasude.in (existing bot)
+#
+# Install location: /etc/caddy/Caddyfile
+# After editing: sudo systemctl reload caddy
+#
+# Caddy auto-provisions Let's Encrypt SSL — no certbot needed.
+# Make sure ports 80 + 443 are open in your VPS firewall (ufw allow 80,443/tcp).
+
+# ─── PORTFOLIO (apex + www) ──────────────────────────────────────────
+nareshbasude.in, www.nareshbasude.in {
+    # Document root — must match VPS_PATH in GitHub Actions secrets
+    root * /var/www/portfolio
+
+    # Compress responses
+    encode zstd gzip
+
+    # Security headers (matches what was in .htaccess before)
+    header {
+        Strict-Transport-Security      "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options         nosniff
+        X-Frame-Options                SAMEORIGIN
+        Referrer-Policy                strict-origin-when-cross-origin
+        Permissions-Policy             "camera=(), microphone=(), geolocation=()"
+        -Server
+    }
+
+    # Cache static assets aggressively
+    @assets {
+        path *.css *.js *.svg *.png *.jpg *.jpeg *.webp *.avif *.ico *.woff *.woff2 *.ttf
+    }
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+
+    # HTML — short cache to allow quick updates
+    @html {
+        path *.html
+    }
+    header @html Cache-Control "public, max-age=300, must-revalidate"
+
+    # Sitemap / robots / llms — even shorter
+    @meta {
+        path /sitemap*.xml /robots.txt /llms.txt /rss.xml /humans.txt
+    }
+    header @meta Cache-Control "public, max-age=600"
+
+    # Astro's trailingSlash: 'never' — strip trailing slashes (except root)
+    @trailing_slash {
+        path_regexp ts ^(/.+)/$
+    }
+    redir @trailing_slash {re.ts.1} 301
+
+    # Force www → apex
+    @www {
+        host www.nareshbasude.in
+    }
+    redir @www https://nareshbasude.in{uri} 301
+
+    # SPA-style fallback for clean URLs (e.g., /thane → /thane/index.html)
+    try_files {path} {path}/index.html {path}.html /404.html
+
+    # Serve files
+    file_server
+
+    # 404 page
+    handle_errors {
+        @404 expression `{err.status_code} == 404`
+        rewrite @404 /404.html
+        file_server
+    }
+
+    # Access log (rotate weekly, keep 4)
+    log {
+        output file /var/log/caddy/portfolio.access.log {
+            roll_size 50mb
+            roll_keep 4
+        }
+        format console
+    }
+}
+
+# ─── WHATSAPP BOT (moved from apex) ──────────────────────────────────
+# This block assumes the existing bot site is served from /var/www/whatsapp-bot
+# (or wherever it currently lives — update the root path to match).
+#
+# If the bot is a Node app on localhost:3000 instead of static files, replace
+# the `file_server` block below with: reverse_proxy localhost:3000
+whatsapp.nareshbasude.in {
+    root * /var/www/whatsapp-bot
+    encode zstd gzip
+
+    header {
+        Strict-Transport-Security      "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options         nosniff
+        Referrer-Policy                strict-origin-when-cross-origin
+        -Server
+    }
+
+    file_server
+
+    # If it's a Node/Python app instead, use:
+    # reverse_proxy localhost:3000
+
+    log {
+        output file /var/log/caddy/whatsapp.access.log {
+            roll_size 50mb
+            roll_keep 4
+        }
+    }
+}
